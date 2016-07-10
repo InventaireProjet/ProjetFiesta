@@ -40,7 +40,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         trajet.setNomConducteur(nomConducteur.getText().toString());
         trajet.setDestination(destination.getText().toString());
         trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
-        trajet.setHeureDepart(Integer.valueOf(heureDepart.getText().toString()));
+        trajet.setHeureDepart(heureDepart.getText().toString());
         trajet.setEmail(email.getText().toString());
 
 

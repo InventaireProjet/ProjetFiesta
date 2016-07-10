@@ -11,7 +11,7 @@ public class Trajet {
     private String nomConducteur;
     private String destination;
     private int nombrePlaces;
-    private int heureDepart;
+    private String heureDepart;
     private String email;
 
     public int getNombrePlaces() {
@@ -30,11 +30,11 @@ public class Trajet {
         this.destination = destination;
     }
 
-    public int getHeureDepart() {
+    public String getHeureDepart() {
         return heureDepart;
     }
 
-    public void setHeureDepart(int heureDepart) {
+    public void setHeureDepart(String heureDepart) {
         this.heureDepart = heureDepart;
     }
 

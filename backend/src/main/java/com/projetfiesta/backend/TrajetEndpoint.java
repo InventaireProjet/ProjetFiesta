@@ -1,4 +1,4 @@
-package com.example.Ingestien.projetfiesta.backend;
+package com.projetfiesta.backend;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -31,8 +31,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
         version = "v1",
         resource = "trajet",
         namespace = @ApiNamespace(
-                ownerDomain = "backend.projetfiesta.Ingestien.example.com",
-                ownerName = "backend.projetfiesta.Ingestien.example.com",
+                ownerDomain = "backend.projetfiesta.com",
+                ownerName = "backend.projetfiesta.com",
                 packagePath = ""
         )
 )

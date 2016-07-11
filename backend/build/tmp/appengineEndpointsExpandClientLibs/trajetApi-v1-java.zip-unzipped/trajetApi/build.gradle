@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 
-group = 'com.example.ingestien.projetfiesta.backend'
+group = 'com.projetfiesta.backend'
 archivesBaseName = 'trajetApi'
 version = 'v1-1.22.0-SNAPSHOT'
 

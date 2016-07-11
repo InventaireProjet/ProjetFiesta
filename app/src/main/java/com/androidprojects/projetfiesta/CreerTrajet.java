@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ingestien.projetfiesta.backend.trajetApi.model.Trajet;
+import com.projetfiesta.backend.trajetApi.model.Trajet;
 
 import java.util.List;
 

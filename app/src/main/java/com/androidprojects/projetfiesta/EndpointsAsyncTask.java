@@ -4,8 +4,8 @@ package com.androidprojects.projetfiesta;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.ingestien.projetfiesta.backend.trajetApi.TrajetApi;
-import com.example.ingestien.projetfiesta.backend.trajetApi.model.Trajet;
+import com.projetfiesta.backend.trajetApi.TrajetApi;
+import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;

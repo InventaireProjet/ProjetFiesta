@@ -13,7 +13,7 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.example.Ingestien.projetfiesta.backend.TrajetEndpoint</param-value>
+            <param-value>com.projetfiesta.backend.TrajetEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

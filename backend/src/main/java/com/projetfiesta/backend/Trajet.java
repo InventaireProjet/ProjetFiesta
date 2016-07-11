@@ -1,4 +1,4 @@
-package com.example.Ingestien.projetfiesta.backend;
+package com.projetfiesta.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;

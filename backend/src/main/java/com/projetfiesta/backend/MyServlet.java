@@ -4,7 +4,7 @@
    https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloWorld
 */
 
-package com.example.Ingestien.projetfiesta.backend;
+package com.projetfiesta.backend;
 
 import java.io.IOException;
 import javax.servlet.http.*;

@@ -42,12 +42,6 @@
             android:id="@+id/editText4"  android:layout_gravity="center_horizontal"  android:hint="email"
             android:inputType="textEmailAddress" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/editText5" />
 
         <Button
             android:layout_width="wrap_content"

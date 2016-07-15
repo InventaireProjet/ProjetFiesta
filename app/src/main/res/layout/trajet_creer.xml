@@ -17,29 +17,44 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" android:layout_gravity="center_horizontal" android:hint="Nom du conducteur"
+            android:id="@+id/nom" android:layout_gravity="center_horizontal" android:hint="Nom du conducteur"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText1" android:layout_gravity="center_horizontal" android:hint="Destination" />
+            android:id="@+id/prenom" android:layout_gravity="center_horizontal" android:hint="Prénom" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/editText2" android:layout_gravity="center_horizontal" android:hint="Nombre de place(s)"/>
+            android:id="@+id/dateNaissance" android:layout_gravity="center_horizontal" android:hint="Date de naissance"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:id="@+id/editText3" android:layout_gravity="center_horizontal" android:hint="Heure de départ (environ)"
+            android:id="@+id/email" android:layout_gravity="center_horizontal" android:hint="E-mail"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"  android:layout_gravity="center_horizontal"  android:hint="email"
+            android:id="@+id/motPasse"  android:layout_gravity="center_horizontal"  android:hint="Mot de passe"
+            android:inputType="textEmailAddress" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/destination"  android:layout_gravity="center_horizontal"  android:hint="Destination"
+            android:inputType="textEmailAddress" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nbPlaces"  android:layout_gravity="center_horizontal"  android:hint="Nombre de places"
+            android:inputType="textEmailAddress" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/heure"  android:layout_gravity="center_horizontal"  android:hint="Heure (environ)"
             android:inputType="textEmailAddress" />
 
 

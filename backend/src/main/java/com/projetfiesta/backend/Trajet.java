@@ -3,16 +3,16 @@ package com.projetfiesta.backend;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+
 @Entity
 public class Trajet {
 
     @Id
     private Long id;
-    private String nomConducteur;
     private String destination;
     private int nombrePlaces;
     private String heureDepart;
-    private String email;
+    private Long conducteurId;
 
     public int getNombrePlaces() {
         return nombrePlaces;
@@ -38,23 +38,6 @@ public class Trajet {
         this.heureDepart = heureDepart;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public String getNomConducteur() {
-        return nomConducteur;
-    }
-
-    public void setNomConducteur(String nomConducteur) {
-        this.nomConducteur = nomConducteur;
-    }
-
     public Long getId() {
         return id;
     }
@@ -63,4 +46,11 @@ public class Trajet {
         this.id = id;
     }
 
+    public Long getConducteurId() {
+        return conducteurId;
+    }
+
+    public void setConducteurId(Long conducteurId) {
+        this.conducteurId = conducteurId;
+    }
 }

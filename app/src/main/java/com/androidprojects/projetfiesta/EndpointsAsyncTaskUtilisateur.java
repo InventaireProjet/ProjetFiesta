@@ -4,39 +4,39 @@ package com.androidprojects.projetfiesta;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.projetfiesta.backend.trajetApi.TrajetApi;
-import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.projetfiesta.backend.utilisateurApi.UtilisateurApi;
+import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Trajet>> {
-    private static TrajetApi trajetApi = null;
-    private static final String TAG = EndpointsAsyncTask.class.getName();
-    private Trajet trajet;
+public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Utilisateur>> {
+    private static UtilisateurApi utilisateurApi = null;
+    private static final String TAG = EndpointsAsyncTaskUtilisateur.class.getName();
+    private Utilisateur utilisateur;
     private OnTaskCompleted listener;
 
-    EndpointsAsyncTask(OnTaskCompleted listener) {
+    EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTask(Trajet trajet, OnTaskCompleted listener) {
-        this.trajet = trajet;
+    EndpointsAsyncTaskUtilisateur(Utilisateur utilisateur, OnTaskCompleted listener) {
+        this.utilisateur = utilisateur;
         this.listener = listener;
     }
 
     @Override
-    protected List<Trajet> doInBackground(Void... params) {
+    protected List<Utilisateur> doInBackground(Void... params) {
 
-        if (trajetApi == null) {
+        if (utilisateurApi == null) {
             // Only do this once
-            TrajetApi.Builder builder = new TrajetApi.Builder(AndroidHttp.newCompatibleTransport(),
+            UtilisateurApi.Builder builder = new UtilisateurApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
@@ -50,32 +50,32 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Trajet>> {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-            trajetApi = builder.build();
+            utilisateurApi = builder.build();
         }
 
         try {
             // Call here the wished methods on the Endpoints
             // For instance insert
-            if (trajet != null) {
-                trajetApi.insert(trajet).execute();
-                Log.i(TAG, "insert trajet");
+            if (utilisateur != null) {
+                utilisateurApi.insert(utilisateur).execute();
+                Log.i(TAG, "insert utilisateur");
             }
             // and for instance return the list of all trajets
-            return trajetApi.list().execute().getItems();
+            return utilisateurApi.list().execute().getItems();
 
         } catch (IOException e) {
             Log.e(TAG, e.toString());
-            return new ArrayList<Trajet>();
+            return new ArrayList<Utilisateur>();
         }
     }
 
     //This method gets executed on the UI thread - The UI can be manipulated directly inside
     //of this method
     @Override
-    protected void onPostExecute(List<Trajet> result) {
+    protected void onPostExecute(List<Utilisateur> result) {
 
         if (result != null) {
-            listener.updateListView(result);
+            listener.updateListViewUtilisateur(result);
         }
     }
 }

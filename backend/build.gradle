@@ -28,13 +28,19 @@ dependencies {
     compile 'javax.servlet:servlet-api:2.5'
     compile group: 'com.googlecode.objectify', name: 'objectify', version: '5.1.13'
 
+
 }
 
 appengine {
   downloadSdk = true
-  appcfg {
-    oauth2 = true
-  }
+    appcfg {
+        oauth2 = true
+    }
+    endpoints {
+        getClientLibsOnBuild = true
+        getDiscoveryDocsOnBuild = true
+    }
+
 
 
 }

@@ -6,17 +6,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 
 import java.util.List;
 
 public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
-    private EditText nomConducteur;
+    //private EditText nomConducteur;
+    private EditText nom;
+    private EditText prenom;
+    private EditText dateNaissance;
+    private EditText email;
+    private EditText motPasse;
     private EditText destination;
     private EditText nombrePlaces;
     private EditText heureDepart;
-    private EditText email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +34,47 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
     public void insert(View view) {
 
+        Utilisateur utilisateur = new Utilisateur();
         Trajet trajet = new Trajet();
 
-          nomConducteur = (EditText) findViewById(R.id.editText);
-          destination = (EditText) findViewById(R.id.editText1);
-          nombrePlaces = (EditText) findViewById(R.id.editText2);
-          heureDepart = (EditText) findViewById(R.id.editText3);
-          email = (EditText) findViewById(R.id.editText4);
+        nom = (EditText) findViewById(R.id.nom);
+        prenom = (EditText) findViewById(R.id.prenom);
+        dateNaissance = (EditText) findViewById(R.id.dateNaissance);
+        email = (EditText) findViewById(R.id.email);
+        motPasse = (EditText) findViewById(R.id.motPasse);
+        destination = (EditText) findViewById(R.id.destination);
+        nombrePlaces = (EditText) findViewById(R.id.nbPlaces);
+        heureDepart = (EditText) findViewById(R.id.heure);
 
-        trajet.setNomConducteur(nomConducteur.getText().toString());
+
+        utilisateur.setNom(nom.getText().toString());
+        utilisateur.setPrenom(prenom.getText().toString());
+        utilisateur.setDateNaissance(dateNaissance.getText().toString());
+        utilisateur.setEmail(email.getText().toString());
+        utilisateur.setMotDePasse(motPasse.getText().toString());
+
+        new EndpointsAsyncTaskUtilisateur(utilisateur, this).execute();
+
         trajet.setDestination(destination.getText().toString());
         trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
         trajet.setHeureDepart(heureDepart.getText().toString());
-        trajet.setEmail(email.getText().toString());
+        trajet.setDestination(destination.getText().toString());
+        trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
+        trajet.setHeureDepart(heureDepart.getText().toString());
+        trajet.setConducteurId(utilisateur.getId());
 
 
-
-        new EndpointsAsyncTask(trajet, this).execute();
+        new EndpointsAsyncTaskTrajet(trajet, this).execute();
     }
 
     @Override
-    public void updateListView(List<Trajet> trajets) {
+    public void updateListViewTrajet(List<Trajet> trajets) {
         Toast.makeText(this, "Trajet successfully inserted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
+        Toast.makeText(this, "Utilisateur successfully inserted", Toast.LENGTH_LONG).show();
     }
 
 }

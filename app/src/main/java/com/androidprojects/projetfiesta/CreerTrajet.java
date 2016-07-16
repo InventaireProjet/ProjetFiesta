@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
+import com.projetfiesta.backend.evenementApi.model.Evenement;
+import com.projetfiesta.backend.messageApi.model.Message;
 
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
         Utilisateur utilisateur = new Utilisateur();
         Trajet trajet = new Trajet();
+        Evenement evenement = new Evenement();
+        Message message = new Message();
 
         nom = (EditText) findViewById(R.id.nom);
         prenom = (EditText) findViewById(R.id.prenom);
@@ -63,8 +67,17 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         trajet.setHeureDepart(heureDepart.getText().toString());
         trajet.setConducteurId(utilisateur.getId());
 
+        evenement.setTitre("titre");
+        evenement.setDate("aujourd'hui");
+        evenement.setLogo("image");
+
+        message.setTexte("mon texte");
+        message.setDateHeure("now");
+
 
         new EndpointsAsyncTaskTrajet(trajet, this).execute();
+        new EndpointsAsyncTaskEvenement(evenement, this).execute();
+        new EndpointsAsyncTaskMessage(message, this).execute();
     }
 
     @Override
@@ -75,6 +88,16 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
     @Override
     public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
         Toast.makeText(this, "Utilisateur successfully inserted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void updateListViewEvenement(List<Evenement> evenements) {
+        Toast.makeText(this, "Evenement successfully inserted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void updateListViewMessage(List<Message> messages) {
+        Toast.makeText(this, "Message successfully inserted", Toast.LENGTH_LONG).show();
     }
 
 }

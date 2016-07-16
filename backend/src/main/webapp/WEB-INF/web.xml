@@ -14,7 +14,8 @@
         <init-param>
             <param-name>services</param-name>
             <param-value>com.projetfiesta.backend.TrajetEndpoint,
-                com.projetfiesta.backend.UtilisateurEndpoint</param-value>
+                com.projetfiesta.backend.UtilisateurEndpoint,
+                com.projetfiesta.backend.EvenementEndpoint, com.projetfiesta.backend.MessageEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

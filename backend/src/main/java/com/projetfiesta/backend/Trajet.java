@@ -13,6 +13,8 @@ public class Trajet {
     private int nombrePlaces;
     private String heureDepart;
     private Long conducteurId;
+    private Long evenementId;
+
 
     public int getNombrePlaces() {
         return nombrePlaces;
@@ -52,5 +54,13 @@ public class Trajet {
 
     public void setConducteurId(Long conducteurId) {
         this.conducteurId = conducteurId;
+    }
+
+    public Long getEvenementId() {
+        return evenementId;
+    }
+
+    public void setEvenementId(Long evenementId) {
+        this.evenementId = evenementId;
     }
 }

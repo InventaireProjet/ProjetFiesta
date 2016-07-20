@@ -6,14 +6,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
-import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
+import com.projetfiesta.backend.trajetApi.model.Trajet;
+import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.List;
 
-public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
+public class AfficherEvenements extends AppCompatActivity implements OnTaskCompleted {
+
+    //TODO : Il s'agit de la copie de CreerTrajet.java. A modifier pour que cela corresponde à l'affichage des événements
 
     //private EditText nomConducteur;
     private EditText nom;

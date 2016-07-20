@@ -21,14 +21,16 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private static final String TAG = EndpointsAsyncTaskEvenement.class.getName();
     private Evenement evenement;
     private OnTaskCompleted listener;
+    private int codeAction;
 
     EndpointsAsyncTaskEvenement(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTaskEvenement(Evenement evenement, OnTaskCompleted listener) {
+    EndpointsAsyncTaskEvenement(int codeAction, Evenement evenement, OnTaskCompleted listener) {
         this.evenement = evenement;
         this.listener = listener;
+        this.codeAction = codeAction;
     }
 
     @Override
@@ -54,6 +56,35 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
         }
 
         try {
+            switch (codeAction) {
+                case (0): // INSERT
+                    if (evenement != null) {
+                        evenementApi.insert(evenement).execute();
+                        Log.i(TAG, "insert evenement");
+                    }
+                    break;
+                case (1): // UPDATE
+                    if (evenement != null) {
+                        evenementApi.update(evenement.getId(), evenement).execute();
+                        Log.i(TAG, "update evenement");
+                    }
+                    break;
+                case (2) : // DELETE
+                    if (evenement != null) {
+                        evenementApi.remove(evenement.getId()).execute();
+                        Log.i(TAG, "remove evenement");
+                    }
+                    break;
+            }
+            return evenementApi.list().execute().getItems();
+
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+            return new ArrayList<Evenement>();
+        }
+
+        /*
+        try {
             // Call here the wished methods on the Endpoints
             // For instance insert
             if (evenement != null) {
@@ -67,6 +98,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
             Log.e(TAG, e.toString());
             return new ArrayList<Evenement>();
         }
+        */
     }
 
     //This method gets executed on the UI thread - The UI can be manipulated directly inside

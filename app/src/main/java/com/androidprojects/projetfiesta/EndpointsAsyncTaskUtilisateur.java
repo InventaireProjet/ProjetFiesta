@@ -17,18 +17,20 @@ import java.util.List;
 
 
 public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Utilisateur>> {
-    private static UtilisateurApi utilisateurApi = null;
     private static final String TAG = EndpointsAsyncTaskUtilisateur.class.getName();
+    private static UtilisateurApi utilisateurApi = null;
     private Utilisateur utilisateur;
+    private int codeAction;
     private OnTaskCompleted listener;
 
     EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTaskUtilisateur(Utilisateur utilisateur, OnTaskCompleted listener) {
+    EndpointsAsyncTaskUtilisateur(int codeAction , Utilisateur utilisateur, OnTaskCompleted listener) {
         this.utilisateur = utilisateur;
         this.listener = listener;
+        this.codeAction = codeAction;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://projet-fiesta.appspot.com/_ah/api")
+                    .setRootUrl("https://4-dot-projet-fiesta.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -54,13 +56,29 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
         }
 
         try {
-            // Call here the wished methods on the Endpoints
-            // For instance insert
-            if (utilisateur != null) {
-                utilisateurApi.insert(utilisateur).execute();
-                Log.i(TAG, "insert utilisateur");
+            switch (codeAction) {
+
+                case (0):
+                    if (utilisateur != null) {
+                        utilisateurApi.insert(utilisateur).execute();
+                        Log.i(TAG, "insert utilisateur");
+                    }
+                    break;
+                case (1):
+                    if (utilisateur != null) {
+                        utilisateurApi.update(utilisateur.getId(), utilisateur).execute();
+                        Log.i(TAG, "update utilisateur");
+                    }
+                    break;
+                case (2) :
+                    if (utilisateur != null) {
+                        utilisateurApi.remove(utilisateur.getId()).execute();
+                        Log.i(TAG, "remove utilisateur");
+                    }
+                    break;
             }
-            // and for instance return the list of all trajets
+
+
             return utilisateurApi.list().execute().getItems();
 
         } catch (IOException e) {

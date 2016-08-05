@@ -17,18 +17,20 @@ import java.util.List;
 
 
 public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Message>> {
-    private static MessageApi messageApi = null;
     private static final String TAG = EndpointsAsyncTaskMessage.class.getName();
+    private static MessageApi messageApi = null;
     private Message message;
+    private int codeAction;
     private OnTaskCompleted listener;
 
     EndpointsAsyncTaskMessage(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTaskMessage(Message message, OnTaskCompleted listener) {
+    EndpointsAsyncTaskMessage(int codeAction, Message message, OnTaskCompleted listener) {
         this.message = message;
         this.listener = listener;
+        this.codeAction = codeAction;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://projet-fiesta.appspot.com/_ah/api")
+                    .setRootUrl("https://4-dot-projet-fiesta.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -54,13 +56,28 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
         }
 
         try {
-            // Call here the wished methods on the Endpoints
-            // For instance insert
-            if (message != null) {
-                messageApi.insert(message).execute();
-                Log.i(TAG, "insert message");
+            switch (codeAction) {
+                case (0):
+
+                    if (message != null) {
+                        messageApi.insert(message).execute();
+                        Log.i(TAG, "insert message");
+                    }
+                    break;
+                case (1):
+                    if (message != null) {
+                        messageApi.update(message.getId(), message).execute();
+                        Log.i(TAG, "update message");
+                    }
+                    break;
+                case (2) :
+                    if (message != null) {
+                        messageApi.remove(message.getId()).execute();
+                        Log.i(TAG, "remove message");
+                    }
+                    break;
             }
-            // and for instance return the list of all trajets
+
             return messageApi.list().execute().getItems();
 
         } catch (IOException e) {

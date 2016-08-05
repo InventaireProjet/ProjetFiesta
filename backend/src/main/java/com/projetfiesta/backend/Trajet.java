@@ -2,6 +2,7 @@ package com.projetfiesta.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -13,7 +14,7 @@ public class Trajet {
     private int nombrePlaces;
     private String heureDepart;
     private Long conducteurId;
-    private Long evenementId;
+    @Index private Long evenementId;
 
 
     public int getNombrePlaces() {

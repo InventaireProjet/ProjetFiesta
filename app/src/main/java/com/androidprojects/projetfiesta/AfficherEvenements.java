@@ -1,10 +1,14 @@
 package com.androidprojects.projetfiesta;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
@@ -15,91 +19,68 @@ import java.util.List;
 
 public class AfficherEvenements extends AppCompatActivity implements OnTaskCompleted {
 
-    //TODO : Il s'agit de la copie de CreerTrajet.java. A modifier pour que cela corresponde à l'affichage des événements
-
-    //private EditText nomConducteur;
-    private EditText nom;
-    private EditText prenom;
-    private EditText dateNaissance;
-    private EditText email;
-    private EditText motPasse;
-    private EditText destination;
-    private EditText nombrePlaces;
-    private EditText heureDepart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.trajet_creer);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setContentView(R.layout.evenement_afficher);
+        getEvenements();
     }
 
-    public void insert(View view) {
-
-        Utilisateur utilisateur = new Utilisateur();
-        Trajet trajet = new Trajet();
-        Evenement evenement = new Evenement();
-        Message message = new Message();
-
-        nom = (EditText) findViewById(R.id.nom);
-        prenom = (EditText) findViewById(R.id.prenom);
-        dateNaissance = (EditText) findViewById(R.id.dateNaissance);
-        email = (EditText) findViewById(R.id.email);
-        motPasse = (EditText) findViewById(R.id.motPasse);
-        destination = (EditText) findViewById(R.id.destination);
-        nombrePlaces = (EditText) findViewById(R.id.nbPlaces);
-        heureDepart = (EditText) findViewById(R.id.heure);
 
 
-        utilisateur.setNom(nom.getText().toString());
-        utilisateur.setPrenom(prenom.getText().toString());
-        utilisateur.setDateNaissance(dateNaissance.getText().toString());
-        utilisateur.setEmail(email.getText().toString());
-        utilisateur.setMotDePasse(motPasse.getText().toString());
-
-        new EndpointsAsyncTaskUtilisateur(utilisateur, this).execute();
-
-        trajet.setDestination(destination.getText().toString());
-        trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
-        trajet.setHeureDepart(heureDepart.getText().toString());
-        trajet.setDestination(destination.getText().toString());
-        trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
-        trajet.setHeureDepart(heureDepart.getText().toString());
-        trajet.setConducteurId(utilisateur.getId());
-
-        evenement.setTitre("titre");
-        evenement.setDate("aujourd'hui");
-        evenement.setLogo("image");
-
-        message.setTexte("mon texte");
-        message.setDateHeure("now");
 
 
-        new EndpointsAsyncTaskTrajet(trajet, this).execute();
-        new EndpointsAsyncTaskEvenement(0, evenement, this).execute();
-        new EndpointsAsyncTaskMessage(message, this).execute();
+    public void getEvenements() {
+        new EndpointsAsyncTaskEvenement(this).execute();
+    }
+
+
+
+    @Override
+    public void updateListViewEvenement(final List<Evenement> evenements) {
+        final ListView listView = (ListView) findViewById(R.id.listView);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, evenements) {
+            @Override
+            public View getView(final int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(evenements.get(position).getTitre());
+                text2.setText(evenements.get(position).getDate());
+
+                text1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), AfficherTrajets.class);
+                        Long evenementId = evenements.get(position).getId();
+                        intent.putExtra("evenementId",evenementId);
+                        startActivity(intent);
+                    }
+                });
+                return view;
+            }
+        };
+
+        listView.setAdapter(adapter);
+
+        final Context context = this;
     }
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-        Toast.makeText(this, "Trajet successfully inserted", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
-        Toast.makeText(this, "Utilisateur successfully inserted", Toast.LENGTH_LONG).show();
-    }
 
-    @Override
-    public void updateListViewEvenement(List<Evenement> evenements) {
-        Toast.makeText(this, "Evenement successfully inserted", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void updateListViewMessage(List<Message> messages) {
-        Toast.makeText(this, "Message successfully inserted", Toast.LENGTH_LONG).show();
-    }
 
+    }
 }

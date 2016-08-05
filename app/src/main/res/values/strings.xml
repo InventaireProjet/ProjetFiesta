@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Projet Fiesta</string>
     <string name="action_settings">Settings</string>
+    <string name="email">e-mail</string>
+    <string name="creer_le_trajet">CRÉER LE TRAJET</string>
+    <string name="heure_depart">Heure de départ (environ)</string>
+    <string name="nb_places">Nombre de places</string>
+    <string name="destination">Destination</string>
+    <string name="nom_conducteur">Nom du conducteur</string>
+    <string name="sobre_responsable">Je m\'engage à rester sobre et responsable</string>
+    <string name="trajet_insere">Trajet inséré</string>
+    <string name="utilisateur_insere">Utilisateur inséré</string>
+    <string name="nom_existant">Nom d\'utilisateur déjà existant</string>
+    <string name="sobriete_obligatoire">Tu dois t\'engager à rester sobre et responsable !</string>
+    <string name="email_invalide">Adresse e-mail invalide</string>
+    <string name="heure_invalide">Heure invalide (le format de l\'heure doit être le suivant : hh:mm)</string>
+    <string name="destination_vide">Entrer une destination</string>
+    <string name="nbPlaces_vide">Entrer un nombre de places</string>
+    <string name="nom_vide">Entrer un nom</string>
+    <string name="inscription_conducteur">Je m\'inscris comme conducteur</string>
 </resources>

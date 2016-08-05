@@ -149,6 +149,25 @@ public class TrajetEndpoint {
         return CollectionResponse.<Trajet>builder().setItems(trajetList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
+    //Méthode permettant d'obtenir tous les trajets liés à un événement donné
+    @ApiMethod(
+            name = "trajetsParEvenement",
+            path = "trajetsParEvenement/{evenementId}",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<Trajet> trajetsParEvenement(@Nullable @Named("cursor") String cursor,@Named("evenementId") Long evenementId,  @Nullable @Named("limit") Integer limit) {
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<Trajet> query = ofy().load().type(Trajet.class).filter("evenementId", evenementId).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<Trajet> queryIterator = query.iterator();
+        List<Trajet> trajetList = new ArrayList<Trajet>(limit);
+        while (queryIterator.hasNext()) {
+            trajetList.add(queryIterator.next());
+        }
+        return CollectionResponse.<Trajet>builder().setItems(trajetList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+
     private void checkExists(Long id) throws NotFoundException {
         try {
             ofy().load().type(Trajet.class).id(id).safe();

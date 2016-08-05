@@ -17,20 +17,29 @@ import java.util.List;
 
 
 public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>> {
-    private static TrajetApi trajetApi = null;
     private static final String TAG = EndpointsAsyncTaskTrajet.class.getName();
+    private static TrajetApi trajetApi = null;
     private Trajet trajet;
+    private int codeAction;
     private OnTaskCompleted listener;
+    private Long evenementId;
 
     EndpointsAsyncTaskTrajet(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTaskTrajet(Trajet trajet, OnTaskCompleted listener) {
+    EndpointsAsyncTaskTrajet(int codeAction , Trajet trajet, OnTaskCompleted listener) {
         this.trajet = trajet;
         this.listener = listener;
+        this.codeAction=codeAction;
     }
 
+    //AsyncTask dédiée à la recherche des trajets liés à un événement
+    EndpointsAsyncTaskTrajet(Long evenementId, OnTaskCompleted listener) {
+        this.listener = listener;
+        this.evenementId = evenementId;
+        this.codeAction=3;
+    }
     @Override
     protected List<Trajet> doInBackground(Void... params) {
 
@@ -43,7 +52,7 @@ public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://projet-fiesta.appspot.com/_ah/api")
+                    .setRootUrl("https://4-dot-projet-fiesta.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -54,13 +63,34 @@ public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>
         }
 
         try {
-            // Call here the wished methods on the Endpoints
-            // For instance insert
-            if (trajet != null) {
-                trajetApi.insert(trajet).execute();
-                Log.i(TAG, "insert trajet");
+
+            switch (codeAction) {
+
+                case (0):
+                    if (trajet != null) {
+                        trajetApi.insert(trajet).execute();
+                        Log.i(TAG, "insert trajet");
+                    }
+                    break;
+                case (1):
+                    if (trajet != null) {
+                        trajetApi.update(trajet.getId(), trajet).execute();
+                        Log.i(TAG, "update trajet");
+                    }
+                    break;
+                case (2):
+                    if (trajet != null) {
+                        trajetApi.remove(trajet.getId()).execute();
+                        Log.i(TAG, "remove trajet");
+                    }
+                    break;
+                case (3):
+
+                    List trajets = trajetApi.trajetsParEvenement(evenementId).execute().getItems();
+                    Log.i(TAG, "get trajets par evenement");
+
+                    return trajets;
             }
-            // and for instance return the list of all trajets
             return trajetApi.list().execute().getItems();
 
         } catch (IOException e) {

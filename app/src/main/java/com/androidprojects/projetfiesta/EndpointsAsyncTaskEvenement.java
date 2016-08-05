@@ -17,8 +17,8 @@ import java.util.List;
 
 
 public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Evenement>> {
-    private static EvenementApi evenementApi = null;
     private static final String TAG = EndpointsAsyncTaskEvenement.class.getName();
+    private static EvenementApi evenementApi = null;
     private Evenement evenement;
     private OnTaskCompleted listener;
     private int codeAction;
@@ -45,7 +45,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://projet-fiesta.appspot.com/_ah/api")
+                    .setRootUrl("https://4-dot-projet-fiesta.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {

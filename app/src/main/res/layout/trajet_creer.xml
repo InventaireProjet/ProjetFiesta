@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         tools:context="com.androidprojects.projetfiesta.CreerTrajet">
 
 
@@ -22,9 +22,9 @@
             android:id="@+id/titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/creer_le_trajet"
-            android:textSize="20dp"
+            android:textSize="@dimen/texte_grand"
             android:textStyle="bold"
             />
 
@@ -123,8 +123,8 @@
         <CheckBox
             android:id="@+id/checkbox_sobre"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/hauteur_ligne"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:buttonTint="@color/blanc"
             android:text="@string/sobre_responsable"
             android:textColor="@color/blanc"
@@ -135,13 +135,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/marge_grosse"
             android:background="@color/couleur_bouton"
             android:onClick="insert"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
             android:text="@string/creer_le_trajet"
-            android:textSize="20dp"
+            android:textSize="@dimen/texte_grand"
             android:textStyle="bold" />
 
     </LinearLayout>

@@ -1,32 +1,18 @@
-package com.projetfiesta.backend;
+package com.androidprojects.projetfiesta;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-
-
-@Entity
-public class Evenement {
-
-    @Id
+/**
+ * Created by elsio on 20.08.2016.
+ */
+public class EvenementTest {
     private Long id;
     private String titre;
     private String date;
     private int logo;
 
-    public Evenement(int logo, String titre, String date) {
+    public EvenementTest(int logo, String titre, String date) {
         this.logo = logo;
         this.titre = titre;
         this.date = date;
-        this.id = null;
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitre() {

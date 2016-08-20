@@ -23,7 +23,7 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.evenement_afficher);
+        setContentView(R.layout.evenements_afficher);
         getEvenements();
     }
 
@@ -39,7 +39,7 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
 
     @Override
     public void updateListViewEvenement(final List<Evenement> evenements) {
-        final ListView listView = (ListView) findViewById(R.id.listView);
+        //final ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, evenements) {
             @Override
@@ -54,17 +54,17 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
                 text1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getBaseContext(), AfficherTrajets.class);
-                        Long evenementId = evenements.get(position).getId();
-                        intent.putExtra("evenementId",evenementId);
-                        startActivity(intent);
+                        //Intent intent = new Intent(getBaseContext(), AfficherTrajets.class);
+                        //Long evenementId = evenements.get(position).getId();
+                        //intent.putExtra("evenementId",evenementId);
+                        //startActivity(intent);
                     }
                 });
                 return view;
             }
         };
 
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
 
         final Context context = this;
     }

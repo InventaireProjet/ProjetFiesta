@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blanc">#ffffff</color>
-    <color name="couleur_fond">#be0a0a</color>
+    <color name="couleur_fond">#db160d</color>
     <color name="couleur_bouton">#500303</color>
 </resources>

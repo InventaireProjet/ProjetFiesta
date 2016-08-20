@@ -1,67 +1,81 @@
 package com.androidprojects.projetfiesta;
 
-import android.graphics.Color;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AfficherEvenements extends AppCompatActivity implements OnTaskCompleted {
 
-    ListView eventListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.evenements_liste_afficher);
-        eventListView = (ListView) findViewById(R.id.listViewEvenements);
-
-        List<EvenementTest> evenements = genererEvenements();
-
-        EvenementAdapter adapter = new EvenementAdapter(AfficherEvenements.this, evenements);
-        eventListView.setAdapter(adapter);
+        setContentView(R.layout.evenements_afficher);
+        getEvenements();
     }
 
-    private List<EvenementTest> genererEvenements(){
-        List<EvenementTest> evenements = new ArrayList<EvenementTest>();
-        evenements.add(new EvenementTest(Color.BLACK, "Vinea", "02.09.2016"));
-        evenements.add(new EvenementTest(Color.BLACK, "Vinea", "03.09.2016"));
-        evenements.add(new EvenementTest(Color.BLUE, "Sillicon Valais", "16.09.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "30.09.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "01.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "02.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "03.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "04.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "05.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "06.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "07.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "08.10.2016"));
-        evenements.add(new EvenementTest(Color.GREEN, "Foire du Valais", "09.10.2016"));
 
-        return evenements;
+
+
+
+    public void getEvenements() {
+        new EndpointsAsyncTaskEvenement(this).execute();
     }
+
 
 
     @Override
+    public void updateListViewEvenement(final List<Evenement> evenements) {
+        //final ListView listView = (ListView) findViewById(R.id.listView);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, evenements) {
+            @Override
+            public View getView(final int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(evenements.get(position).getTitre());
+                text2.setText(evenements.get(position).getDate());
+
+                text1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Intent intent = new Intent(getBaseContext(), AfficherTrajets.class);
+                        //Long evenementId = evenements.get(position).getId();
+                        //intent.putExtra("evenementId",evenementId);
+                        //startActivity(intent);
+                    }
+                });
+                return view;
+            }
+        };
+
+        //listView.setAdapter(adapter);
+
+        final Context context = this;
+    }
+
+    @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-        Toast.makeText(this, R.string.trajet_insere, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
-        Toast.makeText(this, R.string.utilisateur_insere, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void updateListViewEvenement(List<Evenement> evenements) {
 
     }
 

@@ -12,13 +12,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:baselineAligned="true">
+            android:baselineAligned="true"
+            android:orientation="vertical">
 
 
 
@@ -33,7 +34,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="5dp"
                 android:id="@+id/ivTop"
                 android:src="@drawable/car_top"/>
 
@@ -49,8 +49,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="30.09.2016"
-                        android:id="@+id/tvDate"/>
+                        android:hint="30.09.2016"
+                        android:id="@+id/tvDateEvenement"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -63,8 +63,8 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold"
-                        android:text="Foire du Valais"
-                        android:id="@+id/tvManifestation"/>
+                        android:hint="Foire du Valais"
+                        android:id="@+id/tvNomEvenement"/>
 
                 </LinearLayout>
 
@@ -73,38 +73,61 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
 
-            <TextView
-                android:id="@+id/titre"
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/txtContacter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:text="@string/contacter"
+                            android:textSize="@dimen/texte_grand"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/contacterConducteur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:hint=" PRENOM N."
+                            android:textSize="@dimen/texte_grand"
+                            android:textStyle="bold"
+                            />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/angle_arrondi"
+                    android:textColor="#730C07"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/contacterConducteurConfirmation"
+                    android:id="@+id/textView" />
+                </LinearLayout>
+
+
+            <ImageSwitcher
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="@string/contacterConducteur"
-                android:textSize="@dimen/texte_grand"
-                android:textStyle="bold"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/angle_arrondi"
-                android:textColor="#730C07"
-                android:layout_marginTop="10dp"
-                android:text="@string/contacterConducteurConfirmation"
-                android:id="@+id/textView" />
-
-            </LinearLayout>
-
-
+                android:id="@+id/imageSwitcher"
+                android:layout_gravity="right" />
 
             <GridLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
                 android:columnCount="4"
                 android:rowCount="4">
 
@@ -113,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView"
                     android:src="@drawable/cab"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="40dp"
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_rowSpan="2"
@@ -126,17 +149,17 @@
                     android:text="@string/depart"
                     android:id="@+id/tvTxtDepart"
                     android:layout_row="0"
-                    android:layout_column="1" />
+                    android:layout_column="2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="8h57"
+                    android:hint="02h35"
                     android:textStyle="bold"
                     android:id="@+id/tvDepart"
                     android:layout_row="0"
-                    android:layout_column="2" />
+                    android:layout_column="3" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,19 +169,26 @@
                     android:text="@string/nb_placesRacc"
                     android:id="@+id/tvTxtNbPlace"
                     android:layout_row="1"
-                    android:layout_column="1"
+                    android:layout_column="2"
                     android:layout_gravity="center_vertical" />
+
+                <ViewStub
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/viewStub"
+                    android:layout_row="2"
+                    android:layout_column="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginRight="30dp"
-                    android:text="2 places"
+                    android:hint="2 places"
                     android:textStyle="bold"
                     android:id="@+id/tvNbPlace"
                     android:layout_row="1"
-                    android:layout_column="2"
+                    android:layout_column="3"
                     android:layout_gravity="center_vertical" />
 
                 <TextView
@@ -168,7 +198,7 @@
                     android:text="Samuel F."
                     android:textStyle="bold"
                     android:id="@+id/tvNomConducteur"
-                    android:layout_row="2"
+                    android:layout_row="3"
                     android:layout_column="0" />
 
                 <TextView
@@ -177,19 +207,19 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/Destination"
                     android:id="@+id/tvTxtDestination"
-                    android:layout_row="2"
-                    android:layout_column="1" />
+                    android:layout_row="3"
+                    android:layout_column="2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginRight="30dp"
-                    android:text="Sion"
+                    android:hint="Sion"
                     android:textStyle="bold"
                     android:id="@+id/tvDestination"
-                    android:layout_row="2"
-                    android:layout_column="2" />
+                    android:layout_row="3"
+                    android:layout_column="3" />
             </GridLayout>
 
             <LinearLayout
@@ -202,9 +232,12 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
                     android:inputType="textMultiLine"
                     android:background="@drawable/angle_arrondi"
-                    android:hint="Votre message..."
+                    android:hint="@string/votreMessage"
+                    android:textSize="15dp"
+                    android:gravity="top"
                     android:textColorHint="#730C07"
                     android:textColor="#730C07"
                     android:ems="10"
@@ -215,9 +248,10 @@
                     android:background="@drawable/bouton_arrondi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="ENVOYER"
-                    android:id="@+id/btnEnvoyer" />
+                    android:layout_marginTop="10dp"
+                    android:text="@string/envoyer"
+                    android:id="@+id/btnEnvoyer"
+                    android:clickable="false" />
 
 
 

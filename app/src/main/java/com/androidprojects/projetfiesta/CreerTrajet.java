@@ -63,7 +63,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         heureDepart = (EditText) findViewById(R.id.heureEntree);
         email = (EditText) findViewById(R.id.emailEntree);
 
-//Test que les champs contiennent des valeurs
+        //Test que les champs contiennent des valeurs
         if ((nom == null) || nom.getText().toString().trim().equals("")){
             Toast.makeText(getApplicationContext(), R.string.nom_vide, Toast.LENGTH_SHORT).show();
             return;
@@ -90,7 +90,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         trajet.setHeureDepart(heureDepart.getText().toString());
 
 
-//Test de validité de l'heure
+        //Test de validité de l'heure
         heuretestee = heureDepart.getText().toString();
 
         if (heuretestee.matches(heurePattern))

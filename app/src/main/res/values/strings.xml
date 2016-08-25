@@ -18,9 +18,18 @@
     <string name="nbPlaces_vide">Entrer un nombre de places</string>
     <string name="nom_vide">Entrer un nom</string>
     <string name="inscription_conducteur">Je m\'inscris comme conducteur</string>
-    <string name="contacterConducteur">CONTACTER SAMUEL F.</string>
     <string name="contacterConducteurConfirmation">Vous devez confirmer votre course par message. <b>Dites \"bonjour\" à votre futur conducteur :-)</b></string>
     <string name="depart">Départ</string>
     <string name="nb_placesRacc">Nbre places</string>
     <string name="Destination">Destination</string>
+    <string name="contacter">CONTACTER </string>
+    <string name="votreMessage">Votre message...</string>
+    <string name="envoyer">ENVOYER</string>
+    <string name="seLoguer">Déjà membre ? Logue-toi !</string>
+    <string name="inscription">Inscris-toi en 2 minutes !</string>
+    <string name="introDemarrage">Bienvenue sur l\'application de co-voiturage du Label Fiesta Valais, Suisse.</string>
+    <string name="contacterConducteur">Contacter</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">Nom d\'utilisateur</string>
+    <string name="connexion">Connexion</string>
 </resources>

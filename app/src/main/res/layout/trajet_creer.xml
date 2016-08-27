@@ -12,17 +12,18 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/fab_margin"
+        android:paddingRight="@dimen/fab_margin"
         tools:context="com.androidprojects.projetfiesta.CreerTrajet">
 
+        <include layout="@layout/en_tete" />
 
 
         <TextView
             android:id="@+id/titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
             android:text="@string/creer_le_trajet"
             android:textSize="@dimen/texte_grand"
             android:textStyle="bold"
@@ -124,7 +125,7 @@
             android:id="@+id/checkbox_sobre"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/hauteur_ligne"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/fab_margin"
             android:buttonTint="@color/blanc"
             android:text="@string/sobre_responsable"
             android:textColor="@color/blanc"
@@ -138,8 +139,8 @@
             android:layout_marginTop="@dimen/marge_grosse"
             android:background="@color/couleur_bouton"
             android:onClick="insert"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/fab_margin"
+            android:paddingRight="@dimen/fab_margin"
             android:text="@string/creer_le_trajet"
             android:textSize="@dimen/texte_grand"
             android:textStyle="bold" />

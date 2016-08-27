@@ -30,12 +30,12 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:id="@+id/ivTop"
-                android:src="@drawable/car_top"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/ivTop"
+                    android:src="@drawable/car_top"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -49,7 +49,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:hint="30.09.2016"
                         android:id="@+id/tvDateEvenement"/>
 
                     <TextView
@@ -63,7 +62,6 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold"
-                        android:hint="Foire du Valais"
                         android:id="@+id/tvNomEvenement"/>
 
                 </LinearLayout>
@@ -84,22 +82,12 @@
                     android:layout_height="wrap_content">
                     <TableRow>
 
-                        <TextView
-                            android:id="@+id/txtContacter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:text="@string/contacter"
-                            android:textSize="@dimen/texte_grand"
-                            android:textStyle="bold"
-                            />
 
                         <TextView
                             android:id="@+id/contacterConducteur"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:hint=" PRENOM N."
                             android:textSize="@dimen/texte_grand"
                             android:textStyle="bold"
                             />
@@ -115,7 +103,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/contacterConducteurConfirmation"
                     android:id="@+id/textView" />
-                </LinearLayout>
+            </LinearLayout>
 
 
             <ImageSwitcher
@@ -125,6 +113,7 @@
                 android:layout_gravity="right" />
 
             <GridLayout
+                android:id="@+id/gridLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -155,7 +144,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:hint="02h35"
                     android:textStyle="bold"
                     android:id="@+id/tvDepart"
                     android:layout_row="0"
@@ -184,7 +172,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginRight="30dp"
-                    android:hint="2 places"
                     android:textStyle="bold"
                     android:id="@+id/tvNbPlace"
                     android:layout_row="1"
@@ -195,7 +182,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Samuel F."
                     android:textStyle="bold"
                     android:id="@+id/tvNomConducteur"
                     android:layout_row="3"
@@ -215,7 +201,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginRight="30dp"
-                    android:hint="Sion"
                     android:textStyle="bold"
                     android:id="@+id/tvDestination"
                     android:layout_row="3"

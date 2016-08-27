@@ -1,7 +1,8 @@
 package com.androidprojects.projetfiesta;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -10,8 +11,7 @@ import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -38,6 +38,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
     private Utilisateur utilisateur;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,30 +47,74 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-
-        /*
-        // Récupération des données de la vue.
-        evenement = new Evenement();
-        trajet = new Trajet();
-        utilisateur = new Utilisateur();
-
-        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
-        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
-
-
+//Récupération du trajet transmis par la vue précédente
+        Intent intent = getIntent();
+        final Long trajetId = intent.getLongExtra("trajetId", 1);
+        List <Trajet> trajets = new ArrayList <Trajet>();
         try {
-            List<Evenement> events = new EndpointsAsyncTaskEvenement(this).execute().get();
-
-
-            new EndpointsAsyncTaskEvenement(0, evenement, this).execute();
-
+            trajets = new EndpointsAsyncTaskTrajet(this, trajetId ).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        trajet = trajets.get(0);
 
-        */
+//Récupération de l'événement concerné
+
+        List <Evenement> evenements = new ArrayList <Evenement>();
+        try {
+            evenements = new EndpointsAsyncTaskEvenement(trajet.getEvenementId(), this ).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        evenement = evenements.get(0);
+
+        //Récupération du conducteur concerné
+
+        List <Utilisateur> conducteurs = new ArrayList <Utilisateur>();
+        try {
+            conducteurs = new EndpointsAsyncTaskUtilisateur(trajet.getConducteurId(), this ).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        conducteur = conducteurs.get(0);
+
+
+
+//Lien avec TextViews
+        tvDepart = (TextView) findViewById(R.id.tvDepart);
+        tvNbPlace = (TextView) findViewById(R.id.tvNbPlace);
+        tvDestination = (TextView) findViewById(R.id.tvDestination);
+        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
+        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
+        contacterConducteur = (TextView) findViewById(R.id.contacterConducteur);
+        tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
+
+        //Entrée du contenu dans les TextViews
+        tvDepart.setText(trajet.getHeureDepart());
+
+        if (trajet.getNombrePlaces()<2){
+            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
+        }
+        else {
+            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.places));
+        }
+
+        tvDestination.setText(trajet.getDestination());
+                tvDateEvenement.setText(evenement.getDate());
+        tvNomEvenement.setText(evenement.getTitre());
+        contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getNom());
+        tvNomConducteur.setText(conducteur.getNom());
+
+
+
+
+
 
     }
 

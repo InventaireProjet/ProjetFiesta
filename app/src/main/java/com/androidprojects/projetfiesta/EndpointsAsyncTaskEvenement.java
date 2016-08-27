@@ -22,6 +22,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private Evenement evenement;
     private OnTaskCompleted listener;
     private int codeAction;
+private Long evenementId;
 
     EndpointsAsyncTaskEvenement(OnTaskCompleted listener) {
         this.listener = listener;
@@ -31,6 +32,12 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
         this.evenement = evenement;
         this.listener = listener;
         this.codeAction = codeAction;
+    }
+
+    EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
+        this.evenementId = evenementId;
+        this.listener = listener;
+        this.codeAction = 3;
     }
 
     @Override
@@ -75,6 +82,15 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                         Log.i(TAG, "remove evenement");
                     }
                     break;
+
+                case (3):
+
+                    Evenement evenement = evenementApi.get(evenementId).execute();
+                    List evenementUnique = new ArrayList();
+                    evenementUnique.add(evenement);
+                    Log.i(TAG, "get evenement par id");
+
+                    return evenementUnique;
             }
             return evenementApi.list().execute().getItems();
 

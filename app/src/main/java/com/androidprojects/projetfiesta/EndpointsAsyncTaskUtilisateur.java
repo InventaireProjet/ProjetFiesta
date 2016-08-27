@@ -22,7 +22,8 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
     private Utilisateur utilisateur;
     private int codeAction;
     private OnTaskCompleted listener;
-
+    private Long utilisateurId;
+    
     EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
         this.listener = listener;
     }
@@ -31,6 +32,12 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
         this.utilisateur = utilisateur;
         this.listener = listener;
         this.codeAction = codeAction;
+    }
+
+    EndpointsAsyncTaskUtilisateur(Long utilisateurId, OnTaskCompleted listener) {
+        this.utilisateurId = utilisateurId;
+        this.listener = listener;
+        this.codeAction = 3;
     }
 
     @Override
@@ -76,6 +83,15 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
                         Log.i(TAG, "remove utilisateur");
                     }
                     break;
+
+                case (3):
+
+                    Utilisateur utilisateur = utilisateurApi.get(utilisateurId).execute();
+                    List utilisateurUnique = new ArrayList();
+                    utilisateurUnique.add(utilisateur);
+                    Log.i(TAG, "get utilisateur par id");
+
+                    return utilisateurUnique;
             }
 
 

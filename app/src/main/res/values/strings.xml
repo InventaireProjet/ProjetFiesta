@@ -32,4 +32,6 @@
     <string name="password">Mot de passe</string>
     <string name="login">Nom d\'utilisateur</string>
     <string name="connexion">Connexion</string>
+    <string name="place">" place"</string>
+    <string name="places">" places"</string>
 </resources>

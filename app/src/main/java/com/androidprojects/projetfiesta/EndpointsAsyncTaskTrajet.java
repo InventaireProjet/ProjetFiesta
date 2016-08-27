@@ -23,6 +23,7 @@ public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>
     private int codeAction;
     private OnTaskCompleted listener;
     private Long evenementId;
+    private Long trajetId;
 
     EndpointsAsyncTaskTrajet(OnTaskCompleted listener) {
         this.listener = listener;
@@ -39,6 +40,13 @@ public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>
         this.listener = listener;
         this.evenementId = evenementId;
         this.codeAction=3;
+    }
+
+    //AsyncTask dédiée à l'affichage d'un trajet
+    EndpointsAsyncTaskTrajet(OnTaskCompleted listener, Long trajetId ) {
+        this.listener = listener;
+        this.trajetId = trajetId;
+        this.codeAction=4;
     }
     @Override
     protected List<Trajet> doInBackground(Void... params) {
@@ -90,6 +98,15 @@ public class EndpointsAsyncTaskTrajet extends AsyncTask<Void, Void, List<Trajet>
                     Log.i(TAG, "get trajets par evenement");
 
                     return trajets;
+
+                case (4):
+
+                    Trajet trajet = trajetApi.get(trajetId).execute();
+                    List trajetUnique = new ArrayList();
+                    trajetUnique.add(trajet);
+                    Log.i(TAG, "get trajet par id");
+
+                    return trajetUnique;
             }
             return trajetApi.list().execute().getItems();
 

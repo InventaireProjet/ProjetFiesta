@@ -48,7 +48,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
     }
 
 
-//Affichage des trajets dans une listView
+    //Affichage des trajets dans une listView
     @Override
     public void updateListViewTrajet(final List<Trajet> trajets) {
         final ListView listView = (ListView) findViewById(R.id.listView);
@@ -63,7 +63,15 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
                 text1.setText(trajets.get(position).getDestination());
                 text2.setText(trajets.get(position).getNombrePlaces()+ " " +trajets.get(position).getHeureDepart());
 
-
+                text1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), AfficherTrajet.class);
+                        Long trajetId = trajets.get(position).getId();
+                        intent.putExtra("trajetId",trajetId);
+                        startActivity(intent);
+                    }
+                });
                 return view;
             }
         };

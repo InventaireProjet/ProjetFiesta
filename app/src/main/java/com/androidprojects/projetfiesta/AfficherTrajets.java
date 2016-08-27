@@ -16,9 +16,7 @@ import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class AfficherTrajets extends AppCompatActivity implements OnTaskCompleted{
 
@@ -32,25 +30,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
         final Long evenementId = intent.getLongExtra("evenementId", 1);
         new EndpointsAsyncTaskTrajet(evenementId, this).execute();
         Button inscription;
-        Evenement evenement;
-        TextView tvDateEvenement;
-        TextView tvNomEvenement;
 
-        //Récupération de l'événement concerné
-        List <Evenement> evenements = new ArrayList<Evenement>();
-        try {
-            evenements = new EndpointsAsyncTaskEvenement(evenementId, this ).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        evenement = evenements.get(0);
-
-        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
-        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
-        tvDateEvenement.setText(evenement.getDate());
-        tvNomEvenement.setText(evenement.getTitre());
 
         //Bouton pour s'annoncer comme conducteur
         inscription = (Button) findViewById(R.id.button);
@@ -72,7 +52,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
     //Affichage des trajets dans une listView
     @Override
     public void updateListViewTrajet(final List<Trajet> trajets) {
-        final ListView listView = (ListView) findViewById(R.id.listview);
+        final ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, trajets) {
             @Override

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Listview de l'affichage des trajets, créé par nico tscharner -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cab"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/chauffeur"
+                android:text="Chauffeur"
+                android:layout_column="1"
+                android:padding="3dip"
+                />
+            <TextView
+                android:id="@+id/nbPlaces"
+                android:text="Nombre de places"
+                android:gravity="right"
+                android:padding="3dip"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/destination"
+                android:text="Destination"
+                android:layout_column="1"
+                android:padding="3dip"
+                />
+            <TextView
+                android:id="@+id/depart"
+                android:text="H de départ"
+                android:gravity="right"
+                android:padding="3dip"
+                />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

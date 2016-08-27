@@ -9,18 +9,54 @@
     android:fitsSystemWindows="true"
     tools:context=".AfficherTrajets"
     android:orientation="vertical">
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:id="@+id/ivTop"
+            android:src="@drawable/car_top"
+            android:layout_gravity="center"
+            />
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/trouver"
+        android:textSize="@dimen/texte_grand"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="343dp"
+        android:layout_height="99dp"
+        android:background="@drawable/angle_arrondi"
+        android:textColor="#730C07"
+        android:layout_marginTop="10dp"
+        android:text="@string/etattransport"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/listview"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:divider="@color/blanc"
         android:dividerHeight="@dimen/ligne_epaisseur"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/inscription_conducteur"
         android:id="@+id/button" android:layout_gravity="center_horizontal"/>
+
+
 </LinearLayout>

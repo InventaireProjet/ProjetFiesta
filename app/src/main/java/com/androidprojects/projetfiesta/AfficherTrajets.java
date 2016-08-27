@@ -51,14 +51,17 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
     //Affichage des trajets dans une listView
     @Override
     public void updateListViewTrajet(final List<Trajet> trajets) {
-        final ListView listView = (ListView) findViewById(R.id.listView);
+        final ListView listView = (ListView) findViewById(R.id.listview);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, trajets) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
+
+
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
 
                 text1.setText(trajets.get(position).getDestination());
                 text2.setText(trajets.get(position).getNombrePlaces()+ " " +trajets.get(position).getHeureDepart());

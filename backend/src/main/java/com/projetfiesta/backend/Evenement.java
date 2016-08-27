@@ -11,15 +11,9 @@ public class Evenement {
     private Long id;
     private String titre;
     private String date;
-    private int logo;
+    private String logo;
 
-    public Evenement(int logo, String titre, String date) {
-        this.logo = logo;
-        this.titre = titre;
-        this.date = date;
-        this.id = null;
 
-    }
 
     public Long getId() {
         return id;
@@ -45,11 +39,11 @@ public class Evenement {
         this.date = date;
     }
 
-    public int getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(int logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 }

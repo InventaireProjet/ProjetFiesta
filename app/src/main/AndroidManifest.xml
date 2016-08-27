@@ -28,7 +28,13 @@
             android:name=".AfficherTrajet"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".AfficherEvenements" />
+        <activity android:name=".AfficherEvenements">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".demarrage.ActiviteNonLogue"
             android:screenOrientation="portrait"
@@ -36,12 +42,9 @@
         <activity
             android:name=".demarrage.ActivityCtrlDemarrage"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustPan"
+            >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".demarrage.ActiviteLogin"></activity>
     </application>

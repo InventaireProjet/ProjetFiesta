@@ -20,7 +20,7 @@ import java.util.List;
 
 public class AfficherTrajets extends AppCompatActivity implements OnTaskCompleted{
 
-
+   // ListView trajetsLW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,8 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
         new EndpointsAsyncTaskTrajet(evenementId, this).execute();
         Button inscription;
 
+        /**Vue pour afficher les trajets
+        trajetsLW = (ListView) findViewById(R.id.listview);**/
 
         //Bouton pour s'annoncer comme conducteur
         inscription = (Button) findViewById(R.id.button);
@@ -52,7 +54,13 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
     //Affichage des trajets dans une listView
     @Override
     public void updateListViewTrajet(final List<Trajet> trajets) {
-        final ListView listView = (ListView) findViewById(R.id.listView);
+
+
+        /**ArrayAdapter adapter = new TrajetsAdapter(this, trajets);
+        trajetsLW.setAdapter(adapter);**/
+
+
+       final ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, trajets) {
             @Override

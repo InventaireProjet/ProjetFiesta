@@ -60,7 +60,22 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         }
         trajet = trajets.get(0);
 
-//Récupération de l'événement concerné
+
+        tvDepart = (TextView) findViewById(R.id.tvDepart);
+        tvNbPlace = (TextView) findViewById(R.id.tvNbPlace);
+        tvDestination = (TextView) findViewById(R.id.tvDestination);
+        tvDepart.setText(trajet.getHeureDepart());
+
+        if (trajet.getNombrePlaces()<2){
+            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
+        }
+        else {
+            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.places));
+        }
+
+        tvDestination.setText(trajet.getDestination());
+
+        //Récupération de l'événement concerné
 
         List <Evenement> evenements = new ArrayList <Evenement>();
         try {
@@ -71,6 +86,11 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
             e.printStackTrace();
         }
         evenement = evenements.get(0);
+
+        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
+        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
+        tvDateEvenement.setText(evenement.getDate());
+        tvNomEvenement.setText(evenement.getTitre());
 
         //Récupération du conducteur concerné
 
@@ -84,30 +104,9 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         }
         conducteur = conducteurs.get(0);
 
-
-
-//Lien avec TextViews
-        tvDepart = (TextView) findViewById(R.id.tvDepart);
-        tvNbPlace = (TextView) findViewById(R.id.tvNbPlace);
-        tvDestination = (TextView) findViewById(R.id.tvDestination);
-        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
-        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
         contacterConducteur = (TextView) findViewById(R.id.contacterConducteur);
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
 
-        //Entrée du contenu dans les TextViews
-        tvDepart.setText(trajet.getHeureDepart());
-
-        if (trajet.getNombrePlaces()<2){
-            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
-        }
-        else {
-            tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.places));
-        }
-
-        tvDestination.setText(trajet.getDestination());
-                tvDateEvenement.setText(evenement.getDate());
-        tvNomEvenement.setText(evenement.getTitre());
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getNom());
         tvNomConducteur.setText(conducteur.getNom());
 

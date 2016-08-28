@@ -45,7 +45,9 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         //il ne reste plus qu'à remplir notre vue
         viewHolder.evenementTitre.setText(evenement.getTitre());
         viewHolder.evenementDate.setText(evenement.getDate());
-        viewHolder.logo.setImageURI( Uri.parse(evenement.getLogo()));
+        if (evenement.getLogo()!=null) {
+            viewHolder.logo.setImageURI(Uri.parse(evenement.getLogo()));
+        }
 
         viewHolder.evenementTitre.setOnClickListener(new View.OnClickListener() {
             @Override

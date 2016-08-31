@@ -72,7 +72,7 @@
         android:textColor="#730C07"
         android:layout_marginTop="10dp"
         android:text="@string/etattransport"
-        android:id="@+id/textView"
+        android:id="@+id/etatTrajets"
         android:layout_gravity="center"
         />
 
@@ -83,16 +83,17 @@
         android:layout_marginTop="10dp"
         >
 
-
         <ListView
+
             android:layout_width="wrap_content"
             android:layout_height="258dp"
-            android:id="@+id/listView"
+            android:id="@+id/listViewTrajets"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:divider="@color/blanc"
-            android:dividerHeight="@dimen/ligne_epaisseur"/>
+            android:dividerHeight="@dimen/ligne_epaisseur"
+            android:layout_marginTop="10dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

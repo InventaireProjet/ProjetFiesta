@@ -71,12 +71,17 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
         tvNomEvenement.setText(evenement.getTitre());
 
         // Affiche le nombre de chauffeurs et le nombre de places disponibles
-        int nbChauffeurs=trajets.size();
+        int nbChauffeurs=0;
+
+       if (trajets!=null)
+           nbChauffeurs=trajets.size();
+
         int nbPlaces=0;
 
-        for (int i=0; i<trajets.size();i++)
-        {
-            nbPlaces += trajets.get(i).getNombrePlaces();
+        if (trajets!=null) {
+            for (int i = 0; i < trajets.size(); i++) {
+                nbPlaces += trajets.get(i).getNombrePlaces();
+            }
         }
         tvEtatTrajets = (TextView) findViewById(R.id.etatTrajets);
         String Etat = "Actuellement "+nbChauffeurs+" conducteurs sont inscrits et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";

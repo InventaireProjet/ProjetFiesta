@@ -24,7 +24,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_layout,parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_trajets,parent, false);
         }
 
         TrajetViewHolder viewHolder = (TrajetViewHolder) convertView.getTag();

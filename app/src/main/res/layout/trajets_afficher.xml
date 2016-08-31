@@ -10,14 +10,50 @@
     android:orientation="vertical">
 
 
+    <LinearLayout
+        android:layout_width="377dp"
+        android:layout_height="106dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:weightSum="1">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:id="@+id/ivTop"
-            android:src="@drawable/car_top"
-            android:layout_gravity="center"
-            />
+            android:src="@drawable/car_top" />
+
+        <LinearLayout
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tvDateEvenement"
+                android:gravity="center_vertical"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold"
+                android:id="@+id/tvNomEvenement"
+                android:gravity="center_vertical"
+                />
+    </LinearLayout>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/titre"
@@ -44,12 +80,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
         >
 
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="258dp"
             android:id="@+id/listView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"

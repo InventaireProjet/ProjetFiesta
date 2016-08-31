@@ -4,12 +4,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/fond"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_height="106dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:weightSum="1"
     android:id="@+id/enTete"
     tools:showIn="@layout/trajet_afficher">
+
+
 
     <ImageView
         android:layout_width="wrap_content"
@@ -19,32 +22,31 @@
         android:src="@drawable/car_top" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginLeft="10dp">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/tvDateEvenement" />
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text=" / " />
+            android:id="@+id/tvDateEvenement"
+            android:gravity="center_vertical"
+            />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
-            android:id="@+id/tvNomEvenement" />
-
+            android:id="@+id/tvNomEvenement"
+            android:gravity="center_vertical"
+            />
     </LinearLayout>
+
 
 </LinearLayout>

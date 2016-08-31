@@ -12,138 +12,145 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/fab_margin"
-        android:paddingRight="@dimen/fab_margin"
         tools:context="com.androidprojects.projetfiesta.CreerTrajet">
 
         <include layout="@layout/en_tete" />
-
-
-        <TextView
-            android:id="@+id/titre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:text="@string/creer_le_trajet"
-            android:textSize="@dimen/texte_grand"
-            android:textStyle="bold"
-            />
-
         <LinearLayout
-            android:id="@+id/nomLayout"
-            style="@style/LignesLinearLayoutCreerTrajet"
-            android:layout_below="@id/titre">
-            <TextView
-                android:id="@+id/nomLegende"
-                style="@style/LegendesCreerTrajet"
-                android:text="@string/nom_conducteur" />
-
-            <EditText
-                android:id="@+id/nomEntree"
-                style="@style/EntreesCreerTrajet"/>
-        </LinearLayout>
-
-        <View
-            style="@style/LigneSeparation"/>
-
-        <LinearLayout
-            android:id="@+id/destinationLayout"
-            style="@style/LignesLinearLayoutCreerTrajet"
-            android:layout_below="@id/nomLayout">
-            <TextView
-                android:id="@+id/destinationLegende"
-                style="@style/LegendesCreerTrajet"
-                android:text="@string/destination"
-                />
-            <EditText
-                android:id="@+id/destinationEntree"
-                style="@style/EntreesCreerTrajet"
-                />
-        </LinearLayout>
-
-        <View
-            style="@style/LigneSeparation"/>
-
-        <LinearLayout
-            android:id="@+id/placesLayout"
-            style="@style/LignesLinearLayoutCreerTrajet"
-            android:layout_below="@id/destinationLayout">
-
-            <TextView
-                android:id="@+id/nbPlacesLegende"
-                style="@style/LegendesCreerTrajet"
-                android:text="@string/nb_places"
-                />
-            <EditText
-                android:id="@+id/nbPlacesEntree"
-                style="@style/EntreesCreerTrajet"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <View
-            style="@style/LigneSeparation"/>
-
-        <LinearLayout
-            android:id="@+id/heureLayout"
-            style="@style/LignesLinearLayoutCreerTrajet"
-            android:layout_below="@id/placesLayout">
-
-            <TextView
-                android:id="@+id/heureLegende"
-                style="@style/LegendesCreerTrajet"
-                android:text="@string/heure_depart"
-                />
-            <EditText
-                android:id="@+id/heureEntree"
-                style="@style/EntreesCreerTrajet"
-                android:inputType="time" />
-        </LinearLayout>
-
-        <View
-            style="@style/LigneSeparation"/>
-
-        <LinearLayout
-            android:id="@+id/emailLayout"
-            style="@style/LignesLinearLayoutCreerTrajet"
-            android:layout_below="@id/heureLayout">
-
-            <TextView
-                android:id="@+id/emailLegende"
-                style="@style/LegendesCreerTrajet"
-                android:text="@string/email"
-                />
-            <EditText
-                android:id="@+id/emailEntree"
-                style="@style/EntreesCreerTrajet"
-                android:inputType="textEmailAddress" />
-        </LinearLayout>
-
-        <View
-            style="@style/LigneSeparation"/>
-
-        <CheckBox
-            android:id="@+id/checkbox_sobre"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/hauteur_ligne"
-            android:layout_marginTop="@dimen/fab_margin"
-            android:buttonTint="@color/blanc"
-            android:text="@string/sobre_responsable"
-            android:textColor="@color/blanc"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/marge_grosse"
-            android:background="@color/couleur_bouton"
-            android:onClick="insert"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/fab_margin"
-            android:paddingRight="@dimen/fab_margin"
-            android:text="@string/creer_le_trajet"
-            android:textSize="@dimen/texte_grand"
-            android:textStyle="bold" />
+            android:paddingRight="@dimen/fab_margin">
 
+            <TextView
+                android:id="@+id/titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:text="@string/creer_le_trajet"
+                android:textSize="@dimen/texte_grand"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:id="@+id/nomLayout"
+                style="@style/LignesLinearLayoutCreerTrajet"
+                android:layout_below="@id/titre">
+                <TextView
+                    android:id="@+id/nomLegende"
+                    style="@style/LegendesCreerTrajet"
+                    android:text="@string/nom_conducteur" />
+
+                <EditText
+                    android:id="@+id/nomEntree"
+                    style="@style/EntreesCreerTrajet"/>
+            </LinearLayout>
+
+            <View
+                style="@style/LigneSeparation"/>
+
+            <LinearLayout
+                android:id="@+id/destinationLayout"
+                style="@style/LignesLinearLayoutCreerTrajet"
+                android:layout_below="@id/nomLayout">
+                <TextView
+                    android:id="@+id/destinationLegende"
+                    style="@style/LegendesCreerTrajet"
+                    android:text="@string/destination"
+                    />
+                <EditText
+                    android:id="@+id/destinationEntree"
+                    style="@style/EntreesCreerTrajet"
+                    />
+            </LinearLayout>
+
+            <View
+                style="@style/LigneSeparation"/>
+
+            <LinearLayout
+                android:id="@+id/placesLayout"
+                style="@style/LignesLinearLayoutCreerTrajet"
+                android:layout_below="@id/destinationLayout">
+
+                <TextView
+                    android:id="@+id/nbPlacesLegende"
+                    style="@style/LegendesCreerTrajet"
+                    android:text="@string/nb_places"
+                    />
+                <EditText
+                    android:id="@+id/nbPlacesEntree"
+                    style="@style/EntreesCreerTrajet"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <View
+                style="@style/LigneSeparation"/>
+
+            <LinearLayout
+                android:id="@+id/heureLayout"
+                style="@style/LignesLinearLayoutCreerTrajet"
+                android:layout_below="@id/placesLayout">
+
+                <TextView
+                    android:id="@+id/heureLegende"
+                    style="@style/LegendesCreerTrajet"
+                    android:text="@string/heure_depart"
+                    />
+                <EditText
+                    android:id="@+id/heureEntree"
+                    style="@style/EntreesCreerTrajet"
+                    android:inputType="time" />
+            </LinearLayout>
+
+            <View
+                style="@style/LigneSeparation"/>
+
+            <LinearLayout
+                android:id="@+id/emailLayout"
+                style="@style/LignesLinearLayoutCreerTrajet"
+                android:layout_below="@id/heureLayout">
+
+                <TextView
+                    android:id="@+id/emailLegende"
+                    style="@style/LegendesCreerTrajet"
+                    android:text="@string/email"
+                    />
+                <EditText
+                    android:id="@+id/emailEntree"
+                    style="@style/EntreesCreerTrajet"
+                    android:inputType="textEmailAddress" />
+            </LinearLayout>
+
+            <View
+                style="@style/LigneSeparation"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_sobre"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/hauteur_ligne"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:buttonTint="@color/blanc"
+                android:text="@string/sobre_responsable"
+                android:textColor="@color/blanc"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/marge_grosse"
+                android:background="@color/couleur_bouton"
+                android:onClick="insert"
+                android:paddingLeft="@dimen/fab_margin"
+                android:paddingRight="@dimen/fab_margin"
+                android:text="@string/creer_le_trajet"
+                android:textSize="@dimen/texte_grand"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

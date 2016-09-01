@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Projet Fiesta</string>
     <string name="action_settings">Settings</string>
-    <string name="email">e-mail</string>
+    <string name="email">E-mail</string>
     <string name="creer_le_trajet">CRÉER LE TRAJET</string>
     <string name="heure_depart">Heure de départ (environ)</string>
     <string name="nb_places">Nombre de places</string>
@@ -34,7 +34,14 @@
     <string name="connexion">Connexion</string>
     <string name="place">" place"</string>
     <string name="places">" places"</string>
+    <string name="msgInscription">Veuillez renseigner tous les champs, svp, pour que l\'inscription soit prise en compte.</string>
+    <string name="prenom">Prénom</string>
+    <string name="dateNaissance">Date de naissance</string>
+    <string name="nom">Nom</string>
+    <string name="jeMenregistre">Je m\'enregistre</string>
     <string name="trouver">TROUVER UNE VOITURE</string>
     <!-- TEMPORAIRE : Je dois rendre ce string dynamique pour qu'il corresponde à chaque trajet  NTS -->
     <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient!</string>
+
+
 </resources>

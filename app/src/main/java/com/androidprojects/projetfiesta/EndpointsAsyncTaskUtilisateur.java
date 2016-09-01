@@ -24,11 +24,11 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
     private OnTaskCompleted listener;
     private Long utilisateurId;
     
-    EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
+    public EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
         this.listener = listener;
     }
 
-    EndpointsAsyncTaskUtilisateur(int codeAction , Utilisateur utilisateur, OnTaskCompleted listener) {
+    public EndpointsAsyncTaskUtilisateur(int codeAction, Utilisateur utilisateur, OnTaskCompleted listener) {
         this.utilisateur = utilisateur;
         this.listener = listener;
         this.codeAction = codeAction;

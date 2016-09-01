@@ -27,7 +27,11 @@ public class ActiviteNonLogue extends AppCompatActivity {
 
     public void seLoguer(View view) {
         Intent intent = new Intent(this, ActiviteLogin.class);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
+        startActivity(intent);
+    }
+
+    public void sEnregistrer(View view) {
+        Intent intent = new Intent(this, ActiviteInscription.class);
         startActivity(intent);
     }
 

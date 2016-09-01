@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/angle_arrondi"
+                android:background="@drawable/msg_angle_arrondi"
                 android:textColor="#730C07"
                 android:textAlignment="center"
                 android:layout_marginTop="20dp"
@@ -74,7 +74,8 @@
             android:text="@string/inscription"
             android:background="@drawable/bouton_arrondi"
             android:id="@+id/btnNouvelUser"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:onClick="sEnregistrer" />
 
     </LinearLayout>
 

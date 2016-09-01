@@ -47,25 +47,27 @@
                 android:layout_marginTop="20dp">
 
                 <EditText
-                    android:id="@+id/username"
+                    android:id="@+id/etEmailLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/angle_arrondi"
-                    android:textColorHint="#8e8b8b"
-                    android:textColor="#730C07"
-                    android:hint="@string/login"
+                    android:background="@drawable/form_angle_arrondi"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:hint="@string/email"
                     android:textAppearance="?android:attr/textAppearanceSmall" >
                 </EditText>
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/etMDPLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/angle_arrondi"
-                    android:textColorHint="#8e8b8b"
-                    android:textColor="#730C07"
+                    android:background="@drawable/form_angle_arrondi"
+                    android:inputType="textPassword"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
                     android:hint="@string/password"
                     android:textAppearance="?android:attr/textAppearanceSmall" >
                 </EditText>
@@ -78,17 +80,24 @@
                     android:layout_marginBottom="20dp"
                     android:text="@string/connexion"
                     android:background="@drawable/bouton_arrondi"
-                    android:id="@+id/btnLogin"
-                    android:gravity="center"/>
+                    android:id="@+id/btnConnexion"
+                    android:gravity="center"
+                    android:onClick="seConnecter" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/inscription"
-                    android:paddingTop="40dp"
                     android:id="@+id/tvInscription"
-                    android:layout_gravity="center_horizontal" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="sEnregistrer" />
 
 
             </LinearLayout>

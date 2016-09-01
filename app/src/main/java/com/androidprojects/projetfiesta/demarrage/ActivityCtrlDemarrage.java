@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
-import com.androidprojects.projetfiesta.AfficherTrajet;
+import com.androidprojects.projetfiesta.AfficherEvenements;
 import com.androidprojects.projetfiesta.R;
 import android.os.Bundle;
 
@@ -21,13 +21,13 @@ public class ActivityCtrlDemarrage extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("prefs",0);
         boolean estLogue = settings.getBoolean("estLogue",false);
 
-        if(estLogue==true)//if running for first time
+        if(estLogue == true)//if running for first time
         //Splash will load for first time
         {
             //SharedPreferences.Editor editor = settings.edit();
             //editor.putBoolean("estLogue",true);
             //editor.commit();
-            Intent i = new Intent(ActivityCtrlDemarrage.this, AfficherTrajet.class);
+            Intent i = new Intent(ActivityCtrlDemarrage.this, AfficherEvenements.class);
             startActivity(i);
             finish();
         }

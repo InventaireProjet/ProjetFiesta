@@ -83,8 +83,26 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
                 nbPlaces += trajets.get(i).getNombrePlaces();
             }
         }
+
         tvEtatTrajets = (TextView) findViewById(R.id.etatTrajets);
-        String Etat = "Actuellement "+nbChauffeurs+" conducteur(s) sont inscrits et "+nbPlaces+" place(s) sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+
+        String Etat = null;
+
+        switch(nbChauffeurs)
+        {
+            case 0:  Etat = "Actuellement aucun conducteur n'est inscrit et aucune place n'est disponible pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Revenez plus tard voir si des chauffeurs se sont inscrits! "+"</b>";
+                break;
+            case 1: if (nbPlaces==1){
+                Etat = "Actuellement "+nbChauffeurs+" conducteur est inscrit et "+nbPlaces+" place est disponible pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";}
+                else{
+                Etat = "Actuellement "+nbChauffeurs+" conducteur est inscrit et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+            }
+                break;
+            default:  Etat = "Actuellement "+nbChauffeurs+" conducteurs sont inscrits et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+                break;
+        }
+
+
         tvEtatTrajets.setText(Html.fromHtml(Etat));
 
 

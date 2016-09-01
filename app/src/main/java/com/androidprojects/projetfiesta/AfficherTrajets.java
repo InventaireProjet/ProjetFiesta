@@ -84,10 +84,9 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
             }
         }
         tvEtatTrajets = (TextView) findViewById(R.id.etatTrajets);
-        String Etat = "Actuellement "+nbChauffeurs+" conducteurs sont inscrits et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+        String Etat = "Actuellement "+nbChauffeurs+" conducteur(s) sont inscrits et "+nbPlaces+" place(s) sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
         tvEtatTrajets.setText(Html.fromHtml(Etat));
 
-        //for (int i=0; i<trajets;)
 
         //Bouton pour s'annoncer comme chauffeur
         Button inscription;

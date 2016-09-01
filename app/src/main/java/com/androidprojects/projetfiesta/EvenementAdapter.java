@@ -2,7 +2,9 @@ package com.androidprojects.projetfiesta;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,17 @@ import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 /**
  * Created by elsio on 20.08.2016.
  */
 public class EvenementAdapter extends ArrayAdapter<Evenement> {
+
+
+
     //tweets est la liste des models à afficher
     public EvenementAdapter(Context context, List<Evenement> evenements) {
         super(context, 0, evenements);
@@ -25,12 +32,13 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
+        Bitmap bitmap;
+        EvenementViewHolder viewHolder;
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_evenement,parent, false);
         }
 
-        EvenementViewHolder viewHolder = (EvenementViewHolder) convertView.getTag();
+         viewHolder = (EvenementViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new EvenementViewHolder();
             viewHolder.evenementTitre = (TextView) convertView.findViewById(R.id.evenement_titre);
@@ -45,9 +53,18 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         //il ne reste plus qu'à remplir notre vue
         viewHolder.evenementTitre.setText(evenement.getTitre());
         viewHolder.evenementDate.setText(evenement.getDate());
+
+    //Récupération des logos utilisant la classe privée dédiée
         if (evenement.getLogo()!=null) {
-            viewHolder.logo.setImageURI(Uri.parse(evenement.getLogo()));
+                try {
+                    bitmap= new LoadImage().execute(evenement.getLogo()).get();
+                    viewHolder.logo.setImageBitmap(bitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
+
+
 
         viewHolder.evenementTitre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,4 +85,21 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         public ImageView logo;
     }
 
+    //Classe privée dédiée à la récupération des images (inspiré et simplifié de : https://www.learn2crack.com/2014/06/android-load-image-from-internet.html)
+    private class LoadImage extends AsyncTask<String, String, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... args) {
+
+            Bitmap bitmap=null;
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(args[0]).getContent());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+    }
 }

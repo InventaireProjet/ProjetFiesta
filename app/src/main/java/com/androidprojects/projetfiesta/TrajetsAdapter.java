@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
@@ -31,7 +32,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        // On assigne le layout "row_trajets" créé pour afficher les trajets comme prévu
+        // On assigne le layout "row_trajets" créé pour afficher les trajets
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_trajets,parent, false);
         }
@@ -44,6 +45,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
             viewHolder.trajetDestination = (TextView) convertView.findViewById(R.id.destination);
             viewHolder.trajetNbPlaces = (TextView) convertView.findViewById(R.id.nbPlaces);
             viewHolder.trajetDepart = (TextView) convertView.findViewById(R.id.depart);
+            viewHolder.linearlayout = (LinearLayout) convertView.findViewById(R.id.trajetsLayout);
             convertView.setTag(viewHolder);
         }
 
@@ -65,7 +67,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         // ...sa destination
         String Destination = "Destination "+"<b>"+trajet.getDestination()+"</b>";
 
-        // ... le nomnre de places disponibles
+        // ... le nombre de places disponibles
         String NbPlaces;
         if (trajet.getNombrePlaces()<2)
         {
@@ -79,15 +81,14 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         // ... et l'heure de départ
         String Depart = "Départ "+"<b>"+"~"+trajet.getHeureDepart()+"</b>";
 
-        // ... pour finalement afficher tout le contenu
+        // ... pour afficher le tout
         viewHolder.trajetChauffeur.setText(Html.fromHtml(Chauffeur));
         viewHolder.trajetDestination.setText(Html.fromHtml(Destination));
         viewHolder.trajetNbPlaces.setText(Html.fromHtml(NbPlaces));
         viewHolder.trajetDepart.setText(Html.fromHtml(Depart));
 
-
-        // En cliquant sur la destination, on affiche le trajet concerné
-        viewHolder.trajetDestination.setOnClickListener(new View.OnClickListener() {
+        // En cliquant sur un trajet on affiche le trajet concerné (nouvellle activité)
+        viewHolder.linearlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AfficherTrajet.class);
@@ -97,6 +98,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
             }
         });
 
+
         return convertView;
     }
 
@@ -105,6 +107,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         public TextView trajetDestination;
         public TextView trajetNbPlaces;
         public TextView trajetDepart;
+        public LinearLayout linearlayout;
     }
 
     @Override

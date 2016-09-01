@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
@@ -44,6 +45,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
             viewHolder.evenementTitre = (TextView) convertView.findViewById(R.id.evenement_titre);
             viewHolder.evenementDate = (TextView) convertView.findViewById(R.id.evenement_date);
             viewHolder.logo = (ImageView) convertView.findViewById(R.id.icon_evenement);
+            viewHolder.relativelayout = (RelativeLayout) convertView.findViewById(R.id.evenement_layout);
             convertView.setTag(viewHolder);
         }
 
@@ -66,7 +68,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
 
 
 
-        viewHolder.evenementTitre.setOnClickListener(new View.OnClickListener() {
+        viewHolder.relativelayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AfficherTrajets.class);
@@ -83,6 +85,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         public TextView evenementTitre;
         public TextView evenementDate;
         public ImageView logo;
+        public RelativeLayout relativelayout;
     }
 
     //Classe privée dédiée à la récupération des images (inspiré et simplifié de : https://www.learn2crack.com/2014/06/android-load-image-from-internet.html)

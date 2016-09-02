@@ -56,7 +56,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         viewHolder.evenementTitre.setText(evenement.getTitre());
         viewHolder.evenementDate.setText(evenement.getDate());
 
-    //Récupération des logos utilisant la classe privée dédiée
+    // Récupération des logos utilisant la classe privée dédiée
         if (evenement.getLogo()!=null) {
                 try {
                     bitmap= new LoadImage().execute(evenement.getLogo()).get();
@@ -64,6 +64,15 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+        }
+    // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
+        else {
+            try {
+                Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fiesta_logo);
+                viewHolder.logo.setImageBitmap(icon);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 

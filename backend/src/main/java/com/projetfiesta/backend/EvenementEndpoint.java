@@ -131,6 +131,7 @@ public class EvenementEndpoint {
      * @param limit  the maximum number of entries to return
      * @return a response that encapsulates the result list and the next page token/cursor
      */
+
     @ApiMethod(
             name = "list",
             path = "evenement",
@@ -148,6 +149,28 @@ public class EvenementEndpoint {
         }
         return CollectionResponse.<Evenement>builder().setItems(evenementList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
+
+
+    // Méthode permettant d'obtenir les événements du jours et futurs
+    @ApiMethod(
+            name = "listParDate",
+            path = "listParDate/{date}",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<Evenement> listParDate(@Nullable @Named("cursor") String cursor, @Named("date") String date, @Nullable @Named("limit") Integer limit) {
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<Evenement> query = ofy().load().type(Evenement.class).filter("date", date).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<Evenement> queryIterator = query.iterator();
+        List<Evenement> evenementList = new ArrayList<Evenement>(limit);
+        while (queryIterator.hasNext()) {
+            evenementList.add(queryIterator.next());
+        }
+        return CollectionResponse.<Evenement>builder().setItems(evenementList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+
+
 
     private void checkExists(Long id) throws NotFoundException {
         try {

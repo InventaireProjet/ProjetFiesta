@@ -2,6 +2,7 @@ package com.projetfiesta.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -10,7 +11,7 @@ public class Evenement {
     @Id
     private Long id;
     private String titre;
-    private String date;
+    @Index private String date;
     private String logo;
 
 

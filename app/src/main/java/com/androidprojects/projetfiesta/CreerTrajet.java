@@ -64,6 +64,9 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         tvDateEvenement.setText(evenement.getDate());
         tvNomEvenement.setText(evenement.getTitre());
 
+
+
+
     }
 
     public void insert(View view) {

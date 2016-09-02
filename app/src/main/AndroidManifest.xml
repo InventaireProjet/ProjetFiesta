@@ -2,11 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.androidprojects.projetfiesta">
 
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -44,9 +41,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AfficherTrajets" />
         </activity>
-        <activity android:name=".AfficherEvenements">
-
-        </activity>
+        <activity android:name=".AfficherEvenements"></activity>
         <activity
             android:name=".demarrage.ActiviteNonLogue"
             android:screenOrientation="portrait"
@@ -62,7 +57,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".demarrage.ActiviteLogin" />
-        <activity android:name=".demarrage.ActiviteInscription"></activity>
+        <activity android:name=".demarrage.ActiviteInscription" />
     </application>
 
 </manifest>

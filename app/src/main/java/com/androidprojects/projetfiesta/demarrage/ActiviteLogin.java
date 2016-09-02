@@ -1,12 +1,16 @@
 package com.androidprojects.projetfiesta.demarrage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidprojects.projetfiesta.AfficherEvenements;
@@ -80,7 +84,7 @@ public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted 
             {
                 for (Utilisateur uti : utilisateurs) {
                     if (uti.getEmail().equals(etEmail.getText().toString()) && uti.getMotDePasse().equals(etMDP.getText().toString())) {
-                        Toast.makeText(this, "Vous allez être connecté.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.toastConnexionOk, Toast.LENGTH_LONG).show();
                         utilisateur = uti;
                         return true;
                     }
@@ -92,7 +96,7 @@ public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted 
             e.printStackTrace();
         }
 
-        Toast.makeText(this, "Essayez à nouveau.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.toastConnexionEchec, Toast.LENGTH_LONG).show();
         return false;
     }
 

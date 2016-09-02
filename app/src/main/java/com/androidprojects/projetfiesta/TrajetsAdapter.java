@@ -60,7 +60,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
             e.printStackTrace();
         }
         Utilisateur chauffeur = chauffeurs.get(0);
-        String Chauffeur = "<b>"+chauffeur.getNom()+"</b>";
+        String Chauffeur = "<b>"+chauffeur.getPrenom()+" "+chauffeur.getNom().charAt(0)+".</b>";
 
         // ...sa destination
         String Destination = "Destination "+"<b>"+trajet.getDestination()+"</b>";

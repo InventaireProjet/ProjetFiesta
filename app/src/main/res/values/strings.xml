@@ -40,8 +40,9 @@
     <string name="nom">Nom</string>
     <string name="jeMenregistre">Je m\'enregistre</string>
     <string name="trouver">TROUVER UNE VOITURE</string>
-    <!-- TEMPORAIRE : Je dois rendre ce string dynamique pour qu'il corresponde à chaque trajet  NTS -->
-    <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient!</string>
+    <string name="etatTrajets0">"Actuellement aucun conducteur n'est inscrit pour rentrer de %s. "</string>
+    <string name="etatTrajets0B">Repassez plus tard afin de voir si des chauffeurs sont disponibles!</string>
+
 
 
 </resources>

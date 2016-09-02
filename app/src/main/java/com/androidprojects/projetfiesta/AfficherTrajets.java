@@ -88,17 +88,18 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
 
         String Etat = null;
 
+
         switch(nbChauffeurs)
         {
-            case 0:  Etat = "Actuellement aucun conducteur n'est inscrit et aucune place n'est disponible pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Revenez plus tard voir si des chauffeurs se sont inscrits! "+"</b>";
+            case 0:  Etat = String.format(getString(R.string.etatTrajets0)+"<b>"+getString(R.string.etatTrajets0B)+"</b>", evenement.getTitre());
                 break;
             case 1: if (nbPlaces==1){
-                Etat = "Actuellement "+nbChauffeurs+" conducteur est inscrit et "+nbPlaces+" place est disponible pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";}
+                Etat = String.format("Actuellement %d conducteur est inscrit et %d place est disponible pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());}
                 else{
-                Etat = "Actuellement "+nbChauffeurs+" conducteur est inscrit et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+                Etat = String.format("Actuellement %d conducteur est inscrit et %d places sont disponibles pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
             }
                 break;
-            default:  Etat = "Actuellement "+nbChauffeurs+" conducteurs sont inscrits et "+nbPlaces+" places sont disponibles pour rentrer de "+evenement.getTitre()+". "+"<b>"+"Prenez contact pour la destination qui vous convient!"+"</b>";
+            default:  Etat = String.format("Actuellement %d conducteurs sont inscrits et %d places sont disponibles pour rentrer de %s. <b>Prenez contact pour la destination qui vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
                 break;
         }
 

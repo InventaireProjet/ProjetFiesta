@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by Ingestien on 02.09.2016.
- */
 public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
     // Evemement

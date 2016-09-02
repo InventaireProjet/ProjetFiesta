@@ -57,11 +57,15 @@
                 android:divider="@color/blanc"
                 android:dividerHeight="@dimen/ligne_epaisseur"
                 android:layout_marginTop="10dp"/>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bouton_arrondi"
+                android:layout_marginTop="5dp"
                 android:text="@string/inscription_conducteur"
-                android:id="@+id/button" android:layout_gravity="center_horizontal"/>
+                android:id="@+id/button"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

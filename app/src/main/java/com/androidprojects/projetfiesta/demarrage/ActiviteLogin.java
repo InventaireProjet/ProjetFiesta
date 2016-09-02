@@ -65,7 +65,7 @@ public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted 
         editor.putLong("idUtilisateur", utilisateur.getId());
         editor.commit();
         Intent i = new Intent(this, AfficherEvenements.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
 

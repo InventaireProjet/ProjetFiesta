@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageFiesta"
             android:background="#ffffff"
-            android:src="@drawable/fiesta"
+            android:src="@drawable/fiesta_logo"
             android:tag="http://www.labelfiesta.ch"
             android:onClick="openBrowser"/>
 

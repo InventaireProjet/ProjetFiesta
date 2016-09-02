@@ -1,10 +1,15 @@
 package com.androidprojects.projetfiesta;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
@@ -12,6 +17,7 @@ import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -30,12 +36,19 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
     // Trajet
     private Trajet trajet;
+    private  Long trajetId;
     private TextView tvDepart;
     private TextView tvNbPlace;
     private TextView tvDestination;
 
     // Utilisateur
     private Utilisateur utilisateur;
+
+    //Bouton envoyer
+    private Button envoyer;
+
+    //Message
+    private Message message;
 
 
 
@@ -49,10 +62,10 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
 //Récupération du trajet transmis par la vue précédente
         Intent intent = getIntent();
-        final Long trajetId = intent.getLongExtra("trajetId", 1);
-        List <Trajet> trajets = new ArrayList <Trajet>();
+        trajetId = intent.getLongExtra("trajetId", 1);
+        List<Trajet> trajets = new ArrayList<Trajet>();
         try {
-            trajets = new EndpointsAsyncTaskTrajet(this, trajetId ).execute().get();
+            trajets = new EndpointsAsyncTaskTrajet(this, trajetId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -66,10 +79,9 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         tvDestination = (TextView) findViewById(R.id.tvDestination);
         tvDepart.setText(trajet.getHeureDepart());
 
-        if (trajet.getNombrePlaces()<2){
+        if (trajet.getNombrePlaces() < 2) {
             tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
-        }
-        else {
+        } else {
             tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.places));
         }
 
@@ -77,9 +89,9 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
         //Récupération de l'événement concerné
 
-        List <Evenement> evenements = new ArrayList <Evenement>();
+        List<Evenement> evenements = new ArrayList<Evenement>();
         try {
-            evenements = new EndpointsAsyncTaskEvenement(trajet.getEvenementId(), this ).execute().get();
+            evenements = new EndpointsAsyncTaskEvenement(trajet.getEvenementId(), this).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -94,9 +106,9 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
         //Récupération du conducteur concerné
 
-        List <Utilisateur> conducteurs = new ArrayList <Utilisateur>();
+        List<Utilisateur> conducteurs = new ArrayList<Utilisateur>();
         try {
-            conducteurs = new EndpointsAsyncTaskUtilisateur(trajet.getConducteurId(), this ).execute().get();
+            conducteurs = new EndpointsAsyncTaskUtilisateur(trajet.getConducteurId(), this).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -108,7 +120,39 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
 
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getPrenom().toUpperCase()+" "+conducteur.getNom().charAt(0)+".");
+        contacterConducteur.setText(getString(R.string.contacter) + " " + conducteur.getNom());
         tvNomConducteur.setText(conducteur.getNom());
+
+//Configuration de l'envoi du  message
+        envoyer = (Button) findViewById(R.id.btnEnvoyer);
+
+    }
+
+
+    public void insert (View v){
+        EditText texte = (EditText) findViewById(R.id.etMessage);
+
+        //Si le texte n'est pas vide, on attribue le texte au message
+        if (texte==null || texte.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), R.string.destination_vide, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+            message=new Message();
+            message.setTexte(texte.getText().toString());
+        }
+        //Ajout de l'heure
+        message.setDateHeure(String.valueOf(Calendar.HOUR)+":"+String.valueOf(Calendar.MINUTE));
+        message.setTrajetId(trajetId);
+
+        //Récupération et ajout de l'id de l'utilisateur
+        SharedPreferences settings = getSharedPreferences("prefs",0);
+        Long idUtilisateur = settings.getLong("idUtilisateur",0);
+        message.setUtilisateurId(idUtilisateur);
+        new EndpointsAsyncTaskMessage(0, message, this).execute();
+        Intent intent = new Intent(getBaseContext(), Chat.class);
+        intent.putExtra("trajetId",trajetId);
+        startActivity(intent);
 
 
     }

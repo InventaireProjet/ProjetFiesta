@@ -29,103 +29,63 @@
                 android:id="@+id/titre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="@dimen/fab_margin"
                 android:text="@string/creer_le_trajet"
                 android:textSize="@dimen/texte_grand"
                 android:textStyle="bold"
                 />
 
-            <LinearLayout
-                android:id="@+id/nomLayout"
-                style="@style/LignesLinearLayoutCreerTrajet"
-                android:layout_below="@id/titre">
-                <TextView
-                    android:id="@+id/nomLegende"
-                    style="@style/LegendesCreerTrajet"
-                    android:text="@string/nom_conducteur" />
 
-                <EditText
-                    android:id="@+id/nomEntree"
-                    style="@style/EntreesCreerTrajet"/>
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/msg_angle_arrondi"
+                android:textColor="#730C07"
+                android:textAlignment="center"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtCreerTrajet"
+                android:id="@+id/textView" />
 
-            <View
-                style="@style/LigneSeparation"/>
+            <EditText
+                android:id="@+id/destinationEntree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/form_angle_arrondi"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:hint="@string/destination"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </EditText>
 
-            <LinearLayout
-                android:id="@+id/destinationLayout"
-                style="@style/LignesLinearLayoutCreerTrajet"
-                android:layout_below="@id/nomLayout">
-                <TextView
-                    android:id="@+id/destinationLegende"
-                    style="@style/LegendesCreerTrajet"
-                    android:text="@string/destination"
-                    />
-                <EditText
-                    android:id="@+id/destinationEntree"
-                    style="@style/EntreesCreerTrajet"
-                    />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/nbPlacesEntree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/form_angle_arrondi"
+                android:inputType="number"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:hint="@string/nb_places"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </EditText>
 
-            <View
-                style="@style/LigneSeparation"/>
+            <EditText
+                android:id="@+id/heureEntree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/form_angle_arrondi"
+                android:inputType="time"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:hint="@string/heure_depart"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </EditText>
 
-            <LinearLayout
-                android:id="@+id/placesLayout"
-                style="@style/LignesLinearLayoutCreerTrajet"
-                android:layout_below="@id/destinationLayout">
-
-                <TextView
-                    android:id="@+id/nbPlacesLegende"
-                    style="@style/LegendesCreerTrajet"
-                    android:text="@string/nb_places"
-                    />
-                <EditText
-                    android:id="@+id/nbPlacesEntree"
-                    style="@style/EntreesCreerTrajet"
-                    android:inputType="number" />
-            </LinearLayout>
-
-            <View
-                style="@style/LigneSeparation"/>
-
-            <LinearLayout
-                android:id="@+id/heureLayout"
-                style="@style/LignesLinearLayoutCreerTrajet"
-                android:layout_below="@id/placesLayout">
-
-                <TextView
-                    android:id="@+id/heureLegende"
-                    style="@style/LegendesCreerTrajet"
-                    android:text="@string/heure_depart"
-                    />
-                <EditText
-                    android:id="@+id/heureEntree"
-                    style="@style/EntreesCreerTrajet"
-                    android:inputType="time" />
-            </LinearLayout>
-
-            <View
-                style="@style/LigneSeparation"/>
-
-            <LinearLayout
-                android:id="@+id/emailLayout"
-                style="@style/LignesLinearLayoutCreerTrajet"
-                android:layout_below="@id/heureLayout">
-
-                <TextView
-                    android:id="@+id/emailLegende"
-                    style="@style/LegendesCreerTrajet"
-                    android:text="@string/email"
-                    />
-                <EditText
-                    android:id="@+id/emailEntree"
-                    style="@style/EntreesCreerTrajet"
-                    android:inputType="textEmailAddress" />
-            </LinearLayout>
-
-            <View
-                style="@style/LigneSeparation"/>
 
             <CheckBox
                 android:id="@+id/checkbox_sobre"
@@ -143,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/marge_grosse"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/bouton_arrondi"
                 android:onClick="insert"
                 android:paddingLeft="@dimen/fab_margin"

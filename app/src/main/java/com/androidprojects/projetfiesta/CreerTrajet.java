@@ -1,9 +1,11 @@
 package com.androidprojects.projetfiesta;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,8 +25,6 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
     private Evenement evenement;
     private TextView tvDateEvenement;
     private TextView tvNomEvenement;
-    private EditText nom;
-    private EditText email;
     private EditText destination;
     private EditText nombrePlaces;
     private EditText heureDepart;
@@ -41,6 +41,10 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trajet_creer);
+
+        // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         Intent intent = getIntent();
         evenementId= intent.getLongExtra("evenementId", 1);
 
@@ -75,20 +79,11 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         Trajet trajet = new Trajet();
         Utilisateur utilisateur = new Utilisateur();
 
-        nom = (EditText) findViewById(R.id.nomEntree);
+
         destination = (EditText) findViewById(R.id.destinationEntree);
         nombrePlaces = (EditText) findViewById(R.id.nbPlacesEntree);
         heureDepart = (EditText) findViewById(R.id.heureEntree);
-        email = (EditText) findViewById(R.id.emailEntree);
 
-        //Test que les champs contiennent des valeurs
-        if ((nom == null) || nom.getText().toString().trim().equals("")){
-            Toast.makeText(getApplicationContext(), R.string.nom_vide, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else {
-            utilisateur.setNom(nom.getText().toString());
-        }
 
         if (destination==null || destination.getText().toString().trim().equals("")) {
             Toast.makeText(getApplicationContext(), R.string.destination_vide, Toast.LENGTH_SHORT).show();
@@ -105,6 +100,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
         else{
             trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
         }
+
         trajet.setHeureDepart(heureDepart.getText().toString());
 
 
@@ -121,61 +117,20 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
             return;
         }
 
-        //Test de validité de l'email repris de : http://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
-        emailteste = email.getText().toString();
+    //Récupération de l'id de l'utilisateur
+        SharedPreferences settings = getSharedPreferences("prefs",0);
+        Long idConducteur = settings.getLong("idUtilisateur",0);
 
-        if (emailteste.matches(emailPattern))
-        {
-            utilisateur.setEmail(emailteste);
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(), R.string.email_invalide, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
-
-//Test si le nom d'utilisateur existe déjà afin d'éviter des doublons
-        try {
-            List <Utilisateur> utilisateurs =  new EndpointsAsyncTaskUtilisateur(this).execute().get();
-            if (utilisateurs!=null)
-            {
-                for (Utilisateur uti : utilisateurs) {
-                    if (uti.getNom().equals(utilisateur.getNom())) {
-                        Toast.makeText(this, R.string.nom_existant, Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                }
-            }
-            new EndpointsAsyncTaskUtilisateur(0, utilisateur, this).execute();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-//Récupération de l'id de l'utilisateur
-        try {
-            List <Utilisateur> utilisateurs =  new EndpointsAsyncTaskUtilisateur(this).execute().get();
-            for (Utilisateur uti:utilisateurs)
-            {
-                if (uti.getNom().equals(utilisateur.getNom()))
-                {
-                    conducteurId=uti.getId();
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-//Clés étrangères
+    //Clés étrangères
         trajet.setEvenementId(evenementId);
-        trajet.setConducteurId(conducteurId);
+        trajet.setConducteurId(idConducteur);
 
         new EndpointsAsyncTaskTrajet(0, trajet, this).execute();
+
+        Intent intent = new Intent(this, AfficherTrajets.class);
+        intent.putExtra("evenementId",evenementId);
+        startActivity(intent);
+        finish();
     }
 
 

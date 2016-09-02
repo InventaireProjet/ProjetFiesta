@@ -21,21 +21,14 @@ public class ActivityCtrlDemarrage extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("prefs",0);
         boolean estLogue = settings.getBoolean("estLogue",false);
 
-        if(estLogue == true)//if running for first time
-        //Splash will load for first time
+        if(estLogue == true)
         {
-            //SharedPreferences.Editor editor = settings.edit();
-            //editor.putBoolean("estLogue",true);
-            //editor.commit();
             Intent i = new Intent(ActivityCtrlDemarrage.this, AfficherEvenements.class);
             startActivity(i);
             finish();
         }
         else
         {
-            //SharedPreferences.Editor editor = settings.edit();
-            //editor.putBoolean("estLogue",false);
-            //editor.commit();
             Intent a = new Intent(ActivityCtrlDemarrage.this, ActiviteNonLogue.class);
             startActivity(a);
             finish();

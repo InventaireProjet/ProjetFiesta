@@ -5,7 +5,7 @@
     <string name="creer_le_trajet">CRÉER LE TRAJET</string>
     <string name="heure_depart">Heure de départ (environ)</string>
     <string name="nb_places">Nombre de places</string>
-    <string name="destination">Destination</string>
+    <string name="nb_placesdestination">Destination</string>
     <string name="nom_conducteur">Nom du conducteur</string>
     <string name="sobre_responsable">Je m\'engage à rester sobre et responsable</string>
     <string name="trajet_insere">Trajet inséré</string>
@@ -42,6 +42,9 @@
     <string name="trouver">TROUVER UNE VOITURE</string>
     <!-- TEMPORAIRE : Je dois rendre ce string dynamique pour qu'il corresponde à chaque trajet  NTS -->
     <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient!</string>
+    <string name="chargement">Chargement en cours</string>
+    <string name="destination">Destination</string>
+    <string name="txtCreerTrajet">Vous êtes sur le point de créer une offre de trajet. <b>De ce fait, vous vous engagez à rester sobre lors de cet événement.</b></string>
 
 
 </resources>

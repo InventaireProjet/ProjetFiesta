@@ -109,7 +109,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getPrenom().toUpperCase()+" "+conducteur.getNom().charAt(0)+".");
         tvNomConducteur.setText(conducteur.getNom());
-        
+
 
     }
 

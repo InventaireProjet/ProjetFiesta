@@ -22,7 +22,8 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private Evenement evenement;
     private OnTaskCompleted listener;
     private int codeAction;
-private Long evenementId;
+    private String date;
+    private Long evenementId;
 
     EndpointsAsyncTaskEvenement(OnTaskCompleted listener) {
         this.listener = listener;
@@ -34,10 +35,18 @@ private Long evenementId;
         this.codeAction = codeAction;
     }
 
+    //AsyncTask dédiée à l'affichage des événements présents et futurs
+    EndpointsAsyncTaskEvenement(String date, OnTaskCompleted listener) {
+        this.listener = listener;
+        this.date = date;
+        this.codeAction=3;
+    }
+
+    //AsyncTask dédiée à l'affichage de tous les événements
     EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
         this.evenementId = evenementId;
         this.listener = listener;
-        this.codeAction = 3;
+        this.codeAction = 4;
     }
 
     @Override
@@ -84,6 +93,12 @@ private Long evenementId;
                     break;
 
                 case (3):
+                    List evenements = evenementApi.listParDate(date).execute().getItems();
+                    Log.i(TAG, "get evenements par date");
+
+                    return evenements;
+
+                case (4):
 
                     Evenement evenement = evenementApi.get(evenementId).execute();
                     List evenementUnique = new ArrayList();

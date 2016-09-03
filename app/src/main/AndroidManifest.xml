@@ -14,21 +14,27 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".AfficherTrajets"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AfficherEvenements" />
         </activity>
         <activity
             android:name=".CreerTrajet"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AfficherTrajets" />
         </activity>
         <activity
             android:name=".AutresTransports"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AfficherTrajets" />
@@ -51,7 +57,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AfficherTrajet" />
         </activity>
-        <activity android:name=".AfficherEvenements"></activity>
+        <activity android:name=".AfficherEvenements"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
             android:name=".demarrage.ActiviteNonLogue"
             android:screenOrientation="portrait"
@@ -66,8 +75,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".demarrage.ActiviteLogin" />
-        <activity android:name=".demarrage.ActiviteInscription" />
+        <activity android:name=".demarrage.ActiviteLogin"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity android:name=".demarrage.ActiviteInscription"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>

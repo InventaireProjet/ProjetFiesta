@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.projetfiesta.backend.evenementApi.model.Evenement;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -52,7 +53,6 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        Bitmap bitmap;
         MyViewHolder myViewHolder = null;
 
         if(row == null){
@@ -74,10 +74,14 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         myViewHolder.date.setText(evenement.getDate());
 
         // Récupération des logos utilisant la classe privée dédiée
+        /*
+            Pour l'affichage des photos nous utilisons le système Picasso qui met en cache les images afin de ne pas ralentir la listview
+            http://square.github.io/picasso/
+            https://www.youtube.com/watch?v=8051fZyWToA&list=PL9jCwTXYWjDK0tL-lN5coNLNCbH_cL8Ph&index=7
+         */
         if (evenement.getLogo()!=null) {
             try {
-                bitmap= new LoadImage().execute(evenement.getLogo()).get();
-                myViewHolder.logo.setImageBitmap(bitmap);
+                Picasso.with(myViewHolder.logo.getContext()).load(evenement.getLogo()).into(myViewHolder.logo);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -85,8 +89,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
             // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
         else {
             try {
-                Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fiesta_logo);
-                myViewHolder.logo.setImageBitmap(icon);
+                Picasso.with(myViewHolder.logo.getContext()).load(R.drawable.fiesta_logo).into(myViewHolder.logo);
             } catch (Exception e) {
                 e.printStackTrace();
             }

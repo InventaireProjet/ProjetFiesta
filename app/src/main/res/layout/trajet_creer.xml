@@ -108,8 +108,7 @@
                 android:onClick="insert"
                 android:paddingLeft="@dimen/fab_margin"
                 android:paddingRight="@dimen/fab_margin"
-                android:text="@string/creer_le_trajet"
-                android:textStyle="bold" />
+                android:text="@string/creer_le_trajet" />
 
         </LinearLayout>
     </LinearLayout>

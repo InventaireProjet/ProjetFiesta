@@ -10,6 +10,7 @@ import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -151,12 +152,32 @@ public class EvenementEndpoint {
     }
 
 
-    // Méthode permettant d'obtenir les événements du jours et futurs
+    // Méthode permettant d'obtenir les événements du jour et futurs
     @ApiMethod(
             name = "listParDate",
             path = "listParDate/{date}",
             httpMethod = ApiMethod.HttpMethod.GET)
     public CollectionResponse<Evenement> listParDate(@Nullable @Named("cursor") String cursor, @Named("date") String date, @Nullable @Named("limit") Integer limit) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+        SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
+
+        //String datePerso = "04.09.2016";
+        //String reformatedString = null;
+
+        date = "03.09.2016";
+
+        /*
+        try {
+            reformatedString = newFormat.format(oldFormat.parse(date));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        */
+
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<Evenement> query = ofy().load().type(Evenement.class).filter("date", date).limit(limit);
         if (cursor != null) {

@@ -25,6 +25,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private String date;
     private Long evenementId;
 
+    //AsyncTask dédiée à l'affichage de tous les événements
     EndpointsAsyncTaskEvenement(OnTaskCompleted listener) {
         this.listener = listener;
     }
@@ -42,8 +43,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
         this.codeAction=3;
     }
 
-    //AsyncTask dédiée à l'affichage de tous les événements
-    EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
+        EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
         this.evenementId = evenementId;
         this.listener = listener;
         this.codeAction = 4;

@@ -10,9 +10,7 @@ import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class AfficherEvenements extends AppCompatActivity implements OnTaskCompleted {
 
@@ -22,9 +20,10 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evenements_liste_afficher);
 
-        final String date = "30.09.2016";
+        //final String date = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
 
         //TODO: voir si cela fonctionne ainsi, sous getEvenements() la méthode de base montrant tous les événements
+        /*
         List<Evenement> evenements = new ArrayList<Evenement>();
         try {
             evenements = new EndpointsAsyncTaskEvenement(date,this).execute().get();
@@ -33,8 +32,9 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        */
         //TODO: il s'agit de la méthode permettant d'afficher tous les événements, à retirer dès que le filtre par date est OK
-        //getEvenements();
+        getEvenements();
 
         eventListView = (ListView) findViewById(R.id.listViewEvenements);
     }

@@ -11,10 +11,8 @@ import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class AfficherEvenements extends AppCompatActivity implements OnTaskCompleted {
 
@@ -28,32 +26,17 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evenements_liste_afficher);
 
-
-
-        //TODO: voir si cela fonctionne ainsi, sous getEvenements() la méthode de base montrant tous les événements
-        /*
-        List<Evenement> evenements = new ArrayList<Evenement>();
-        try {
-            evenements = new EndpointsAsyncTaskEvenement(date,this).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        */
-        //TODO: il s'agit de la méthode permettant d'afficher tous les événements, à retirer dès que le filtre par date est OK
         getEvenements();
-        //getEvenementsParDate(dateInt);
 
         eventListView = (ListView) findViewById(R.id.listViewEvenements);
     }
 
 
-
     public void getEvenements() {
-        new EndpointsAsyncTaskEvenement(20160903, this).execute();
+        new EndpointsAsyncTaskEvenement(dateInt, this).execute();
     }
 
+    /*
     public void getEvenementsParDate(int date) {
         List<Evenement> evenements = new ArrayList<Evenement>();
         List<Evenement> evenementsAAfficher = new ArrayList<Evenement>();
@@ -74,6 +57,7 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         evenements = evenementsAAfficher;
 
     }
+    */
 
 
      @Override
@@ -91,12 +75,8 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
     public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
     }
 
-
-
     @Override
     public void updateListViewMessage(List<Message> messages) {
 
     }
-
-
 }

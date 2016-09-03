@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -109,6 +111,8 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                 case (3):
                     List evenements = evenementApi.list().execute().getItems();
 
+                    Collections.sort(evenements, new CustomComparator());
+
                     List<Evenement> evenementsTous = evenements;
                     List<Evenement> evenementsRetour = new ArrayList<Evenement>();
                     for (int i=0; i<evenementsTous.size(); i++) {
@@ -178,6 +182,45 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
 
         if (result != null) {
             listener.updateListViewEvenement(result);
+        }
+    }
+
+    public class CustomComparator implements Comparator<Evenement> {
+
+        @Override
+        public int compare(Evenement o1, Evenement o2) {
+            String reformatedStringO1 = null;
+            String reformatedStringO2 = null;
+            int dateIntO1;
+            int dateIntO2;
+
+            SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
+            SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
+
+            try {
+                reformatedStringO1 = newFormat.format(oldFormat.parse(o1.getDate()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            dateIntO1 = Integer.parseInt(reformatedStringO1);
+
+            try {
+                reformatedStringO2 = newFormat.format(oldFormat.parse(o2.getDate()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            dateIntO2 = Integer.parseInt(reformatedStringO2);
+
+            if (dateIntO1 < dateIntO2) {
+                return -1;
+            } else if (dateIntO1 > dateIntO2) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
         }
     }
 }

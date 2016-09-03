@@ -10,7 +10,6 @@ import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p>
+ * <p/>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -132,7 +131,6 @@ public class EvenementEndpoint {
      * @param limit  the maximum number of entries to return
      * @return a response that encapsulates the result list and the next page token/cursor
      */
-
     @ApiMethod(
             name = "list",
             path = "evenement",
@@ -150,48 +148,6 @@ public class EvenementEndpoint {
         }
         return CollectionResponse.<Evenement>builder().setItems(evenementList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
-
-
-    // Méthode permettant d'obtenir les événements du jour et futurs
-    @ApiMethod(
-            name = "listParDate",
-            path = "listParDate/{date}",
-            httpMethod = ApiMethod.HttpMethod.GET)
-    public CollectionResponse<Evenement> listParDate(@Nullable @Named("cursor") String cursor, @Named("date") String date, @Nullable @Named("limit") Integer limit) {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-
-        SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
-        SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
-
-        //String datePerso = "04.09.2016";
-        //String reformatedString = null;
-
-        date = "03.09.2016";
-
-        /*
-        try {
-            reformatedString = newFormat.format(oldFormat.parse(date));
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        */
-
-        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
-        Query<Evenement> query = ofy().load().type(Evenement.class).filter("date", date).limit(limit);
-        if (cursor != null) {
-            query = query.startAt(Cursor.fromWebSafeString(cursor));
-        }
-        QueryResultIterator<Evenement> queryIterator = query.iterator();
-        List<Evenement> evenementList = new ArrayList<Evenement>(limit);
-        while (queryIterator.hasNext()) {
-            evenementList.add(queryIterator.next());
-        }
-        return CollectionResponse.<Evenement>builder().setItems(evenementList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
-    }
-
-
 
     private void checkExists(Long id) throws NotFoundException {
         try {

@@ -4,9 +4,6 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 
 @Entity
 public class Evenement {
@@ -50,23 +47,4 @@ public class Evenement {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
-    public int getModifiedDate() {
-
-        String reformatedString = null;
-        int dateInt;
-
-        SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
-        SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
-
-        try {
-            reformatedString = newFormat.format(oldFormat.parse(this.getDate()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        dateInt = Integer.parseInt(reformatedString);
-        return dateInt;
-    }
-
 }

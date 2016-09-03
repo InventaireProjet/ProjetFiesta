@@ -191,7 +191,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/envoyer"
                     android:id="@+id/btnEnvoyer"
-                    android:clickable="false" />
+                    android:onClick="insert" />
 
 
 

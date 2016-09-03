@@ -139,7 +139,7 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
         // contrôle que tous les champs soient remplis
         if(etNom.getText().toString().equals("") || etPrenom.getText().toString().equals("") || etDateNaissance.getText().toString().equals("") ||
                 etEmail.getText().toString().equals("") || etMDP.getText().toString().equals("")) {
-            Toast.makeText(this, "Tous les champs ne sont pas remplis." , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastChampsIncomplet , Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -147,13 +147,13 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
         // contrôle de la validité de l'e-mail
         boolean verificationMail = emailValide(etEmail.getText().toString());
         if(!verificationMail) {
-            Toast.makeText(this, "E-mail invalide." , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastEmailInvalide , Toast.LENGTH_SHORT).show();
             return false;
         }
 
         // contrôle longueur du mot de passe
         if(etMDP.length() < 8){
-            Toast.makeText(this, "Mot de passe trop court." , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastMdpCourt, Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -165,12 +165,12 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
         String dateEnCours = etDateNaissance.getText().toString().replaceAll("/", "");
         boolean verificationNbre = dateEnCours.matches("[0-9]+");
         if(!verificationNbre) {
-            Toast.makeText(this, "La date ne contient pas que des caractères numériques." , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toastDateNum , Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
-        Toast.makeText(this, "Votre inscription a été prise en compte." , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toastInscriptionOk , Toast.LENGTH_SHORT).show();
         // si tout est ok on retourne TRUE.
         return true;
 

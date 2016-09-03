@@ -31,53 +31,68 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         super(context, 0, evenements);
     }
 
+    class MyViewHolder{
+
+        ImageView logo;
+        TextView date;
+        TextView titre;
+        RelativeLayout relativeLayout;
+
+        MyViewHolder(View v){
+
+            logo = (ImageView) v.findViewById(R.id.icon_evenement);
+            date = (TextView) v.findViewById(R.id.evenement_date);
+            titre = (TextView) v.findViewById(R.id.evenement_titre);
+            relativeLayout = (RelativeLayout) v.findViewById(R.id.evenement_layout);
+
+        }
+    }
+
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        View row = convertView;
         Bitmap bitmap;
-        EvenementViewHolder viewHolder;
-        if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_evenement,parent, false);
+        MyViewHolder myViewHolder = null;
+
+        if(row == null){
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.row_evenement, parent, false);
+            myViewHolder = new MyViewHolder(row);
+            row.setTag(myViewHolder);
+        }
+        else{
+        myViewHolder = (MyViewHolder) row.getTag();
         }
 
-         viewHolder = (EvenementViewHolder) convertView.getTag();
-        if(viewHolder == null){
-            viewHolder = new EvenementViewHolder();
-            viewHolder.evenementTitre = (TextView) convertView.findViewById(R.id.evenement_titre);
-            viewHolder.evenementDate = (TextView) convertView.findViewById(R.id.evenement_date);
-            viewHolder.logo = (ImageView) convertView.findViewById(R.id.icon_evenement);
-            viewHolder.relativelayout = (RelativeLayout) convertView.findViewById(R.id.evenement_layout);
-            convertView.setTag(viewHolder);
-        }
 
         //getItem(position) va récupérer l'item [position] de la List<Evenement> evenements
         Evenement evenement = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.evenementTitre.setText(evenement.getTitre());
-        viewHolder.evenementDate.setText(evenement.getDate());
+        myViewHolder.titre.setText(evenement.getTitre());
+        myViewHolder.date.setText(evenement.getDate());
 
-    // Récupération des logos utilisant la classe privée dédiée
+        // Récupération des logos utilisant la classe privée dédiée
         if (evenement.getLogo()!=null) {
-                try {
-                    bitmap= new LoadImage().execute(evenement.getLogo()).get();
-                    viewHolder.logo.setImageBitmap(bitmap);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                bitmap= new LoadImage().execute(evenement.getLogo()).get();
+                myViewHolder.logo.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-    // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
+            // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
         else {
             try {
                 Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fiesta_logo);
-                viewHolder.logo.setImageBitmap(icon);
+                myViewHolder.logo.setImageBitmap(icon);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-
-
-        viewHolder.relativelayout.setOnClickListener(new View.OnClickListener() {
+        myViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AfficherTrajets.class);
@@ -87,16 +102,82 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
             }
         });
 
-        return convertView;
+        return row;
+
     }
 
-    private class EvenementViewHolder{
-        public TextView evenementTitre;
-        public TextView evenementDate;
-        public ImageView logo;
-        public RelativeLayout relativelayout;
+
+
+/*
+@Override
+public View getView(final int position, View convertView, ViewGroup parent) {
+    Bitmap bitmap;
+    EvenementViewHolder viewHolder;
+    if(convertView == null){
+        convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_evenement,parent, false);
     }
 
+    viewHolder = (EvenementViewHolder) convertView.getTag();
+    if(viewHolder == null){
+        viewHolder = new EvenementViewHolder();
+        viewHolder.evenementTitre = (TextView) convertView.findViewById(R.id.evenement_titre);
+        viewHolder.evenementDate = (TextView) convertView.findViewById(R.id.evenement_date);
+        viewHolder.logo = (ImageView) convertView.findViewById(R.id.icon_evenement);
+        viewHolder.relativelayout = (RelativeLayout) convertView.findViewById(R.id.evenement_layout);
+        convertView.setTag(viewHolder);
+    }
+
+    //getItem(position) va récupérer l'item [position] de la List<Evenement> evenements
+    Evenement evenement = getItem(position);
+
+    //il ne reste plus qu'à remplir notre vue
+    viewHolder.evenementTitre.setText(evenement.getTitre());
+    viewHolder.evenementDate.setText(evenement.getDate());
+
+    // Récupération des logos utilisant la classe privée dédiée
+    if (evenement.getLogo()!=null) {
+        try {
+            bitmap= new LoadImage().execute(evenement.getLogo()).get();
+            viewHolder.logo.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
+    else {
+        try {
+            Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fiesta_logo);
+            viewHolder.logo.setImageBitmap(icon);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    viewHolder.relativelayout.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getContext(), AfficherTrajets.class);
+            Long evenementId = getItem(position).getId();
+            intent.putExtra("evenementId",evenementId);
+            getContext().startActivity(intent);
+        }
+    });
+
+    return convertView;
+}
+
+
+
+private class EvenementViewHolder{
+    public TextView evenementTitre;
+    public TextView evenementDate;
+    public ImageView logo;
+    public RelativeLayout relativelayout;
+}
+
+    */
     //Classe privée dédiée à la récupération des images (inspiré et simplifié de : https://www.learn2crack.com/2014/06/android-load-image-from-internet.html)
     private class LoadImage extends AsyncTask<String, String, Bitmap> {
 
@@ -114,4 +195,6 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         }
 
     }
+
+
 }

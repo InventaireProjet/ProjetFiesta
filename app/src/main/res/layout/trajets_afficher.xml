@@ -26,12 +26,11 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/trouver"
             android:textSize="@dimen/texte_grand"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold"/>
 
         <TextView
-            android:layout_width="343dp"
-            android:layout_height="99dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/angle_arrondi"
             android:textColor="#730C07"
             android:layout_marginTop="10dp"
@@ -71,8 +70,10 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bouton_arrondi"
-                android:layout_marginTop="5dp"
+                android:background="@drawable/petit_bouton_arrondi"
+                android:textSize="10dp"
+                android:minHeight="25dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/autres_transports"
                 android:id="@+id/buttonAT"
                 android:layout_gravity="center_horizontal"/>

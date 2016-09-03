@@ -22,6 +22,7 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
     private Message message;
     private int codeAction;
     private OnTaskCompleted listener;
+    private Long trajetId;
 
     EndpointsAsyncTaskMessage(OnTaskCompleted listener) {
         this.listener = listener;
@@ -32,6 +33,14 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
         this.listener = listener;
         this.codeAction = codeAction;
     }
+
+    //AsyncTask dédiée à la recherche des messages liés à un trajet
+    EndpointsAsyncTaskMessage(Long trajetId, OnTaskCompleted listener) {
+        this.listener = listener;
+        this.trajetId = trajetId;
+        this.codeAction=3;
+    }
+
 
     @Override
     protected List<Message> doInBackground(Void... params) {
@@ -45,7 +54,7 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://4-dot-projet-fiesta.appspot.com/_ah/api")
+                    .setRootUrl("https://5-dot-projet-fiesta.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -76,6 +85,14 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
                         Log.i(TAG, "remove message");
                     }
                     break;
+                case (3) :
+
+
+                        List messages = messageApi.messagesParTrajet(trajetId).execute().getItems();
+                        Log.i(TAG, "get messages par trajet");
+
+                        return messages;
+
             }
 
             return messageApi.list().execute().getItems();

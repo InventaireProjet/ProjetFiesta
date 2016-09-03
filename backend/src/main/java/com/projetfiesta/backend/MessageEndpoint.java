@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p/>
+ * <p>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -138,6 +138,24 @@ public class MessageEndpoint {
     public CollectionResponse<Message> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<Message> query = ofy().load().type(Message.class).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<Message> queryIterator = query.iterator();
+        List<Message> messageList = new ArrayList<Message>(limit);
+        while (queryIterator.hasNext()) {
+            messageList.add(queryIterator.next());
+        }
+        return CollectionResponse.<Message>builder().setItems(messageList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+    //Méthode permettant d'obtenir tous les messages liés à un trajet donné
+    @ApiMethod(
+            name = "messagesParTrajet",
+            path = "messagesParTrajet/{trajetId}",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<Message> messagesParTrajet(@Nullable @Named("cursor") String cursor, @Named("trajetId") Long trajetId, @Nullable @Named("limit") Integer limit) {
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<Message> query = ofy().load().type(Message.class).filter("trajetId", trajetId).limit(limit);
         if (cursor != null) {
             query = query.startAt(Cursor.fromWebSafeString(cursor));
         }

@@ -118,4 +118,32 @@
         android:id="@+id/listView"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textMultiLine"
+            android:background="@drawable/angle_arrondi"
+            android:hint="@string/votreMessage"
+            android:textSize="15dp"
+            android:gravity="top"
+            android:textColorHint="#730C07"
+            android:textColor="#730C07"
+            android:ems="10"
+            android:id="@+id/etMessage" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:background="@drawable/bouton_arrondi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="e"
+            android:id="@+id/btnEnvoyer"
+            android:onClick="insert" />
+    </LinearLayout>
 </LinearLayout>

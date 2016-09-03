@@ -2,6 +2,7 @@ package com.projetfiesta.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -11,7 +12,7 @@ public class Message {
     private Long id;
     private String texte;
     private String dateHeure;
-    private Long trajetId;
+    @Index private Long trajetId;
     private Long utilisateurId;
 
     public Long getId() {

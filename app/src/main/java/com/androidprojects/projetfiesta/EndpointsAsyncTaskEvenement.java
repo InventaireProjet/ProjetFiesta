@@ -12,6 +12,8 @@ import com.projetfiesta.backend.evenementApi.EvenementApi;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +24,17 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private Evenement evenement;
     private OnTaskCompleted listener;
     private int codeAction;
-    private String date;
+    private int date;
+    //private String dateDuJour = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
+    //private int dateInt = Integer.parseInt(dateDuJour);
     private Long evenementId;
+
 
     //AsyncTask dédiée à l'affichage de tous les événements
     EndpointsAsyncTaskEvenement(OnTaskCompleted listener) {
         this.listener = listener;
     }
+
 
     EndpointsAsyncTaskEvenement(int codeAction, Evenement evenement, OnTaskCompleted listener) {
         this.evenement = evenement;
@@ -37,7 +43,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     }
 
     //AsyncTask dédiée à l'affichage des événements présents et futurs
-    EndpointsAsyncTaskEvenement(String date, OnTaskCompleted listener) {
+    EndpointsAsyncTaskEvenement(int date, OnTaskCompleted listener) {
         this.listener = listener;
         this.date = date;
         this.codeAction=3;
@@ -92,11 +98,44 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                     }
                     break;
 
+                /*
                 case (3):
                     List evenements = evenementApi.listParDate(date).execute().getItems();
                     Log.i(TAG, "get evenements par date");
 
                     return evenements;
+                */
+
+                case (3):
+                    List evenements = evenementApi.list().execute().getItems();
+
+                    List<Evenement> evenementsTous = evenements;
+                    List<Evenement> evenementsRetour = new ArrayList<Evenement>();
+                    for (int i=0; i<evenementsTous.size(); i++) {
+
+                        String reformatedString = null;
+                        int dateInt;
+
+                        SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
+                        SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
+
+                        try {
+                            reformatedString = newFormat.format(oldFormat.parse(evenementsTous.get(i).getDate()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        dateInt = Integer.parseInt(reformatedString);
+
+                        if (dateInt >= date) {
+                            evenementsRetour.add(evenementsTous.get(i));
+                        }
+
+                    }
+
+                    Log.i(TAG, "get evenements par date");
+
+                    return evenementsRetour;
 
                 case (4):
 

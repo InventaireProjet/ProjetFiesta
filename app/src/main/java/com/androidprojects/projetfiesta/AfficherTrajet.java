@@ -120,7 +120,6 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
 
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getPrenom().toUpperCase()+" "+conducteur.getNom().charAt(0)+".");
-        contacterConducteur.setText(getString(R.string.contacter) + " " + conducteur.getNom());
         tvNomConducteur.setText(conducteur.getNom());
 
 //Configuration de l'envoi du  message

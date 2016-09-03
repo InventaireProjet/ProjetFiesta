@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
     <include layout="@layout/en_tete"/>
 
     <TextView
@@ -13,9 +14,32 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="BUS NOCTURNES"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ImgB_mm"
+            android:src="@drawable/bus_icon_martigny_monthey"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ImgB_sm"
+            android:src="@drawable/bus_icon_sion_martigny"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ImgB_ss"
+            android:src="@drawable/bus_icon_sion_sierre"/>
+
+
+    </LinearLayout>
 
 
     <TextView
@@ -26,8 +50,15 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="TRAINS"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ImgB_cff"
+        android:src="@drawable/cff_icon2"/>
 
     <TextView
         android:id="@+id/taxis"
@@ -37,6 +68,12 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="TAXIS"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ImgB_taxi"
+        android:src="@drawable/taxi_icon"/>
 </LinearLayout>

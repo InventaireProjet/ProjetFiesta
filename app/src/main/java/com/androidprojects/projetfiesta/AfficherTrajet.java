@@ -17,7 +17,6 @@ import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -120,7 +119,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
 
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getPrenom().toUpperCase()+" "+conducteur.getNom().charAt(0)+".");
-        tvNomConducteur.setText(conducteur.getNom());
+        tvNomConducteur.setText(conducteur.getPrenom()+" "+conducteur.getNom().charAt(0)+".");
 
         //Bouton d'envoi du  message
         envoyer = (Button) findViewById(R.id.btnEnvoyer);
@@ -140,8 +139,10 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
             message=new Message();
             message.setTexte(texte.getText().toString());
         }
-        //Ajout de l'heure
-        message.setDateHeure(String.valueOf(Calendar.HOUR)+":"+String.valueOf(Calendar.MINUTE));
+        //Ajout de l'heure à partir de timestamp
+        Long dateMessage = System.currentTimeMillis();
+        String dateMessageTexte = dateMessage.toString();
+        message.setDateHeure(dateMessageTexte);
         message.setTrajetId(trajetId);
 
         //Récupération et ajout de l'id de l'utilisateur

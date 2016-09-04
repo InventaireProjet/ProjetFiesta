@@ -2,9 +2,6 @@ package com.androidprojects.projetfiesta;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +13,6 @@ import android.widget.TextView;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -181,23 +176,7 @@ private class EvenementViewHolder{
 }
 
     */
-    //Classe privée dédiée à la récupération des images (inspiré et simplifié de : https://www.learn2crack.com/2014/06/android-load-image-from-internet.html)
-    private class LoadImage extends AsyncTask<String, String, Bitmap> {
 
-        @Override
-        protected Bitmap doInBackground(String... args) {
-
-            Bitmap bitmap=null;
-            try {
-                bitmap = BitmapFactory.decodeStream((InputStream) new URL(args[0]).getContent());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-
-    }
 
 
 }

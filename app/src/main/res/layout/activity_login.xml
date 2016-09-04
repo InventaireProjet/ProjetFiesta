@@ -53,8 +53,8 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/form_angle_arrondi"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
+                    android:textColorHint="@color/blanc"
+                    android:textColor="@color/blanc"
                     android:hint="@string/email"
                     android:textAppearance="?android:attr/textAppearanceSmall" >
                 </EditText>
@@ -66,8 +66,8 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/form_angle_arrondi"
                     android:inputType="textPassword"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
+                    android:textColorHint="@color/blanc"
+                    android:textColor="@color/blanc"
                     android:hint="@string/password"
                     android:textAppearance="?android:attr/textAppearanceSmall" >
                 </EditText>

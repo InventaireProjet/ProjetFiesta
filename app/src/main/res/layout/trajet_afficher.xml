@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/angle_arrondi"
-                android:textColor="#730C07"
+                android:textColor="@color/rouge_texte"
                 android:text="@string/contacterConducteurConfirmation"
                 android:id="@+id/textView" />
 

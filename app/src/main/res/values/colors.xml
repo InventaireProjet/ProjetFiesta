@@ -3,4 +3,5 @@
     <color name="blanc">#ffffff</color>
     <color name="couleur_fond">#db160d</color>
     <color name="couleur_bouton">#500303</color>
+    <color name="rouge_texte">#730C07</color>
 </resources>

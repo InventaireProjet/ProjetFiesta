@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/msg_angle_arrondi"
-                android:textColor="#730C07"
+                android:textColor="@color/rouge_texte"
                 android:textAlignment="center"
                 android:layout_marginTop="8dp"
                 android:text="@string/txtCreerTrajet"
@@ -54,8 +54,8 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/form_angle_arrondi"
                 android:inputType="textPersonName"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
+                android:textColorHint="@color/blanc"
+                android:textColor="@color/blanc"
                 android:hint="@string/destination"
                 android:textAppearance="?android:attr/textAppearanceSmall" >
             </EditText>
@@ -67,8 +67,8 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/form_angle_arrondi"
                 android:inputType="number"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
+                android:textColorHint="@color/blanc"
+                android:textColor="@color/blanc"
                 android:hint="@string/nb_places"
                 android:textAppearance="?android:attr/textAppearanceSmall" >
             </EditText>
@@ -80,8 +80,8 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/form_angle_arrondi"
                 android:inputType="time"
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
+                android:textColorHint="@color/blanc"
+                android:textColor="@color/blanc"
                 android:hint="@string/heure_depart"
                 android:textAppearance="?android:attr/textAppearanceSmall" >
             </EditText>

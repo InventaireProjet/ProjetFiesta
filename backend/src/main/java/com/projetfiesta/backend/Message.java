@@ -11,7 +11,7 @@ public class Message {
     @Id
     private Long id;
     private String texte;
-    private String dateHeure;
+   @Index private String dateHeure;
     @Index private Long trajetId;
     @Index private Long utilisateurId;
 

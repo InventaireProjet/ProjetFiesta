@@ -10,13 +10,13 @@
         <shape>
             <stroke
                 android:width="2dp"
-                android:color="#FFFFFF" />
+                android:color="@color/blanc" />
 
             <solid android:color="@color/couleur_fond" />
 
             <padding
-                android:left="15dp"
-                android:right="15dp"
+                android:left="@dimen/fab_margin"
+                android:right="@dimen/fab_margin"
                 android:top="30dp"
                 android:bottom="5dp"/>
             <corners android:radius="5dp" />

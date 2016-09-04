@@ -5,9 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,7 +18,8 @@ import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -47,13 +49,15 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     private List<Message> messages = new ArrayList<>();
 
     //Bouton envoyer
-    private Button envoyer;
+    private ImageButton envoyer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
 
+        // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         //Récupération du trajet transmis par la vue précédente
         Intent intent = getIntent();
@@ -114,13 +118,15 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         conducteur = conducteurs.get(0);
 
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
-        tvNomConducteur.setText(conducteur.getNom());
+        tvNomConducteur.setText(conducteur.getPrenom()+" "+conducteur.getNom().charAt(0)+".");
 
 
 
         //Récupération des messages liés au trajet
         try {
             messages =new EndpointsAsyncTaskMessage(trajetId, this).execute().get();
+            //Tri des messages par date
+            Collections.sort(messages, new MessageComparator());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -130,7 +136,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         listView = (ListView) findViewById(R.id.listView);
 
         //Configuration de l'envoi du  message
-        envoyer = (Button) findViewById(R.id.btnEnvoyer);
+        envoyer = (ImageButton) findViewById(R.id.btnEnvoyer);
 
     }
 
@@ -147,7 +153,9 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
             message.setTexte(texte.getText().toString());
         }
         //Ajout de l'heure
-        message.setDateHeure(String.valueOf(Calendar.HOUR)+":"+String.valueOf(Calendar.MINUTE));
+        Long dateMessage = System.currentTimeMillis();
+        String dateMessageTexte = dateMessage.toString();
+        message.setDateHeure(dateMessageTexte);
         message.setTrajetId(trajetId);
 
         //Récupération et ajout de l'id de l'utilisateur
@@ -193,4 +201,9 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
     }
 
+    private class MessageComparator implements Comparator<Message> {
+        public int compare(Message messageA, Message messageB) {
+            return messageA.getDateHeure().compareTo(messageB.getDateHeure());
+        }
+    }
 }

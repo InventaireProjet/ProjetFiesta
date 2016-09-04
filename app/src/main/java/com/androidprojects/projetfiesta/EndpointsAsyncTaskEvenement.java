@@ -131,7 +131,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
 
                         dateInt = Integer.parseInt(reformatedString);
 
-                        if (dateInt >= date) {
+                        if (dateInt >= date-1) {
                             evenementsRetour.add(evenementsTous.get(i));
                         }
 

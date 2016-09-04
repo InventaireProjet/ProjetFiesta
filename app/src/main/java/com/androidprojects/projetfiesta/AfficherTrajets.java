@@ -123,7 +123,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
             }
         });
 
-        //Bouton pour consulter les aures moyens de transport
+        //Bouton pour consulter les autres moyens de transport
         Button btn_autre;
         btn_autre = (Button) findViewById(R.id.buttonAT);
 

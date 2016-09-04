@@ -7,11 +7,14 @@
         <item name="android:textColor">@color/blanc</item>
         <item name="android:colorBackground">@color/couleur_fond</item>
 
+        <item name="android:windowAnimationStyle">@null</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
     <style name="LegendesCreerTrajet"  parent="AppTheme">
@@ -26,9 +29,6 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">bottom|right</item>
         <item name="android:textSize">@dimen/texte_grand</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
-        <!--Curseur personnalisé pour qu'il soit plus visible-->
-        <item name="android:textCursorDrawable">@drawable/curseur_texte</item>
         <item name="android:background">@null</item>
     </style>
 

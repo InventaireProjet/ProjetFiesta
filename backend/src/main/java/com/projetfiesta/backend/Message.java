@@ -13,7 +13,7 @@ public class Message {
     private String texte;
     private String dateHeure;
     @Index private Long trajetId;
-    private Long utilisateurId;
+    @Index private Long utilisateurId;
 
     public Long getId() {
         return id;

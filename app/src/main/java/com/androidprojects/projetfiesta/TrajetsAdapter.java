@@ -2,6 +2,7 @@ package com.androidprojects.projetfiesta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         }
 
         // pour chaque trajet...
-        Trajet trajet = getItem(position);
+        final Trajet trajet = getItem(position);
 
         // .. on récupère le nom du chauffeur
         List <Utilisateur> chauffeurs = new ArrayList<Utilisateur>();
@@ -85,13 +86,28 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         viewHolder.trajetNbPlaces.setText(Html.fromHtml(NbPlaces));
         viewHolder.trajetDepart.setText(Html.fromHtml(Depart));
 
-        // En cliquant sur un trajet on affiche le trajet concerné (nouvellle activité)
+
+        // En cliquant sur un trajet on affiche le trajet concerné ou bien le chat (nouvelle activité)
         viewHolder.linearlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AfficherTrajet.class);
+                //Récupération de l'id de l'utilisateur
+                SharedPreferences settings = getContext().getSharedPreferences("prefs",0);
+                final Long idUtilisateur = settings.getLong("idUtilisateur",0);
                 Long trajetId = getItem(position).getId();
-                intent.putExtra("trajetId",trajetId);
+                Intent intent;
+
+                /*Si le conducteur pour le trajet sélectionné correspond à l'utilisateur de l'app
+                ou si l'utilisateur a déjà posté un message pour ce trajet,
+                on passe directement à l'affichage du chat
+                 */
+                if (trajet.getConducteurId().equals(idUtilisateur) || dejaPosteMessage(trajetId, idUtilisateur)) {
+                    intent = new Intent(getContext(), Chat.class);
+                } else {
+                    intent = new Intent(getContext(), AfficherTrajet.class);
+                }
+
+                intent.putExtra("trajetId", trajetId);
                 getContext().startActivity(intent);
             }
         });
@@ -106,6 +122,30 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         public TextView trajetNbPlaces;
         public TextView trajetDepart;
         public LinearLayout linearlayout;
+    }
+
+    //Méthode de vérification si un message a déjà été posté par un utilisateur donné pour un trajet donné
+    private boolean dejaPosteMessage (Long trajetId, Long utilisateurId){
+
+        List <Message> messages = new ArrayList<>();
+        try {
+            messages = new EndpointsAsyncTaskMessage(trajetId, this ).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (messages!=null) {
+            for (Message message:messages)
+            {
+                if (message.getUtilisateurId().equals(utilisateurId))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

@@ -41,10 +41,10 @@
     <string name="jeMenregistre">Je m\'enregistre</string>
     <string name="trouver">TROUVER UNE VOITURE</string>
     <string name="etatTrajets0">"Actuellement aucun conducteur n'est inscrit pour rentrer de %s. "</string>
-    <string name="etatTrajets0B">Repassez plus tard afin de voir si des chauffeurs sont disponibles!</string>
+    <string name="etatTrajets0B">Repassez plus tard afin de voir si des chauffeurs sont disponibles !</string>
 
     <!-- TEMPORAIRE : Je dois rendre ce string dynamique pour qu'il corresponde à chaque trajet  NTS -->
-    <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient!</string>
+    <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient !</string>
     <string name="chargement">Chargement en cours</string>
     <string name="destination">Destination</string>
     <string name="txtCreerTrajet">Vous êtes sur le point de créer une offre de trajet. <b>De ce fait, vous vous engagez à rester sobre lors de cet événement.</b></string>
@@ -57,5 +57,6 @@
     <string name="toastInscriptionOk">Votre inscription a été prise en compte.</string>
     <string name="toastConnexionOk">Vous allez être connecté.</string>
     <string name="toastConnexionEchec">Essayez à nouveau.</string>
+    <string name="environ">~</string>
 
 </resources>

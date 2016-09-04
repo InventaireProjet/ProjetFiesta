@@ -77,7 +77,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         tvDepart = (TextView) findViewById(R.id.tvDepart);
         tvNbPlace = (TextView) findViewById(R.id.tvNbPlace);
         tvDestination = (TextView) findViewById(R.id.tvDestination);
-        tvDepart.setText(trajet.getHeureDepart());
+        tvDepart.setText(getString(R.string.environ)+trajet.getHeureDepart());
 
         if (trajet.getNombrePlaces() < 2) {
             tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
@@ -122,7 +122,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         contacterConducteur.setText(getString(R.string.contacter) + " " +conducteur.getPrenom().toUpperCase()+" "+conducteur.getNom().charAt(0)+".");
         tvNomConducteur.setText(conducteur.getNom());
 
-//Configuration de l'envoi du  message
+        //Bouton d'envoi du  message
         envoyer = (Button) findViewById(R.id.btnEnvoyer);
 
     }
@@ -148,10 +148,13 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
         SharedPreferences settings = getSharedPreferences("prefs",0);
         Long idUtilisateur = settings.getLong("idUtilisateur",0);
         message.setUtilisateurId(idUtilisateur);
+
+        //Envoi du message et fin de l'activité
         new EndpointsAsyncTaskMessage(0, message, this).execute();
         Intent intent = new Intent(getBaseContext(), Chat.class);
         intent.putExtra("trajetId",trajetId);
         startActivity(intent);
+        finish();
 
 
     }

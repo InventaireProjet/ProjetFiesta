@@ -40,7 +40,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     private Utilisateur conducteur;
     private TextView tvNomConducteur;
 
-private ListView listView;
+    private ListView listView;
 
     //Message
     private Message message;
@@ -68,11 +68,11 @@ private ListView listView;
         }
         trajet = trajets.get(0);
 
-
+        //Affichage des informations sur le trajet
         tvDepart = (TextView) findViewById(R.id.tvDepart);
         tvNbPlace = (TextView) findViewById(R.id.tvNbPlace);
         tvDestination = (TextView) findViewById(R.id.tvDestination);
-        tvDepart.setText(trajet.getHeureDepart());
+        tvDepart.setText(getString(R.string.environ)+ trajet.getHeureDepart());
 
         if (trajet.getNombrePlaces()<2){
             tvNbPlace.setText(trajet.getNombrePlaces() + getString(R.string.place));
@@ -127,7 +127,7 @@ private ListView listView;
             e.printStackTrace();
         }
 
-listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
 
         //Configuration de l'envoi du  message
         envoyer = (Button) findViewById(R.id.btnEnvoyer);
@@ -154,10 +154,14 @@ listView = (ListView) findViewById(R.id.listView);
         SharedPreferences settings = getSharedPreferences("prefs",0);
         Long idUtilisateur = settings.getLong("idUtilisateur",0);
         message.setUtilisateurId(idUtilisateur);
+
+        //Envoi du message et fin de l'activité
         new EndpointsAsyncTaskMessage(0, message, this).execute();
         Intent intent = new Intent(getBaseContext(), Chat.class);
         intent.putExtra("trajetId",trajetId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        finish();
 
 
     }

@@ -80,16 +80,21 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
         viewHolder.heureMessage.setText(heureMessage);
 
         //Si l'utilisateur de l'app a posté le message, l'affichage diffère
+        // s'il s'agit d'un message posté par l'utilisateur connecté ...
         if (idUtilisateur.equals(posteur.getId())) {
             viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_white));
-            viewHolder.bulle.setPadding(130, 10, 50, 40);
-            //viewHolder.bulle.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blanc));
+            viewHolder.bulle.setPadding(170, 10, 80, 30);
             viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
             viewHolder.heureMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
         }
+        // s'il s'agit d'un message posté par un autre utilisateur ...
         else{
+            viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_red));
+            viewHolder.bulle.setPadding(60, 20, 140, 30);
             String posteurNom = posteur.getPrenom()+" "+posteur.getNom().charAt(0) +".";
             viewHolder.nomUtilisateur.setText(posteurNom);
+            viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.blanc));
+            viewHolder.heureMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.blanc));
         }
 
         return convertView;

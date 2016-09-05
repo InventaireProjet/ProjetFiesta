@@ -125,8 +125,11 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         //Récupération des messages liés au trajet
         try {
             messages =new EndpointsAsyncTaskMessage(trajetId, this).execute().get();
-            //Tri des messages par date
-            Collections.sort(messages, new MessageComparator());
+
+            //Tri des messages par date si la liste de messages n'est pas vide
+            if(messages!=null) {
+                Collections.sort(messages, new MessageComparator());
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

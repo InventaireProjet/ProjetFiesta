@@ -119,6 +119,8 @@
         android:divider="@null"
         android:id="@+id/listView"
         android:layout_weight="0.6"
+
+        android:stackFromBottom="true"
         />
 
     <LinearLayout

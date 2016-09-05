@@ -81,7 +81,9 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
 
         //Si l'utilisateur de l'app a posté le message, l'affichage diffère
         if (idUtilisateur.equals(posteur.getId())) {
-            viewHolder.bulle.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blanc));
+            viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_white));
+            viewHolder.bulle.setPadding(130, 10, 50, 40);
+            //viewHolder.bulle.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blanc));
             viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
             viewHolder.heureMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
         }

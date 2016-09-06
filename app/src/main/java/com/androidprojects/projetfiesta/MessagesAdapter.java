@@ -18,8 +18,10 @@ import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 
 public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskCompleted {
@@ -70,24 +72,32 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
 
         //... et l'heure d'écriture du message en convertissant du timestamp en heure et minutes
         long timestamp = Long.parseLong(message.getDateHeure());
+        /*
         Date date = new Date(timestamp);
-        SimpleDateFormat formatHeure = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formatHeure = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
         String heureMessage = formatHeure.format(date);
+        */
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (hh:mm)");
+        sdf.setTimeZone(tz);
+        String localTime = sdf.format(new Date(timestamp));
 
 
         // ... pour afficher le tout
         viewHolder.texte.setText(texte);
-        viewHolder.heureMessage.setText(heureMessage);
+        //viewHolder.heureMessage.setText(heureMessage);
+        viewHolder.heureMessage.setText(localTime);
 
-        //Si l'utilisateur de l'app a posté le message, l'affichage diffère
-        // s'il s'agit d'un message posté par l'utilisateur connecté ...
+        //Si l'utilisateur de l'app a posté le message, l'affichage diffère :
+        // - s'il s'agit d'un message posté par l'utilisateur connecté ...
         if (idUtilisateur.equals(posteur.getId())) {
             viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_white));
             viewHolder.bulle.setPadding(170, 10, 80, 30);
             viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
             viewHolder.heureMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
         }
-        // s'il s'agit d'un message posté par un autre utilisateur ...
+        // - ou s'il s'agit d'un message posté par un autre utilisateur
         else{
             viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_red));
             viewHolder.bulle.setPadding(60, 20, 140, 30);

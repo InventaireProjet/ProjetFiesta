@@ -31,35 +31,12 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         eventListView = (ListView) findViewById(R.id.listViewEvenements);
     }
 
-
+    // méthode permettant d'appeler tous les événements en entrant la date du jour
     public void getEvenements() {
         new EndpointsAsyncTaskEvenement(dateInt, this).execute();
     }
 
-    /*
-    public void getEvenementsParDate(int date) {
-        List<Evenement> evenements = new ArrayList<Evenement>();
-        List<Evenement> evenementsAAfficher = new ArrayList<Evenement>();
-        try {
-            evenements = new EndpointsAsyncTaskEvenement(this).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        for (int i=0; i<evenements.size(); i++) {
-            if(evenements.get(i).getModifiedDate() >= date) {
-                evenementsAAfficher.add(evenements.get(i));
-            }
-        }
-
-        evenements = evenementsAAfficher;
-
-    }
-    */
-
-
+    //Affichage des événements dans une listView à 'aide d'un ArrayAdapter personnalisé
      @Override
      public void updateListViewEvenement(final List<Evenement> evenements) {
 

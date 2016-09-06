@@ -100,17 +100,10 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                     }
                     break;
 
-                /*
-                case (3):
-                    List evenements = evenementApi.listParDate(date).execute().getItems();
-                    Log.i(TAG, "get evenements par date");
-
-                    return evenements;
-                */
-
                 case (3):
                     List evenements = evenementApi.list().execute().getItems();
 
+                    // permet de trier les événements dans l'ordre chronologique
                     Collections.sort(evenements, new CustomComparator());
 
                     List<Evenement> evenementsTous = evenements;
@@ -120,6 +113,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
                         String reformatedString = null;
                         int dateInt;
 
+                        // Ci-dessous le format tel qu'enregistré puis le format que l'on souhaite pour comparer les dates
                         SimpleDateFormat oldFormat = new SimpleDateFormat("dd.MM.yyyy");
                         SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
 
@@ -131,6 +125,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
 
                         dateInt = Integer.parseInt(reformatedString);
 
+                        // Permet de filtrer les événements qu'on souhaite (J-1 et plus récents)
                         if (dateInt >= date-1) {
                             evenementsRetour.add(evenementsTous.get(i));
                         }
@@ -157,22 +152,6 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
             return new ArrayList<Evenement>();
         }
 
-        /*
-        try {
-            // Call here the wished methods on the Endpoints
-            // For instance insert
-            if (evenement != null) {
-                evenementApi.insert(evenement).execute();
-                Log.i(TAG, "insert evenement");
-            }
-            // and for instance return the list of all trajets
-            return evenementApi.list().execute().getItems();
-
-        } catch (IOException e) {
-            Log.e(TAG, e.toString());
-            return new ArrayList<Evenement>();
-        }
-        */
     }
 
     //This method gets executed on the UI thread - The UI can be manipulated directly inside
@@ -185,6 +164,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
         }
     }
 
+    // Comparateur personnalisé permettant de comparer deux dates d'événements pour pouvoir les trier
     public class CustomComparator implements Comparator<Evenement> {
 
         @Override

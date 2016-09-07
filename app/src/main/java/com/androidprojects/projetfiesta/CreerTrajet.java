@@ -132,11 +132,11 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
             return;
         }
 
-    //Récupération de l'id de l'utilisateur
+        //Récupération de l'id de l'utilisateur
         SharedPreferences settings = getSharedPreferences("prefs",0);
         Long idConducteur = settings.getLong("idUtilisateur",0);
 
-    //Clés étrangères
+        //Clés étrangères
         trajet.setEvenementId(evenementId);
         trajet.setConducteurId(idConducteur);
 
@@ -152,12 +152,10 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-        Toast.makeText(this, R.string.trajet_insere, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
-        Toast.makeText(this, R.string.utilisateur_insere, Toast.LENGTH_LONG).show();
     }
 
     @Override

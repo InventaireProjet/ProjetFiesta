@@ -249,7 +249,6 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
         ArrayAdapter adapter = new MessagesAdapter(this, messages);
         listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
     }
 

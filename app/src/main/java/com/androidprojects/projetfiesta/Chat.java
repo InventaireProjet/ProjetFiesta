@@ -3,6 +3,7 @@ package com.androidprojects.projetfiesta;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
@@ -23,6 +26,7 @@ import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
 import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -60,6 +64,12 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     //Bouton envoyer
     private ImageButton envoyer;
 
+    //numberPicker pour changer le nombre de places disponibles
+    private NumberPicker editNbPlaces;
+
+    //Bouton pour valider le changement de nombre de place
+    private ImageButton update;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +80,13 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
         // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        // L'édition du nombre de place est premièrement inaccessible
+        editNbPlaces = (NumberPicker) findViewById(R.id.numberPicker_places);
+        editNbPlaces.setVisibility(View.GONE);
+        update = (ImageButton) findViewById(R.id.btnUpdate);
+        update.setVisibility(View.GONE);
+
 
         //Récupération du trajet transmis par la vue précédente
         Intent intent = getIntent();
@@ -132,6 +149,33 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
         tvNomConducteur.setText(conducteur.getPrenom()+" "+conducteur.getNom().charAt(0)+".");
 
+        // Le pickNumber pour changer le nombre de places disponibles doit être accessible uniquement si le chaffeur est l'utilisateur en cours
+        SharedPreferences settings = getSharedPreferences("prefs",0);
+        Long idUtilisateur = settings.getLong("idUtilisateur",0);
+
+        if (String.valueOf(idUtilisateur).equals(String.valueOf(conducteur.getId())))
+        {
+            tvNbPlace.setVisibility(View.GONE);
+
+            update.setVisibility(View.VISIBLE);
+
+            editNbPlaces.setVisibility(View.VISIBLE);
+            int whiteColorValue = Color.WHITE;
+            setNumberPickerTextColor(editNbPlaces, whiteColorValue);
+            editNbPlaces.setMaxValue(20);
+            editNbPlaces.setMinValue(0);
+            editNbPlaces.setValue(trajet.getNombrePlaces());
+            editNbPlaces.setWrapSelectorWheel(false);
+
+           /**update.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+
+
+                }
+            });**/
+        }
 
 
         //Récupération des messages liés au trajet
@@ -186,6 +230,14 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         startActivity(intent);
         finish();
 
+    }
+
+    public void update (View v){
+        trajet.setNombrePlaces(editNbPlaces.getValue());
+
+        new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
+        Toast.makeText(Chat.this,
+                "Le nombre de places disponibles est définit à "+editNbPlaces.getValue(), Toast.LENGTH_LONG).show();
 
     }
 
@@ -254,5 +306,36 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Methode qui permet de changer la couleur du texte du NumberPicker
+    // Méthode trouvée sur stackoverflow.com (http://stackoverflow.com/questions/22962075/change-the-text-color-of-numberpicker)
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color)
+    {
+        final int count = numberPicker.getChildCount();
+        for(int i = 0; i < count; i++){
+            View child = numberPicker.getChildAt(i);
+            if(child instanceof EditText){
+                try{
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(color);
+                    ((EditText)child).setTextColor(color);
+                    numberPicker.invalidate();
+                    return true;
+                }
+                catch(NoSuchFieldException e){
+
+                }
+                catch(IllegalAccessException e){
+
+                }
+                catch(IllegalArgumentException e){
+
+                }
+            }
+        }
+        return false;
     }
 }

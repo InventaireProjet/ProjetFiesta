@@ -22,7 +22,9 @@
             android:baselineAligned="true"
             android:orientation="vertical">
 
-
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"></include>
 
             <LinearLayout
                 android:background="@drawable/fond"

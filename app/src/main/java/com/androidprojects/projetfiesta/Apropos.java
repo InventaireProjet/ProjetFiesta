@@ -1,6 +1,7 @@
-package com.androidprojects.projetfiesta.demarrage;
+package com.androidprojects.projetfiesta;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -10,40 +11,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 
-import com.androidprojects.projetfiesta.Apropos;
-import com.androidprojects.projetfiesta.R;
+import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 
-public class ActiviteNonLogue extends AppCompatActivity {
+public class Apropos extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_non_logue);
-
-        // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        setContentView(R.layout.activity_apropos);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
-
-    public void seLoguer(View view) {
-        Intent intent = new Intent(this, ActiviteLogin.class);
-        startActivity(intent);
-    }
-
-    public void sEnregistrer(View view) {
-        Intent intent = new Intent(this, ActiviteInscription.class);
-        startActivity(intent);
-    }
 
     public void openBrowser(View view){
 
@@ -64,11 +47,20 @@ public class ActiviteNonLogue extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
-        toolbar.setTitle("Co-voiturage Fiesta");
+        toolbar.setTitle(R.string.title);
         toolbar.setTitleTextColor(Color.WHITE);
 
         MenuItem logout = menu.findItem(R.id.action_logout);
-        logout.setVisible(false);
+        MenuItem info = menu.findItem(R.id.action_info);
+
+        SharedPreferences settings = getSharedPreferences("prefs",0);
+        SharedPreferences.Editor editor = settings.edit();
+        boolean estLogue = settings.getBoolean("estLogue",false);
+
+        if(!estLogue)
+            logout.setVisible(false);
+
+        info.setVisible(false);
 
         return true;
     }
@@ -79,6 +71,19 @@ public class ActiviteNonLogue extends AppCompatActivity {
         if(res_id == R.id.action_info) {
             Intent intent = new Intent(this, Apropos.class);
             startActivity(intent);
+        }
+
+        if(res_id == R.id.action_logout) {
+
+            SharedPreferences settings = getSharedPreferences("prefs",0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("estLogue",false);
+            editor.putLong("idUtilisateur", 0);
+            editor.commit();
+            Intent i = new Intent(this, ActiviteNonLogue.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

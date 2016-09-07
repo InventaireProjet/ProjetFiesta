@@ -14,7 +14,12 @@
         android:orientation="vertical"
         tools:context="com.androidprojects.projetfiesta.CreerTrajet">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
         <include layout="@layout/en_tete" />
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"

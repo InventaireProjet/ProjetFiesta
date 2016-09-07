@@ -58,5 +58,7 @@
     <string name="toastConnexionOk">Vous allez être connecté.</string>
     <string name="toastConnexionEchec">Essayez à nouveau.</string>
     <string name="environ">~</string>
+    <string name="msgFiesta">Le Label Fiesta est un concept de réduction des risques en milieu festif. Il est décerné aux manifestations, clubs et salles de concert qui s\'engagent à mettre en place des mesures concrètes de prévention allant de la protection de la jeunesse au renforcement de la sécurité en passant par la prise en compte de l\'environnement. Le Label permet ainsi d\'identifier les organisateurs ou gérants d\'établissements publics ayant développé une véritable éthique de la fête.</string>
+    <string name="title">Co-voiturage Fiesta</string>
 
 </resources>

@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     tools:context="com.androidprojects.projetfiesta.Chat">
 
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
     <include layout="@layout/en_tete"/>
 
 

@@ -21,6 +21,10 @@
             android:baselineAligned="true"
             android:orientation="vertical">
 
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"/>
+
             <include layout="@layout/en_tete" />
 
             <LinearLayout

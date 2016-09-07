@@ -1,15 +1,21 @@
 package com.androidprojects.projetfiesta.demarrage;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.androidprojects.projetfiesta.Apropos;
 import com.androidprojects.projetfiesta.EndpointsAsyncTaskUtilisateur;
 import com.androidprojects.projetfiesta.OnTaskCompleted;
 import com.androidprojects.projetfiesta.R;
@@ -26,6 +32,7 @@ import java.util.regex.Pattern;
 
 public class ActiviteInscription extends AppCompatActivity implements OnTaskCompleted {
 
+    private Toolbar toolbar;
     private EditText etNom;
     private EditText etPrenom;
     private EditText etDateNaissance;
@@ -37,6 +44,9 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -240,5 +250,30 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
     @Override
     public void updateListViewMessage(List<Message> messages) {
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        toolbar.setTitle("Co-voiturage Fiesta");
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        MenuItem logout = menu.findItem(R.id.action_logout);
+        logout.setVisible(false);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int res_id = item.getItemId();
+        if(res_id == R.id.action_info) {
+            Intent intent = new Intent(this, Apropos.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

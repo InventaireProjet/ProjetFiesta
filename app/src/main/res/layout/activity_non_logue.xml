@@ -10,8 +10,9 @@
     android:orientation="vertical"
     tools:context=".demarrage.ActiviteNonLogue">
 
-
-
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
 
     <LinearLayout
         android:background="@drawable/fond"

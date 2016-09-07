@@ -3,10 +3,15 @@ package com.androidprojects.projetfiesta.demarrage;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -15,6 +20,7 @@ import android.widget.Toast;
 
 import com.androidprojects.projetfiesta.AfficherEvenements;
 import com.androidprojects.projetfiesta.AfficherTrajet;
+import com.androidprojects.projetfiesta.Apropos;
 import com.androidprojects.projetfiesta.EndpointsAsyncTaskUtilisateur;
 import com.androidprojects.projetfiesta.OnTaskCompleted;
 import com.androidprojects.projetfiesta.R;
@@ -28,6 +34,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted {
 
+    private Toolbar toolbar;
     private EditText etEmail;
     private EditText etMDP;
     private Utilisateur utilisateur;
@@ -36,6 +43,9 @@ public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Permet de ne pas démarrer le keyboard automatiquement au lancement de l'activité
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -119,5 +129,30 @@ public class ActiviteLogin extends AppCompatActivity implements OnTaskCompleted 
     @Override
     public void updateListViewMessage(List<Message> messages) {
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        toolbar.setTitle("Co-voiturage Fiesta");
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        MenuItem logout = menu.findItem(R.id.action_logout);
+        logout.setVisible(false);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int res_id = item.getItemId();
+        if(res_id == R.id.action_info) {
+            Intent intent = new Intent(this, Apropos.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

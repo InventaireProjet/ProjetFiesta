@@ -49,7 +49,7 @@ public class AutresTransports extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Toast.makeText(AutresTransports.this,
-                        "Redirection sur le site des CFF", Toast.LENGTH_SHORT).show();
+                        "Redirection sur le site des CFF...", Toast.LENGTH_LONG).show();
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cff.ch"));
                 startActivity(browserIntent);
@@ -62,7 +62,7 @@ public class AutresTransports extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Toast.makeText(AutresTransports.this,
-                        "Redirection sur le site postauto.ch...", Toast.LENGTH_SHORT).show();
+                        "Redirection sur le site postauto.ch...", Toast.LENGTH_LONG).show();
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.postauto.ch/fr/Informations-de-voyage/Bus-de-nuit/Monthey%E2%80%93Martigny-VS"));
                 startActivity(browserIntent);
@@ -75,7 +75,7 @@ public class AutresTransports extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Toast.makeText(AutresTransports.this,
-                        "Redirection sur le site postauto.ch...", Toast.LENGTH_SHORT).show();
+                        "Redirection sur le site postauto.ch...", Toast.LENGTH_LONG).show();
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.postauto.ch/fr/Informations-de-voyage/Bus-de-nuit/Sion%E2%80%93Martigny-VS"));
                 startActivity(browserIntent);
@@ -88,7 +88,7 @@ public class AutresTransports extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Toast.makeText(AutresTransports.this,
-                        "Redirection sur le site verreluisant.ch...", Toast.LENGTH_SHORT).show();
+                        "Redirection sur le site verreluisant.ch...", Toast.LENGTH_LONG).show();
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.verreluisant.ch/horaires.php"));
                 startActivity(browserIntent);
@@ -101,7 +101,7 @@ public class AutresTransports extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Toast.makeText(AutresTransports.this,
-                        "Redirection sur le site taxivalais.ch...", Toast.LENGTH_SHORT).show();
+                        "Redirection sur le site taxivalais.ch...", Toast.LENGTH_LONG).show();
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.taxivalais.ch/"));
                 startActivity(browserIntent);

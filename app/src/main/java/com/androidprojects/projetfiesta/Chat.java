@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -127,6 +128,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         }
 
         tvDestination.setText(trajet.getDestination());
+        tvDestination.setMovementMethod(new ScrollingMovementMethod());
 
         //Récupération de l'événement concerné
 

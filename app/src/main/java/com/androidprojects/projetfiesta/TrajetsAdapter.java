@@ -71,7 +71,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         else
             ville = trajet.getDestination().toString();
 
-        String Destination = "Destination "+"<b>"+ville+"</b>";
+        String Destination = "<b>"+ville+"</b>";
 
         // ... le nombre de places disponibles
         String NbPlaces;

@@ -32,30 +32,33 @@
                 android:id="@+id/chauffeur"
                 android:text="Chauffeur"
                 android:layout_column="1"
-                android:padding="3dip"
                 android:layout_gravity="center_vertical"
+                android:paddingTop="7dp"
                 />
             <TextView
+                android:paddingTop="7dp"
                 android:id="@+id/nbPlaces"
                 android:text="Nombre de places"
                 android:gravity="right"
-                android:padding="3dip"
                 android:layout_gravity="center_vertical"
                 />
         </TableRow>
         <TableRow>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/destination_icon"
+                />
             <TextView
                 android:id="@+id/destination"
                 android:text="Destination"
                 android:layout_column="1"
-                android:padding="3dip"
                 android:layout_gravity="center_vertical"
                 />
             <TextView
                 android:id="@+id/depart"
                 android:text="H de départ"
                 android:gravity="right"
-                android:padding="3dip"
                 android:layout_gravity="center_vertical"
                 />
         </TableRow>

@@ -146,24 +146,24 @@
                     android:layout_row="3"
                     android:layout_column="0" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/Destination"
-                    android:id="@+id/tvTxtDestination"
+                    android:src="@drawable/destination_icon"
                     android:layout_row="3"
-                    android:layout_column="2" />
+                    android:layout_column="2"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_marginRight="30dp"
                     android:textStyle="bold"
                     android:id="@+id/tvDestination"
                     android:layout_row="3"
-                    android:layout_column="3" />
+                    android:layout_column="2"
+                    android:layout_marginLeft="20dp"
+                    />
             </GridLayout>
 
             <LinearLayout

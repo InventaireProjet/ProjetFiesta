@@ -12,17 +12,29 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-
-
     <include layout="@layout/en_tete"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bouton_arrondi"
+        android:textSize="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:minHeight="25dp"
+        android:text="@string/corrigerTransport"
+        android:id="@+id/buttonCorrection"
+        android:layout_gravity="center_horizontal"
+        android:onClick="changertTransport" />
 
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:columnCount="5"
+        android:columnCount="4"
         android:rowCount="4">
 
         <ImageView
@@ -54,33 +66,6 @@
             android:layout_row="0"
             android:layout_column="3" />
 
-        <EditText
-            android:id="@+id/editText_HeureD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/form_angle_arrondi"
-            android:inputType="time"
-            android:textColorHint="@color/blanc"
-            android:textColor="@color/blanc"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_row="0"
-            android:layout_column="3"
-            >
-        </EditText>
-
-        <ImageButton
-            android:id="@+id/btnUpdateH"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/bouton_arrondi"
-            android:layout_row="0"
-            android:layout_column="4"
-            android:onClick="update_heureD"
-            android:src="@drawable/icon_update"
-            android:scaleType="fitStart"
-            />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,8 +76,6 @@
             android:layout_row="1"
             android:layout_column="2"
             android:layout_gravity="center_vertical" />
-
-
 
         <ViewStub
             android:layout_width="wrap_content"
@@ -112,31 +95,6 @@
             android:layout_column="3"
             android:layout_gravity="center_vertical" />
 
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_marginRight="30dp"
-            android:textStyle="bold"
-            android:id="@+id/numberPicker_places"
-            android:layout_gravity="center_vertical"
-            android:layout_row="1"
-            android:layout_column="3"
-            />
-
-        <ImageButton
-            android:id="@+id/btnUpdateNbP"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/bouton_arrondi"
-            android:layout_row="1"
-            android:layout_column="4"
-            android:onClick="update_nbPlaces"
-            android:src="@drawable/icon_update"
-            android:scaleType="fitStart"
-            />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,6 +103,7 @@
             android:id="@+id/tvNomConducteur"
             android:layout_row="3"
             android:layout_column="0" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,13 +121,9 @@
             android:layout_row="3"
             android:layout_column="2"
             android:layout_marginLeft="20dp"
-            android:layout_columnSpan="3"
+            android:layout_columnSpan="2"
             />
-
     </GridLayout>
-
-
-
 
     <View
         style="@style/LigneSeparation"

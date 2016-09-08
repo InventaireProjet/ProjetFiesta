@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/couleur_fond">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="10dp"
+            android:hint="@string/alert_editTransport"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/heureEntree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/form_angle_arrondi"
+        android:inputType="time"
+        android:maxLength="5"
+        android:textColorHint="@color/blanc"
+        android:textColor="@color/blanc"
+        android:hint="@string/heure_depart"
+        android:textAppearance="?android:attr/textAppearanceMedium" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/nbPlacesEntree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/form_angle_arrondi"
+        android:inputType="number"
+        android:textColorHint="@color/blanc"
+        android:textColor="@color/blanc"
+        android:hint="@string/nb_places"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:maxLength="2">
+    </EditText>
+
+</LinearLayout>

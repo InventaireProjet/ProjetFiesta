@@ -39,9 +39,7 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getEvenements();
 
-        eventListView = (ListView) findViewById(R.id.listViewEvenements);
     }
 
     // méthode permettant d'appeler tous les événements en entrant la date du jour
@@ -50,12 +48,12 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
     }
 
     //Affichage des événements dans une listView à 'aide d'un ArrayAdapter personnalisé
-     @Override
-     public void updateListViewEvenement(final List<Evenement> evenements) {
+    @Override
+    public void updateListViewEvenement(final List<Evenement> evenements) {
 
-         ArrayAdapter adapter = new EvenementAdapter(this, evenements);
-         eventListView.setAdapter(adapter);
-     }
+        ArrayAdapter adapter = new EvenementAdapter(this, evenements);
+        eventListView.setAdapter(adapter);
+    }
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
@@ -102,5 +100,14 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Mise à jour des données lors de l'accès à cette vue
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getEvenements();
+
+        eventListView = (ListView) findViewById(R.id.listViewEvenements);
     }
 }

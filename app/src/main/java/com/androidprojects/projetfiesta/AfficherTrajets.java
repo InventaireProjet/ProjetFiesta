@@ -36,6 +36,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
 
     // Evemement
     private Evenement evenement;
+    private Long evenementId;
     private TextView tvDateEvenement;
     private TextView tvNomEvenement;
     private TextView tvEtatTrajets;
@@ -48,76 +49,6 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // Récupération des trajets concernant un événement (celui cliqué auparavant)
-        Intent intent = getIntent();
-        final Long evenementId = intent.getLongExtra("evenementId", 1);
-
-        List <Trajet> trajets = new ArrayList<Trajet>();
-        try {
-            trajets = new EndpointsAsyncTaskTrajet(evenementId, this ).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        //new EndpointsAsyncTaskTrajet(evenementId, this).execute();
-        trajetsListView = (ListView) findViewById(R.id.listViewTrajets);
-
-
-
-        //Récupération de l'événement concerné
-        List <Evenement> evenements = new ArrayList<Evenement>();
-        try {
-            evenements = new EndpointsAsyncTaskEvenement(evenementId, this ).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        evenement = evenements.get(0);
-
-        // Affiche l'événement concerné
-        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
-        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
-        tvDateEvenement.setText(evenement.getDate());
-        tvNomEvenement.setText(evenement.getTitre());
-
-        // Affiche le nombre de chauffeurs et le nombre de places disponibles
-        int nbChauffeurs=0;
-
-       if (trajets!=null)
-           nbChauffeurs=trajets.size();
-
-        int nbPlaces=0;
-
-        if (trajets!=null) {
-            for (int i = 0; i < trajets.size(); i++) {
-                nbPlaces += trajets.get(i).getNombrePlaces();
-            }
-        }
-
-        tvEtatTrajets = (TextView) findViewById(R.id.etatTrajets);
-
-        String Etat = null;
-
-
-        switch(nbChauffeurs)
-        {
-            case 0:  Etat = String.format(getString(R.string.etatTrajets0)+"<b>"+getString(R.string.etatTrajets0B)+"</b>", evenement.getTitre());
-                break;
-            case 1: if (nbPlaces==1){
-                Etat = String.format("Actuellement %d conducteur est inscrit et %d place est disponible pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());}
-                else{
-                Etat = String.format("Actuellement %d conducteur est inscrit et %d places sont disponibles pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
-            }
-                break;
-            default:  Etat = String.format("Actuellement %d conducteurs sont inscrits et %d places sont disponibles pour rentrer de %s. <b>Prenez contact pour la destination qui vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
-                break;
-        }
-
-
-        tvEtatTrajets.setText(Html.fromHtml(Etat));
 
 
         //Bouton pour s'annoncer comme chauffeur
@@ -187,6 +118,81 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
         return true;
     }
 
+    //Mise à jour des données lors de l'accès à cette vue
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Récupération des trajets concernant un événement (celui cliqué auparavant)
+        Intent intent = getIntent();
+        evenementId = intent.getLongExtra("evenementId", 1);
+
+        List <Trajet> trajets = new ArrayList<Trajet>();
+        try {
+            trajets = new EndpointsAsyncTaskTrajet(evenementId, this ).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        //new EndpointsAsyncTaskTrajet(evenementId, this).execute();
+        trajetsListView = (ListView) findViewById(R.id.listViewTrajets);
+
+
+
+        //Récupération de l'événement concerné
+        List <Evenement> evenements = new ArrayList<Evenement>();
+        try {
+            evenements = new EndpointsAsyncTaskEvenement(evenementId, this ).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        evenement = evenements.get(0);
+
+        // Affiche l'événement concerné
+        tvDateEvenement = (TextView) findViewById(R.id.tvDateEvenement);
+        tvNomEvenement = (TextView) findViewById(R.id.tvNomEvenement);
+        tvDateEvenement.setText(evenement.getDate());
+        tvNomEvenement.setText(evenement.getTitre());
+
+        // Affiche le nombre de chauffeurs et le nombre de places disponibles
+        int nbChauffeurs=0;
+
+        if (trajets!=null)
+            nbChauffeurs=trajets.size();
+
+        int nbPlaces=0;
+
+        if (trajets!=null) {
+            for (int i = 0; i < trajets.size(); i++) {
+                nbPlaces += trajets.get(i).getNombrePlaces();
+            }
+        }
+
+        tvEtatTrajets = (TextView) findViewById(R.id.etatTrajets);
+
+        String Etat = null;
+
+
+        switch(nbChauffeurs)
+        {
+            case 0:  Etat = String.format(getString(R.string.etatTrajets0)+"<b>"+getString(R.string.etatTrajets0B)+"</b>", evenement.getTitre());
+                break;
+            case 1: if (nbPlaces==1){
+                Etat = String.format("Actuellement %d conducteur est inscrit et %d place est disponible pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());}
+            else{
+                Etat = String.format("Actuellement %d conducteur est inscrit et %d places sont disponibles pour rentrer de %s. <b>Prenez contact si la destination vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
+            }
+                break;
+            default:  Etat = String.format("Actuellement %d conducteurs sont inscrits et %d places sont disponibles pour rentrer de %s. <b>Prenez contact pour la destination qui vous convient!</b>", nbChauffeurs, nbPlaces, evenement.getTitre());
+                break;
+        }
+
+
+        tvEtatTrajets.setText(Html.fromHtml(Etat));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int res_id = item.getItemId();
@@ -210,4 +216,5 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
 
         return super.onOptionsItemSelected(item);
     }
+
 }

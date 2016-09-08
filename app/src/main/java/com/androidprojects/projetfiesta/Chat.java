@@ -149,6 +149,10 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         tvNomConducteur = (TextView) findViewById(R.id.tvNomConducteur);
         tvNomConducteur.setText(conducteur.getPrenom()+" "+conducteur.getNom().charAt(0)+".");
 
+
+        //Bouton d'envoi du  message
+        envoyer = (ImageButton) findViewById(R.id.btnEnvoyer);
+
         // Le pickNumber pour changer le nombre de places disponibles doit être accessible uniquement si le chaffeur est l'utilisateur en cours
         SharedPreferences settings = getSharedPreferences("prefs",0);
         Long idUtilisateur = settings.getLong("idUtilisateur",0);
@@ -168,27 +172,6 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
             editNbPlaces.setWrapSelectorWheel(false);
 
         }
-
-
-        //Récupération des messages liés au trajet
-        try {
-            messages =new EndpointsAsyncTaskMessage(trajetId, this).execute().get();
-
-            //Tri des messages par date si la liste de messages n'est pas vide
-            if(messages!=null) {
-                Collections.sort(messages, new MessageComparator());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        listView = (ListView) findViewById(R.id.listView);
-
-        //Configuration de l'envoi du  message
-        envoyer = (ImageButton) findViewById(R.id.btnEnvoyer);
-
     }
 
     public void insert (View v){
@@ -214,13 +197,14 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         Long idUtilisateur = settings.getLong("idUtilisateur",0);
         message.setUtilisateurId(idUtilisateur);
 
-        //Envoi du message et fin de l'activité
+        //Envoi du message et rafraîchissement de l'activité
         new EndpointsAsyncTaskMessage(0, message, this).execute();
         Intent intent = new Intent(getBaseContext(), Chat.class);
         intent.putExtra("trajetId",trajetId);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        finish();
+        texte.setText("");
+        this.onResume();
+
 
     }
 
@@ -230,7 +214,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
         new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
         Toast.makeText(Chat.this,
-                "Le nombre de places disponibles est définit à "+editNbPlaces.getValue(), Toast.LENGTH_LONG).show();
+                "Le nombre de places disponibles est défini à "+editNbPlaces.getValue(), Toast.LENGTH_LONG).show();
 
     }
 
@@ -330,5 +314,25 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
             }
         }
         return false;
+    }
+    //Mise à jour des messages
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Récupération des messages liés au trajet
+        try {
+            messages =new EndpointsAsyncTaskMessage(trajetId, this).execute().get();
+
+            //Tri des messages par date si la liste de messages n'est pas vide
+            if(messages!=null) {
+                Collections.sort(messages, new MessageComparator());
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        listView = (ListView) findViewById(R.id.listView);
     }
 }

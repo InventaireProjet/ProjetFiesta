@@ -64,7 +64,14 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         String Chauffeur = "<b>"+chauffeur.getPrenom()+" "+chauffeur.getNom().charAt(0)+".</b>";
 
         // ...sa destination
-        String Destination = "Destination "+"<b>"+trajet.getDestination()+"</b>";
+        String ville = "";
+
+        if(trajet.getDestination().length()>7)
+            ville = trajet.getDestination().substring(0,7) + "...";
+        else
+            ville = trajet.getDestination().toString();
+
+        String Destination = "Destination "+"<b>"+ville+"</b>";
 
         // ... le nombre de places disponibles
         String NbPlaces;

@@ -104,8 +104,12 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
 
         if(nombrePlaces.length()>0) {
             int nb = Integer.parseInt(nombrePlaces.getText().toString());
-
-            trajet.setNombrePlaces(nb);
+            if (nb >= 0 && nb <= 20)
+                trajet.setNombrePlaces(nb);
+            else {
+                Toast.makeText(EditionTrajetDialogAlert.this.getActivity(), R.string.minMaxPlace, Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
 

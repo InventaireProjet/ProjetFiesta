@@ -64,7 +64,6 @@
     <string name="annuler">Annuler</string>
     <string name="corrigerTransport">Corriger le trajet</string>
     <string name="alert_editTransport">Editer le trajet</string>
-    <string name="heureDefini">L\'heure de départ a été défini à</string>
-    <string name="placesRedefini">Le nombre de places disponibles a été défini à</string>
+    <string name="minMaxPlace">Minimum 0 place et maximum 20 places.</string>
 
 </resources>

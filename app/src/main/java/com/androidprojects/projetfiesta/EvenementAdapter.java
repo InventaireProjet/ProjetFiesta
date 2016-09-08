@@ -57,7 +57,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
             row.setTag(myViewHolder);
         }
         else{
-        myViewHolder = (MyViewHolder) row.getTag();
+            myViewHolder = (MyViewHolder) row.getTag();
         }
 
 
@@ -81,7 +81,7 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
                 e.printStackTrace();
             }
         }
-            // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
+        // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
         else {
             try {
                 Picasso.with(myViewHolder.logo.getContext()).load(R.drawable.fiesta_logo).into(myViewHolder.logo);
@@ -103,80 +103,4 @@ public class EvenementAdapter extends ArrayAdapter<Evenement> {
         return row;
 
     }
-
-
-
-/*
-@Override
-public View getView(final int position, View convertView, ViewGroup parent) {
-    Bitmap bitmap;
-    EvenementViewHolder viewHolder;
-    if(convertView == null){
-        convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_evenement,parent, false);
-    }
-
-    viewHolder = (EvenementViewHolder) convertView.getTag();
-    if(viewHolder == null){
-        viewHolder = new EvenementViewHolder();
-        viewHolder.evenementTitre = (TextView) convertView.findViewById(R.id.evenement_titre);
-        viewHolder.evenementDate = (TextView) convertView.findViewById(R.id.evenement_date);
-        viewHolder.logo = (ImageView) convertView.findViewById(R.id.icon_evenement);
-        viewHolder.relativelayout = (RelativeLayout) convertView.findViewById(R.id.evenement_layout);
-        convertView.setTag(viewHolder);
-    }
-
-    //getItem(position) va récupérer l'item [position] de la List<Evenement> evenements
-    Evenement evenement = getItem(position);
-
-    //il ne reste plus qu'à remplir notre vue
-    viewHolder.evenementTitre.setText(evenement.getTitre());
-    viewHolder.evenementDate.setText(evenement.getDate());
-
-    // Récupération des logos utilisant la classe privée dédiée
-    if (evenement.getLogo()!=null) {
-        try {
-            bitmap= new LoadImage().execute(evenement.getLogo()).get();
-            viewHolder.logo.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    // Si aucun logo n'a été défini pour l'événement, on affiche le logo "Fiesta" par défaut
-    else {
-        try {
-            Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fiesta_logo);
-            viewHolder.logo.setImageBitmap(icon);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    viewHolder.relativelayout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getContext(), AfficherTrajets.class);
-            Long evenementId = getItem(position).getId();
-            intent.putExtra("evenementId",evenementId);
-            getContext().startActivity(intent);
-        }
-    });
-
-    return convertView;
-}
-
-
-
-private class EvenementViewHolder{
-    public TextView evenementTitre;
-    public TextView evenementDate;
-    public ImageView logo;
-    public RelativeLayout relativelayout;
-}
-
-    */
-
-
-
 }

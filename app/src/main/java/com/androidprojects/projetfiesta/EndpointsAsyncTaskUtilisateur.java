@@ -23,7 +23,7 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
     private int codeAction;
     private OnTaskCompleted listener;
     private Long utilisateurId;
-    
+
     public EndpointsAsyncTaskUtilisateur(OnTaskCompleted listener) {
         this.listener = listener;
     }
@@ -109,7 +109,7 @@ public class EndpointsAsyncTaskUtilisateur extends AsyncTask<Void, Void, List<Ut
     protected void onPostExecute(List<Utilisateur> result) {
 
         if (result != null) {
-            listener.updateListViewUtilisateur(result);
+
         }
     }
 }

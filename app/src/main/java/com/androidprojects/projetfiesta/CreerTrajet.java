@@ -20,7 +20,6 @@ import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
-import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,10 +146,6 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-    }
-
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
     }
 
     @Override

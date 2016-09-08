@@ -1,6 +1,5 @@
 package com.androidprojects.projetfiesta;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -21,7 +20,6 @@ import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
-import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
 
     private Toolbar toolbar;
 
-    ListView trajetsListView;
+    private ListView trajetsListView;
 
     // Evemement
     private Evenement evenement;
@@ -90,13 +88,9 @@ public class AfficherTrajets extends AppCompatActivity implements OnTaskComplete
         ArrayAdapter adapter = new TrajetsAdapter(this, trajets);
         trajetsListView.setAdapter(adapter);
 
-        final Context context = this;
-    }
-
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
 
     }
+
 
     @Override
     public void updateListViewEvenement(List<Evenement> evenements) {

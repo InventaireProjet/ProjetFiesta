@@ -176,10 +176,7 @@ public class AfficherTrajet extends AppCompatActivity implements OnTaskCompleted
 
     }
 
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
 
-    }
 
     @Override
     public void updateListViewEvenement(List<Evenement> evenements) {

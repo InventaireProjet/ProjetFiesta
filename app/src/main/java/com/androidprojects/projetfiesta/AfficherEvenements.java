@@ -16,7 +16,6 @@ import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
-import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,9 +25,9 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
 
     private Toolbar toolbar;
 
-    ListView eventListView;
-    String dateDuJour = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-    int dateInt = Integer.parseInt(dateDuJour);
+    private ListView eventListView;
+    private String dateDuJour = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
+    private int dateInt = Integer.parseInt(dateDuJour);
 
 
     @Override
@@ -59,9 +58,6 @@ public class AfficherEvenements extends AppCompatActivity implements OnTaskCompl
     public void updateListViewTrajet(List<Trajet> trajets) {
     }
 
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
-    }
 
     @Override
     public void updateListViewMessage(List<Message> messages) {

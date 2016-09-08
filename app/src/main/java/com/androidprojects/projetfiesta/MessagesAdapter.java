@@ -72,11 +72,6 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
 
         //... et l'heure d'écriture du message en convertissant du timestamp en heure et minutes
         long timestamp = Long.parseLong(message.getDateHeure());
-        /*
-        Date date = new Date(timestamp);
-        SimpleDateFormat formatHeure = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
-        String heureMessage = formatHeure.format(date);
-        */
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm (dd.MM)");
@@ -119,11 +114,6 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-
-    }
-
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
 
     }
 

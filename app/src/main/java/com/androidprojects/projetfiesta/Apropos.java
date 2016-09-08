@@ -54,7 +54,6 @@ public class Apropos extends AppCompatActivity {
         MenuItem info = menu.findItem(R.id.action_info);
 
         SharedPreferences settings = getSharedPreferences("prefs",0);
-        SharedPreferences.Editor editor = settings.edit();
         boolean estLogue = settings.getBoolean("estLogue",false);
 
         if(!estLogue)

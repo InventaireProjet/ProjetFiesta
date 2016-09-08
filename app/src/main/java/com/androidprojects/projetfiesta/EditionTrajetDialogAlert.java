@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
 import com.projetfiesta.backend.messageApi.model.Message;
 import com.projetfiesta.backend.trajetApi.model.Trajet;
-import com.projetfiesta.backend.utilisateurApi.model.Utilisateur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
 
     private EditText nombrePlaces;
     private EditText heureDepart;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
 
     // Variable Pattern pour contrôler le format de l'heure entré par l'utilisateur
@@ -73,7 +71,7 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
                         update(content);
                         refreshMyActivity();
 
-                      }
+                    }
                 })
                 .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -86,18 +84,12 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
 
     private void refreshMyActivity() {
         getActivity().finish();
-        Intent intent = getActivity().getIntent();
         getActivity().overridePendingTransition(0, 0);
         startActivity(getActivity().getIntent());
         getActivity().overridePendingTransition(0, 0);
     }
 
 
-    // Modification du nombre de places disponible pour un trajet donné
-    public void update_nbPlaces (View v){
-
-
-    }
 
     // Modification de l'heure de départ pour un trajet donné
     public void update (View v){
@@ -135,11 +127,6 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-
-    }
-
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
 
     }
 

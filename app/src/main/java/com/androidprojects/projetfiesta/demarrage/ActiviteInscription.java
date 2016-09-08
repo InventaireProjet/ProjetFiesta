@@ -59,7 +59,7 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
 
 
         // http://stackoverflow.com/questions/16889502/how-to-mask-an-edittext-to-show-the-dd-mm-yyyy-date-format
-        // contrôle d ela validté de la date de naissance
+        // contrôle de la validité de la date de naissance
         TextWatcher tw = new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
@@ -237,10 +237,6 @@ public class ActiviteInscription extends AppCompatActivity implements OnTaskComp
 
     }
 
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
-
-    }
 
     @Override
     public void updateListViewEvenement(List<Evenement> evenements) {

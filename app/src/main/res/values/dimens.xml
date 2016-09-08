@@ -6,7 +6,6 @@
 
     <dimen name="texte_grand">25sp</dimen>
     <dimen name="hauteur_ligne">40dp</dimen>
-    <dimen name="marge_grosse">50dp</dimen>
     <dimen name="ligne_epaisseur">0.5dp</dimen>
     <dimen name="curseur_epaisseur">1dp</dimen>
 

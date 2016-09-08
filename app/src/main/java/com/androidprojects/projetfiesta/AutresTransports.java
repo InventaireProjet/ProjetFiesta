@@ -23,11 +23,11 @@ public class AutresTransports extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    Button Btn_CFF;
-    Button Btn_BusMM;
-    Button Btn_BusSM;
-    Button Btn_BusSS;
-    Button Btn_Taxi;
+    private Button Btn_CFF;
+    private Button Btn_BusMM;
+    private Button Btn_BusSM;
+    private Button Btn_BusSS;
+    private Button Btn_Taxi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,8 @@ public class AutresTransports extends AppCompatActivity {
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cff.ch"));
                 startActivity(browserIntent);
- }
- });
+            }
+        });
 
         Btn_BusMM.setOnClickListener(new View.OnClickListener() {
 

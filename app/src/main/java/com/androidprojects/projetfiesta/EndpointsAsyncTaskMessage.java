@@ -88,10 +88,10 @@ public class EndpointsAsyncTaskMessage extends AsyncTask<Void, Void, List<Messag
                 case (3) :
 
 
-                        List messages = messageApi.messagesParTrajet(trajetId).execute().getItems();
-                        Log.i(TAG, "get messages par trajet");
+                    List messages = messageApi.messagesParTrajet(trajetId).execute().getItems();
+                    Log.i(TAG, "get messages par trajet");
 
-                        return messages;
+                    return messages;
 
             }
 

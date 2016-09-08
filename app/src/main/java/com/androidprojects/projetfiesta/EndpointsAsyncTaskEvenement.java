@@ -27,8 +27,6 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
     private OnTaskCompleted listener;
     private int codeAction;
     private int date;
-    //private String dateDuJour = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-    //private int dateInt = Integer.parseInt(dateDuJour);
     private Long evenementId;
 
 
@@ -51,7 +49,7 @@ public class EndpointsAsyncTaskEvenement extends AsyncTask<Void, Void, List<Even
         this.codeAction=3;
     }
 
-        EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
+    EndpointsAsyncTaskEvenement(Long evenementId, OnTaskCompleted listener) {
         this.evenementId = evenementId;
         this.listener = listener;
         this.codeAction = 4;

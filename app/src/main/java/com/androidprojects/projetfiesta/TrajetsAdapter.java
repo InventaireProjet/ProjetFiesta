@@ -69,7 +69,7 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         if(trajet.getDestination().length()>7)
             ville = trajet.getDestination().substring(0,7) + "...";
         else
-            ville = trajet.getDestination().toString();
+            ville = trajet.getDestination();
 
         String Destination = "<b>"+ville+"</b>";
 
@@ -157,11 +157,6 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {
-
-    }
-
-    @Override
-    public void updateListViewUtilisateur(List<Utilisateur> utilisateurs) {
 
     }
 

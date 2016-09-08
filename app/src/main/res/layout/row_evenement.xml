@@ -12,7 +12,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         tools:background="#AAA" />
-<!--    android:src="@drawable/icone_evenement" /> -->
 
     <TextView
         android:id="@+id/evenement_titre"

@@ -1,22 +1,15 @@
 <resources>
     <string name="app_name">Projet Fiesta</string>
-    <string name="action_settings">Settings</string>
     <string name="email">E-mail</string>
     <string name="creer_le_trajet">CRÉER LE TRAJET</string>
     <string name="heure_depart">Heure de départ (environ)</string>
     <string name="nb_places">Nombre de places</string>
-    <string name="nb_placesdestination">Destination</string>
-    <string name="nom_conducteur">Nom du conducteur</string>
     <string name="sobre_responsable">Je m\'engage à rester sobre et responsable</string>
-    <string name="trajet_insere">Trajet inséré</string>
-    <string name="utilisateur_insere">Utilisateur inséré</string>
     <string name="nom_existant">Nom d\'utilisateur déjà existant</string>
     <string name="sobriete_obligatoire">Tu dois t\'engager à rester sobre et responsable !</string>
-    <string name="email_invalide">Adresse e-mail invalide</string>
     <string name="heure_invalide">Heure invalide (le format de l\'heure doit être le suivant : hh:mm)</string>
     <string name="destination_vide">Entrer une destination</string>
     <string name="nbPlaces_vide">Entrer un nombre de places</string>
-    <string name="nom_vide">Entrer un nom</string>
     <string name="inscription_conducteur">Je m\'inscris comme conducteur</string>
     <string name="contacterConducteurConfirmation">Vous devez confirmer votre course par message. <b>Dites \"bonjour\" à votre futur conducteur :-)</b></string>
     <string name="depart">Départ</string>
@@ -30,7 +23,6 @@
     <string name="introDemarrage">Bienvenue sur l\'application de co-voiturage du Label Fiesta Valais, Suisse.</string>
     <string name="contacterConducteur">Contacter</string>
     <string name="password">Mot de passe</string>
-    <string name="login">Nom d\'utilisateur</string>
     <string name="connexion">Connexion</string>
     <string name="place">" place"</string>
     <string name="places">" places"</string>
@@ -43,9 +35,6 @@
     <string name="etatTrajets0">"Actuellement aucun conducteur n'est inscrit pour rentrer de %s. "</string>
     <string name="etatTrajets0B">Repassez plus tard afin de voir si des chauffeurs sont disponibles !</string>
 
-    <!-- TEMPORAIRE : Je dois rendre ce string dynamique pour qu'il corresponde à chaque trajet  NTS -->
-    <string name="etattransport">Actuellement 6 conducteurs sont inscrits et 11 places sont disponibles pour rentrer de la Foire du Valaus. Prenez contact pour la destination qui vous convient !</string>
-    <string name="chargement">Chargement en cours</string>
     <string name="destination">Destination</string>
     <string name="txtCreerTrajet">Vous êtes sur le point de créer une offre de trajet. <b>De ce fait, vous vous engagez à rester sobre lors de cet événement.</b></string>
 

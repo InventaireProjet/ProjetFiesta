@@ -79,7 +79,7 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
         */
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (hh:mm)");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm (dd.MM)");
         sdf.setTimeZone(tz);
         String localTime = sdf.format(new Date(timestamp));
 
@@ -93,14 +93,14 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements OnTaskComp
         // - s'il s'agit d'un message posté par l'utilisateur connecté ...
         if (idUtilisateur.equals(posteur.getId())) {
             viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_white));
-            viewHolder.bulle.setPadding(170, 10, 80, 30);
+            viewHolder.bulle.setPadding(60, 20, 140, 40);
             viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
             viewHolder.heureMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.rouge_texte));
         }
         // - ou s'il s'agit d'un message posté par un autre utilisateur
         else{
             viewHolder.bulle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bubble_red));
-            viewHolder.bulle.setPadding(60, 20, 140, 30);
+            viewHolder.bulle.setPadding(170, 10, 80, 40);
             String posteurNom = posteur.getPrenom()+" "+posteur.getNom().charAt(0) +".";
             viewHolder.nomUtilisateur.setText(posteurNom);
             viewHolder.texte.setTextColor(ContextCompat.getColor(getContext(), R.color.blanc));

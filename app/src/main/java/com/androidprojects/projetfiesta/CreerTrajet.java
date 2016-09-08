@@ -37,14 +37,10 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
     private EditText destination;
     private EditText nombrePlaces;
     private EditText heureDepart;
-    private Long conducteurId;
     private Long evenementId;
     //http://www.mkyong.com/regular-expressions/how-to-validate-time-in-24-hours-format-with-regular-expression/
     private final String heurePattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
     private String heuretestee;
-    //http://www.w3schools.com/jsref/prop_email_pattern.asp
-    private final String emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
-    private String emailteste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +88,6 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
         //Récupération des données de la vue
         Trajet trajet = new Trajet();
-        Utilisateur utilisateur = new Utilisateur();
 
 
         destination = (EditText) findViewById(R.id.destinationEntree);
@@ -116,7 +111,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
             trajet.setNombrePlaces(Integer.valueOf(nombrePlaces.getText().toString()));
         }
 
-        trajet.setHeureDepart(heureDepart.getText().toString());
+
 
 
         //Test de validité de l'heure
@@ -124,7 +119,7 @@ public class CreerTrajet extends AppCompatActivity implements OnTaskCompleted {
 
         if (heuretestee.matches(heurePattern))
         {
-            utilisateur.setEmail(heuretestee);
+            trajet.setHeureDepart(heureDepart.getText().toString());
         }
         else
         {

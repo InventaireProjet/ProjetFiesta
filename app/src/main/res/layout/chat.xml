@@ -54,6 +54,33 @@
             android:layout_row="0"
             android:layout_column="3" />
 
+        <EditText
+            android:id="@+id/editText_HeureD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/form_angle_arrondi"
+            android:inputType="time"
+            android:textColorHint="@color/blanc"
+            android:textColor="@color/blanc"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_row="0"
+            android:layout_column="3"
+            >
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btnUpdateH"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bouton_arrondi"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:onClick="update_heureD"
+            android:src="@drawable/icon_update"
+            android:scaleType="fitStart"
+            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,15 +125,14 @@
             />
 
         <ImageButton
-            android:id="@+id/btnUpdate"
+            android:id="@+id/btnUpdateNbP"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/bouton_arrondi"
-            android:text="ok"
             android:layout_row="1"
             android:layout_column="4"
-            android:onClick="update"
+            android:onClick="update_nbPlaces"
             android:src="@drawable/icon_update"
             android:scaleType="fitStart"
             />

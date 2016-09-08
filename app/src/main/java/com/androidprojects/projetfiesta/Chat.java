@@ -67,8 +67,14 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     //numberPicker pour changer le nombre de places disponibles
     private NumberPicker editNbPlaces;
 
+    //EditText pour modifier l'heure de départ
+    private EditText editHeure;
+
     //Bouton pour valider le changement de nombre de place
-    private ImageButton update;
+    private ImageButton btn_updateNbP;
+
+    //Bouton pour valider le changement d'heure de départ
+    private ImageButton btn_updateHeure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +90,14 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         // L'édition du nombre de place est premièrement inaccessible
         editNbPlaces = (NumberPicker) findViewById(R.id.numberPicker_places);
         editNbPlaces.setVisibility(View.GONE);
-        update = (ImageButton) findViewById(R.id.btnUpdate);
-        update.setVisibility(View.GONE);
+        btn_updateNbP = (ImageButton) findViewById(R.id.btnUpdateNbP);
+        btn_updateNbP.setVisibility(View.GONE);
+
+        // L'édition de l'heure est également inaccessible dans un premier temps
+        editHeure = (EditText) findViewById(R.id.editText_HeureD);
+        editHeure.setVisibility(View.GONE);
+        btn_updateHeure =(ImageButton) findViewById(R.id.btnUpdateH);
+        btn_updateHeure.setVisibility(View.GONE);
 
 
         //Récupération du trajet transmis par la vue précédente
@@ -153,23 +165,31 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
         //Bouton d'envoi du  message
         envoyer = (ImageButton) findViewById(R.id.btnEnvoyer);
 
-        // Le pickNumber pour changer le nombre de places disponibles doit être accessible uniquement si le chaffeur est l'utilisateur en cours
+        // Le pickNumber pour changer le nombre de places disponibles
+        // et l'EditText pour modifier l'heure de départ
+        // doivent être accessibles uniquement si le chaffeur est l'utilisateur en cours
         SharedPreferences settings = getSharedPreferences("prefs",0);
         Long idUtilisateur = settings.getLong("idUtilisateur",0);
 
         if (String.valueOf(idUtilisateur).equals(String.valueOf(conducteur.getId())))
         {
             tvNbPlace.setVisibility(View.GONE);
+            tvDepart.setVisibility(View.GONE);
 
-            update.setVisibility(View.VISIBLE);
+            btn_updateNbP.setVisibility(View.VISIBLE);
+            btn_updateHeure.setVisibility(View.VISIBLE);
 
             editNbPlaces.setVisibility(View.VISIBLE);
+            editHeure.setVisibility(View.VISIBLE);
+
             int whiteColorValue = Color.WHITE;
             setNumberPickerTextColor(editNbPlaces, whiteColorValue);
             editNbPlaces.setMaxValue(20);
             editNbPlaces.setMinValue(0);
             editNbPlaces.setValue(trajet.getNombrePlaces());
             editNbPlaces.setWrapSelectorWheel(false);
+
+            editHeure.setHint(trajet.getHeureDepart());
 
         }
     }
@@ -209,12 +229,22 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     }
 
     // Modification du nombre de places disponible pour un trajet donné
-    public void update (View v){
+    public void update_nbPlaces (View v){
         trajet.setNombrePlaces(editNbPlaces.getValue());
 
         new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
         Toast.makeText(Chat.this,
-                "Le nombre de places disponibles est défini à "+editNbPlaces.getValue(), Toast.LENGTH_LONG).show();
+                "Le nombre de places disponibles a été défini à "+editNbPlaces.getValue(), Toast.LENGTH_LONG).show();
+
+    }
+
+    // Modification de l'heure de départ pour un trajet donné
+    public void update_heureD (View v){
+        trajet.setHeureDepart(editHeure.getText().toString());
+
+        new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
+        Toast.makeText(Chat.this,
+                "L'heure de départ a été défini à "+editHeure.getText().toString(), Toast.LENGTH_LONG).show();
 
     }
 

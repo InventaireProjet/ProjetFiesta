@@ -167,14 +167,6 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
             editNbPlaces.setValue(trajet.getNombrePlaces());
             editNbPlaces.setWrapSelectorWheel(false);
 
-           /**update.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });**/
         }
 
 
@@ -232,6 +224,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
     }
 
+    // Modification du nombre de places disponible pour un trajet donné
     public void update (View v){
         trajet.setNombrePlaces(editNbPlaces.getValue());
 

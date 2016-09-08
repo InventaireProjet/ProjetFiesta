@@ -77,6 +77,9 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
     //Bouton pour valider le changement d'heure de départ
     private ImageButton btn_updateHeure;
 
+    // Variable Pattern pour contrôler le format de l'heure entré par l'utilisateur
+    private final String heurePattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,14 +245,22 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
     // Modification de l'heure de départ pour un trajet donné
     public void update_heureD (View v){
-        trajet.setHeureDepart(editHeure.getText().toString());
 
-        new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
-        Toast.makeText(Chat.this,
-                "L'heure de départ a été défini à "+editHeure.getText().toString(), Toast.LENGTH_LONG).show();
 
+        if (editHeure.getText().toString().matches(heurePattern))
+        {
+            trajet.setHeureDepart(editHeure.getText().toString());
+
+            new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
+            Toast.makeText(Chat.this,
+                    "L'heure de départ a été défini à "+editHeure.getText().toString(), Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), R.string.heure_invalide, Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
-
 
     @Override
     public void updateListViewTrajet(List<Trajet> trajets) {

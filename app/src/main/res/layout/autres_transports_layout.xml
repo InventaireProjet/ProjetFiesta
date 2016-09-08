@@ -11,7 +11,6 @@
 
     <include layout="@layout/en_tete"/>
 
-
     <TextView
         android:id="@+id/bus"
         android:layout_width="wrap_content"
@@ -20,33 +19,46 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="BUS NOCTURNES"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
         />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_bus_SM"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ImgB_mm"
-            android:src="@drawable/bus_icon_martigny_monthey"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ImgB_sm"
-            android:src="@drawable/bus_icon_sion_martigny"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ImgB_ss"
-            android:src="@drawable/bus_icon_sion_sierre"/>
+        android:drawableLeft="@drawable/bus_icon"
+        android:text="Sion - Martigny"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        />
 
-
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/btn_bus_MM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/bus_icon"
+        android:text="Martigny - Monthey"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        />
+    <Button
+        android:id="@+id/btn_bus_SS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/bus_icon"
+        android:text="Sierre - Sion"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        />
 
     <TextView
         android:id="@+id/train"
@@ -56,15 +68,21 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="TRAINS"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
         />
 
-
-    <ImageButton
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_cff"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ImgB_cff"
-        android:src="@drawable/cff_icon2"/>
+        android:drawableLeft="@drawable/train_icon"
+        android:text="SBB CFF FFS"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        />
 
     <TextView
         android:id="@+id/taxis"
@@ -74,12 +92,19 @@
         android:textSize="@dimen/texte_grand"
         android:textStyle="bold"
         android:text="TAXIS"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
         />
 
-    <ImageButton
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_taxi"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ImgB_taxi"
-        android:src="@drawable/taxi_icon"/>
+        android:drawableLeft="@drawable/taxi_icon"
+        android:text="Taxi Valais"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        />
 </LinearLayout>

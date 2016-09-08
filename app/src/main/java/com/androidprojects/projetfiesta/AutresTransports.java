@@ -11,41 +11,39 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 
 /**
- * Created by Nini on 02.09.2016.
+ * Created by NTS on 02.09.2016.
  */
 public class AutresTransports extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    ImageButton ImgBtnCFF;
-    ImageButton ImgBtnBusMM;
-    ImageButton ImgBtnBusSM;
-    ImageButton ImgBtnBusSS;
-    ImageButton ImgBtnTaxi;
-
+    Button Btn_CFF;
+    Button Btn_BusMM;
+    Button Btn_BusSM;
+    Button Btn_BusSS;
+    Button Btn_Taxi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.autres_transports_layout);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImgBtnCFF = (ImageButton) findViewById(R.id.ImgB_cff);
-        ImgBtnBusMM = (ImageButton) findViewById(R.id.ImgB_mm);
-        ImgBtnBusSM = (ImageButton) findViewById(R.id.ImgB_sm);
-        ImgBtnBusSS= (ImageButton) findViewById(R.id.ImgB_ss);
-        ImgBtnTaxi = (ImageButton) findViewById(R.id.ImgB_taxi);
+        Btn_CFF = (Button) findViewById(R.id.btn_cff);
+        Btn_BusMM = (Button) findViewById(R.id.btn_bus_MM);
+        Btn_BusSM = (Button) findViewById(R.id.btn_bus_SM);
+        Btn_BusSS= (Button) findViewById(R.id.btn_bus_SS);
+        Btn_Taxi = (Button) findViewById(R.id.btn_taxi);
 
-        ImgBtnCFF.setOnClickListener(new View.OnClickListener() {
+        Btn_CFF.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -58,7 +56,7 @@ public class AutresTransports extends AppCompatActivity {
  }
  });
 
-        ImgBtnBusMM.setOnClickListener(new View.OnClickListener() {
+        Btn_BusMM.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -71,7 +69,7 @@ public class AutresTransports extends AppCompatActivity {
             }
         });
 
-        ImgBtnBusSM.setOnClickListener(new View.OnClickListener() {
+        Btn_BusSM.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -84,7 +82,7 @@ public class AutresTransports extends AppCompatActivity {
             }
         });
 
-        ImgBtnBusSS.setOnClickListener(new View.OnClickListener() {
+        Btn_BusSS.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -97,7 +95,7 @@ public class AutresTransports extends AppCompatActivity {
             }
         });
 
-        ImgBtnTaxi.setOnClickListener(new View.OnClickListener() {
+        Btn_Taxi.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -141,7 +139,6 @@ public class AutresTransports extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -17,11 +17,9 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidprojects.projetfiesta.demarrage.ActiviteNonLogue;
 import com.projetfiesta.backend.evenementApi.model.Evenement;
@@ -146,7 +144,7 @@ public class Chat  extends AppCompatActivity implements OnTaskCompleted{
 
         List <Utilisateur> conducteurs = new ArrayList <Utilisateur>();
         try {
-            conducteurs = new EndpointsAsyncTaskUtilisateur(trajet.getConducteurId(), this ).execute().get();
+            conducteurs = new EndpointsAsyncTaskUtilisateur(idCond, this ).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

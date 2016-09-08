@@ -104,8 +104,10 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
 
         if(nombrePlaces.length()>0) {
             int nb = Integer.parseInt(nombrePlaces.getText().toString());
-            if (nb >= 0 && nb <= 20)
+            if (nb >= 0 && nb <= 20) {
                 trajet.setNombrePlaces(nb);
+                new EndpointsAsyncTaskTrajet(1, trajet, this).execute();
+            }
             else {
                 Toast.makeText(EditionTrajetDialogAlert.this.getActivity(), R.string.minMaxPlace, Toast.LENGTH_SHORT).show();
                 return;
@@ -122,8 +124,12 @@ public class EditionTrajetDialogAlert extends DialogFragment implements OnTaskCo
         }
         else
         {
-            Toast.makeText(EditionTrajetDialogAlert.this.getActivity(), R.string.heure_invalide, Toast.LENGTH_SHORT).show();
-            return;
+            if (heureDepart.getText().toString().equals("")) {
+            }
+            else {
+                Toast.makeText(EditionTrajetDialogAlert.this.getActivity(), R.string.heure_invalide, Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
     }
 

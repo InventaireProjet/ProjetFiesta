@@ -66,8 +66,8 @@ public class TrajetsAdapter extends ArrayAdapter<Trajet> implements OnTaskComple
         // ...sa destination
         String ville = "";
 
-        if(trajet.getDestination().length()>7)
-            ville = trajet.getDestination().substring(0,7) + "...";
+        if(trajet.getDestination().length()>16)
+            ville = trajet.getDestination().substring(0,16) + "...";
         else
             ville = trajet.getDestination();
 

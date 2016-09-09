@@ -26,17 +26,23 @@ public class ActivityCtrlDemarrage extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Recupère les préfèrences de l'utilisateur...
         SharedPreferences settings = getSharedPreferences("prefs",0);
+        // ... récupère l'état --> si l'utilisateur est déjà logué
         boolean estLogue = settings.getBoolean("estLogue",false);
 
+        // si l'utilisateur est déjà logué à l'application...
         if(estLogue == true)
         {
+            // ... il est directement envoyé vers l'affichage des événements
             Intent i = new Intent(ActivityCtrlDemarrage.this, AfficherEvenements.class);
             startActivity(i);
             finish();
         }
+        // si l'utilisateur n'est pas connecté ...
         else
         {
+            // ... il l'envoi vers la page de démarrage des utilisateurs non-connectés
             Intent a = new Intent(ActivityCtrlDemarrage.this, ActiviteNonLogue.class);
             startActivity(a);
             finish();
